@@ -1,0 +1,5 @@
+# Treat these formats explicitly as binary files
+*.so   binary
+*.dll  binary
+*.lib  binary
+*.a    binary

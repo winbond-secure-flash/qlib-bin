@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['reload_0',['reload',['../struct_q_l_i_b___s_e_c_t_i_o_n___c_o_n_f___p_o_s_t___a_c_t_i_o_n_s___t.html#aec134fdb1b0403f2b4a55cc6e8372766',1,'QLIB_SECTION_CONF_POST_ACTIONS_T']]],
+  ['replacedevice_1',['replaceDevice',['../struct_q_l_i_b___n_o_t_i_f_i_c_a_t_i_o_n_s___t.html#ac61f685342666af303fdda21eed47d5f',1,'QLIB_NOTIFICATIONS_T']]],
+  ['reserved_2',['reserved',['../struct_q_l_i_b___r_e_s_e_t___s_t_a_t_u_s___t.html#a4b2cc8bd0b626ccbe1de15b1ab961465',1,'QLIB_RESET_STATUS_T']]],
+  ['reserved_5f0_3',['RESERVED_0',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#a21c3b454eaed142b888495caa5696a22',1,'QLIB_REG_SSR_STRUCT_T']]],
+  ['reserved_5f1_4',['RESERVED_1',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#a7d7012a1c041ed2a4cbfea2b57ea2435',1,'QLIB_REG_SSR_STRUCT_T']]],
+  ['reserved_5f1_5fu32_5',['RESERVED_1_u32',['../struct_q_l_i_b___r_e_g___e_s_s_r___s_t_r_u_c_t___t.html#a8ed5efae7f27daf9af8a9e4f68a5cbc8',1,'QLIB_REG_ESSR_STRUCT_T']]],
+  ['reserved_5f2_6',['RESERVED_2',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#a4aebaafb078f1f72cf195495b8e064a3',1,'QLIB_REG_SSR_STRUCT_T']]],
+  ['reserved_5f2_5fu32_7',['RESERVED_2_u32',['../struct_q_l_i_b___r_e_g___e_s_s_r___s_t_r_u_c_t___t.html#aba6b5d11a626f3ee1c36ce9aeaabe11a',1,'QLIB_REG_ESSR_STRUCT_T']]],
+  ['reserved_5f3_8',['RESERVED_3',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#aa9b61bf8249e6858a67463e27503baeb',1,'QLIB_REG_SSR_STRUCT_T']]],
+  ['reset_9',['reset',['../struct_q_l_i_b___s_e_c_t_i_o_n___c_o_n_f___p_o_s_t___a_c_t_i_o_n_s___t.html#ad42d15316417341f0d4bb250e6695e75',1,'QLIB_SECTION_CONF_POST_ACTIONS_T']]],
+  ['resetdevice_10',['resetDevice',['../struct_q_l_i_b___n_o_t_i_f_i_c_a_t_i_o_n_s___t.html#a62840a8d31d19a711114d5eb3d44f11f',1,'QLIB_NOTIFICATIONS_T']]],
+  ['resetpa_11',['resetPA',['../struct_q_l_i_b___e_x_t_e_n_d_e_d___s_e_c_t_i_o_n___c_o_n_f___t.html#a84428a9234b868c0e31874e69f37beb8',1,'QLIB_EXTENDED_SECTION_CONF_T']]],
+  ['resp_5fready_12',['RESP_READY',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#a55540e34673d0c22bbfe8293368b3255',1,'QLIB_REG_SSR_STRUCT_T']]],
+  ['restrictedkey_13',['restrictedKey',['../struct_q_l_i_b___e_x_t_e_n_d_e_d___s_e_c_t_i_o_n___c_o_n_f___t.html#ad88018205c23bc85843f21738176c87c',1,'QLIB_EXTENDED_SECTION_CONF_T']]],
+  ['revision_14',['revision',['../struct_q_l_i_b___s_e_c___h_w___v_e_r___t.html#ada2dc412ea3cbf9ea48788cb50d6b059',1,'QLIB_SEC_HW_VER_T::revision()'],['../struct_q_l_i_b___h_w___i_n_f_o___t.html#a23ce181b65b39139cd50175db7da2ad3',1,'QLIB_HW_INFO_T::revision()']]],
+  ['rkeys_5fl_15',['rKeys_L',['../qlib__sample__fw_8c.html#adeeda75aff946faf7190f6639d0646f2',1,'qlib_sample_fw.c']]],
+  ['rng_5frdy_5fu32_16',['RNG_RDY_u32',['../struct_q_l_i_b___r_e_g___e_s_s_r___s_t_r_u_c_t___t.html#a742bd6af45437eac15084d63c256d8dd',1,'QLIB_REG_ESSR_STRUCT_T']]],
+  ['rngpaen_17',['rngPAEn',['../struct_q_l_i_b___d_i_e___c_o_n_f_i_g___t.html#abe7b0c5a8fb0a931b02b85631cf084ab',1,'QLIB_DIE_CONFIG_T']]],
+  ['rollbackenabled_18',['rollbackEnabled',['../struct_q_l_i_b___s_e_c_t_i_o_n___r_u_n_t_i_m_e___s_t_a_t_u_s___t.html#a51f48fa1d97a0c95d011129bb09414a1',1,'QLIB_SECTION_RUNTIME_STATUS_T']]],
+  ['rollbackprot_19',['rollbackProt',['../struct_q_l_i_b___p_o_l_i_c_y___t.html#ab8c4f452e76d49663db257541a8ba992',1,'QLIB_POLICY_T']]]
+];
