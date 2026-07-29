@@ -489,6 +489,16 @@ LMS_ALG_STATUS lmsVerifySignature(IN ALG_LMS_T* lmsAlg, IN LMS_VERIFY_SIGNATURE_
     {
         return ALG_ERROR_NOT_SUPPORTED;
     }
+
+    /* Reject malformed signatures that encode an out-of-range q/leaf index. A q >=
+     * 2^H would drive auth-path traversal past the expected tree height and can
+     * lead to stack over-read/out-of-bounds behavior in current code.
+     */
+    if (leafIndex >= LMS_NUM_OF_LEAVES(treeHeight))
+    {
+        return ALG_ERROR_INVALID_PARAMETER;
+    }
+
     if (lmsAlg == NULL || params->message == NULL || params->messageLen == 0u ||
         lmotsParameterSetId != LMOTS_SHA256_N24_W4_PARAM_SET_ID || params->publicKey == NULL ||
         params->publicKeyLen < LMS_PUBLIC_KEY_LENGTH)
