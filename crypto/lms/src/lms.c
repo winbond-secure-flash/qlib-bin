@@ -489,6 +489,12 @@ LMS_ALG_STATUS lmsVerifySignature(IN ALG_LMS_T* lmsAlg, IN LMS_VERIFY_SIGNATURE_
     {
         return ALG_ERROR_NOT_SUPPORTED;
     }
+
+    if (leafIndex >= LMS_NUM_OF_LEAVES(treeHeight))
+    {
+        return ALG_ERROR_INVALID_PARAMETER;
+    }
+
     if (lmsAlg == NULL || params->message == NULL || params->messageLen == 0u ||
         lmotsParameterSetId != LMOTS_SHA256_N24_W4_PARAM_SET_ID || params->publicKey == NULL ||
         params->publicKeyLen < LMS_PUBLIC_KEY_LENGTH)
