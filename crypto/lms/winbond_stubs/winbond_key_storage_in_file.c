@@ -21,10 +21,16 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------------------------*/
 #include "winbond_key_storage_in_file.h"
+#include "lms.h"
 #include "sha256.h"
 #include <stdio.h>
 #include <string.h>
 #include "sha256.h"
+#if defined(__unix__) || defined(__APPLE__)
+#include <fcntl.h>
+#include <sys/file.h>
+#include <unistd.h>
+#endif
 
 /*---------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------------------------*/
@@ -199,6 +205,73 @@ LMS_ALG_STATUS LMS_FetchPrivateKeyInFile(const IN LMS_KEY_ID_T keyId,
 
     *privKeyBytesReal = (uint32_t)read;
     return ALG_SUCCESS;
+}
+
+LMS_ALG_STATUS LMS_ReservePrivateKeyInFile(const IN LMS_KEY_ID_T keyId,
+                                           const IN void*         expectedPrivKey,
+                                           const IN void*         reservedPrivKey,
+                                           IN uint32_t            privKeySize)
+{
+#if defined(__unix__) || defined(__APPLE__)
+    uint32_t hash[(uint32_t)SHA256_DIGEST_LENGTH / (uint32_t)sizeof(uint32_t)];
+    char     lockFilename[64];
+    FILE*    lockFile;
+    uint8_t  currentPrivKey[sizeof(LMS_SEED_T) + (2u * sizeof(uint32_t))];
+    uint32_t currentPrivKeySize = 0u;
+    LMS_ALG_STATUS ret;
+
+    if (keyId == NULL || expectedPrivKey == NULL || reservedPrivKey == NULL || privKeySize == 0u ||
+        privKeySize > sizeof(currentPrivKey))
+    {
+        return ALG_ERROR_INVALID_PARAMETER;
+    }
+
+    hashKeyId_L(keyId, hash);
+    (void)snprintf(lockFilename,
+                   sizeof(lockFilename),
+                   "priv_key_%02x%02x%02x%02x.lock",
+                   (uint8_t)hash[0],
+                   (uint8_t)hash[1],
+                   (uint8_t)hash[2],
+                   (uint8_t)hash[3]);
+    lockFile = fopen(lockFilename, "ab+");
+    if (lockFile == NULL)
+    {
+        return ALG_ERROR_SYSTEM_IN_INCORRECT_STATE;
+    }
+    if (flock(fileno(lockFile), LOCK_EX) != 0)
+    {
+        (void)fclose(lockFile);
+        return ALG_ERROR_SYSTEM_IN_INCORRECT_STATE;
+    }
+
+    ret = LMS_FetchPrivateKeyInFile(keyId, currentPrivKey, (uint32_t)sizeof(currentPrivKey), &currentPrivKeySize);
+    if (ret == ALG_SUCCESS)
+    {
+        if (currentPrivKeySize != privKeySize)
+        {
+            ret = ALG_ERROR_INVALID_PARAMETER;
+        }
+        else if (memcmp(currentPrivKey, expectedPrivKey, privKeySize) != 0)
+        {
+            ret = ALG_ERROR_SYSTEM_IN_INCORRECT_STATE;
+        }
+        else
+        {
+            ret = LMS_StorePrivateKeyInFile(keyId, reservedPrivKey, privKeySize);
+        }
+    }
+
+    (void)flock(fileno(lockFile), LOCK_UN);
+    (void)fclose(lockFile);
+    return ret;
+#else
+    (void)keyId;
+    (void)expectedPrivKey;
+    (void)reservedPrivKey;
+    (void)privKeySize;
+    return ALG_ERROR_NOT_SUPPORTED;
+#endif
 }
 
 LMS_ALG_STATUS LMS_StoreCacheInFile(const IN LMS_KEY_ID_T keyId, const IN void* cache, IN uint32_t cacheSize)

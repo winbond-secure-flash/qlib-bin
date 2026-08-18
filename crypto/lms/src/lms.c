@@ -358,21 +358,55 @@ LMS_ALG_STATUS lmsSignMessage(IN ALG_LMS_T* lmsAlg, IN OUT LMS_SIGN_MESSAGE_OP_T
         return ALG_ERROR_INVALID_PARAMETER;
     }
 
-    if ((ret = LMS_FetchPrivateKey(params->keyId, &priv, (uint32_t)(sizeof(LMS_KEY_PRIV_T)), &size)) != ALG_SUCCESS)
+    /* Reserve a leaf with an atomic compare-and-replace transaction.  A
+     * fetch followed by an ordinary store is insufficient: two signers can
+     * observe the same q and both produce a valid signature for it. */
+    for (;;)
     {
-        return ret;
-    }
-    if (size != sizeof(LMS_KEY_PRIV_T))
-    {
-        return ALG_ERROR_CORRUPTED_DATA;
-    }
-    if ((priv.treeHeight != 10u) && (priv.treeHeight != 20u))
-    {
-        return ALG_ERROR_CORRUPTED_DATA;
-    }
-    if (params->signatureBufferLen < LMS_SIGNATURE_LENGTH(priv.treeHeight))
-    {
-        return ALG_ERROR_INVALID_PARAMETER;
+        LMS_KEY_PRIV_T reservedPriv;
+
+        if ((ret = LMS_FetchPrivateKey(params->keyId, &priv, (uint32_t)(sizeof(LMS_KEY_PRIV_T)), &size)) != ALG_SUCCESS)
+        {
+            return ret;
+        }
+        if (size != sizeof(LMS_KEY_PRIV_T))
+        {
+            return ALG_ERROR_CORRUPTED_DATA;
+        }
+        if ((priv.treeHeight != 10u) && (priv.treeHeight != 20u))
+        {
+            return ALG_ERROR_CORRUPTED_DATA;
+        }
+        if (params->signatureBufferLen < LMS_SIGNATURE_LENGTH(priv.treeHeight))
+        {
+            return ALG_ERROR_INVALID_PARAMETER;
+        }
+
+        reservedPriv = priv;
+        /* A newly generated key starts immediately before q=0. */
+        if (reservedPriv.otsIdx == UINT32_MAX)
+        {
+            reservedPriv.otsIdx = 0u;
+        }
+        else
+        {
+            reservedPriv.otsIdx++;
+        }
+        if (reservedPriv.otsIdx >= LMS_NUM_OF_LEAVES(reservedPriv.treeHeight))
+        {
+            return ALG_ERROR_ALL_OTS_USED;
+        }
+
+        ret = LMS_ReservePrivateKey(params->keyId, &priv, &reservedPriv, (uint32_t)sizeof(LMS_KEY_PRIV_T));
+        if (ret == ALG_SUCCESS)
+        {
+            priv = reservedPriv;
+            break;
+        }
+        if (ret != ALG_ERROR_SYSTEM_IN_INCORRECT_STATE)
+        {
+            return ret;
+        }
     }
     lmsParameterSetId = (priv.treeHeight == 10u ? LMS_SHA256_M24_H10_PARAM_SET_ID : LMS_SHA256_M24_H20_PARAM_SET_ID);
 
@@ -381,20 +415,6 @@ LMS_ALG_STATUS lmsSignMessage(IN ALG_LMS_T* lmsAlg, IN OUT LMS_SIGN_MESSAGE_OP_T
         (cacheSize != LMS_G.cacheSize * (uint32_t)(sizeof(LMS_CACHE_NODE_T))))
     {
         (void)memset(cache, 0, sizeof(LMS_CACHE_NODE_T) * LMS_MAX_CACHE_SIZE);
-    }
-
-    // increment leaf number
-    priv.otsIdx++;
-
-    if (priv.otsIdx >= LMS_NUM_OF_LEAVES(priv.treeHeight))
-    {
-        return ALG_ERROR_ALL_OTS_USED;
-    }
-
-    //save the private key after otsIdx increment
-    if ((ret = LMS_StorePrivateKey(params->keyId, (const void*)(&priv), (uint32_t)(sizeof(LMS_KEY_PRIV_T)))) != ALG_SUCCESS)
-    {
-        return ret;
     }
 
     // generate nonce
@@ -1186,6 +1206,8 @@ static LMS_ALG_STATUS lmsGenerateKeyPair_L(IN ALG_LMS_T* lmsAlg, IN LMS_GEN_KEY_
     {
         (void)memcpy(priv.seed, seed, LMS_PARAM_M); /*lint !e420 PCLP-5299u */
     }
+    /* The first atomic reservation advances this sentinel to q=0. */
+    priv.otsIdx = UINT32_MAX;
     priv.treeHeight = requestedTreeHeight;
 
     // store private key

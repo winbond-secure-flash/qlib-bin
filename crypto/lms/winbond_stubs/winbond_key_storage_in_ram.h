@@ -38,6 +38,10 @@ LMS_ALG_STATUS LMS_FetchPrivateKeyInRAM(const IN LMS_KEY_ID_T keyId,
                                         OUT void*             privKey,
                                         IN uint32_t           privKeyBufferSize,
                                         OUT uint32_t*         privKeyBytesReal);
+LMS_ALG_STATUS LMS_ReservePrivateKeyInRAM(const IN LMS_KEY_ID_T keyId,
+                                          const IN void*         expectedPrivKey,
+                                          const IN void*         reservedPrivKey,
+                                          IN uint32_t            privKeySize);
 LMS_ALG_STATUS LMS_StoreCacheInRAM(const IN LMS_KEY_ID_T keyId, const IN void* cache, IN uint32_t cacheSize);
 LMS_ALG_STATUS LMS_FetchCacheInRAM(const IN LMS_KEY_ID_T keyId,
                                    OUT void*             cache,

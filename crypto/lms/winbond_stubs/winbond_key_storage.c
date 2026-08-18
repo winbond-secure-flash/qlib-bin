@@ -72,6 +72,20 @@ LMS_ALG_STATUS LMS_FetchPrivateKey(const IN LMS_KEY_ID_T keyId,
 #endif
 }
 
+#ifndef VERIFY_ONLY
+LMS_ALG_STATUS LMS_ReservePrivateKey(const IN LMS_KEY_ID_T keyId,
+                                     const IN void*         expectedPrivKey,
+                                     const IN void*         reservedPrivKey,
+                                     IN uint32_t            privKeySize)
+{
+#ifdef USE_RAM_STORAGE
+    return LMS_ReservePrivateKeyInRAM(keyId, expectedPrivKey, reservedPrivKey, privKeySize);
+#else
+    return LMS_ReservePrivateKeyInFile(keyId, expectedPrivKey, reservedPrivKey, privKeySize);
+#endif
+}
+#endif // VERIFY_ONLY
+
 LMS_ALG_STATUS LMS_StoreCache(const IN LMS_KEY_ID_T keyId, const IN void* cache, IN uint32_t cacheSize)
 {
 #ifdef USE_RAM_STORAGE

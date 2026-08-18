@@ -19,6 +19,7 @@
 #include "winbond_key_storage_in_ram.h"
 #include "lms.h"
 #include "sha256.h"
+#include <stdatomic.h>
 #include <string.h>
 
 /*---------------------------------------------------------------------------------------------------------*/
@@ -71,6 +72,7 @@ static PrivKeyStorage privKeyStorage[MAX_KEYS] = {0};
 static uint32_t       privKeyCount             = 0;
 static CacheStorage   cacheStorage[MAX_KEYS]   = {0};
 static uint32_t       cacheCount               = 0;
+static atomic_flag    privateKeyReservationLock = ATOMIC_FLAG_INIT;
 #endif // VERIFY_ONLY
 
 /*---------------------------------------------------------------------------------------------------------*/
@@ -203,6 +205,45 @@ LMS_ALG_STATUS LMS_FetchPrivateKeyInRAM(const IN LMS_KEY_ID_T keyId,
     (void)memcpy((void*)privKey, (const void*)privKeyStorage[index].privKey, privKeyStorage[index].privKeySize);
     *privKeyBytesReal = privKeyStorage[index].privKeySize;
 
+    return ALG_SUCCESS;
+}
+
+LMS_ALG_STATUS LMS_ReservePrivateKeyInRAM(const IN LMS_KEY_ID_T keyId,
+                                          const IN void*         expectedPrivKey,
+                                          const IN void*         reservedPrivKey,
+                                          IN uint32_t            privKeySize)
+{
+    int index;
+
+    if (keyId == NULL || expectedPrivKey == NULL || reservedPrivKey == NULL || privKeySize == 0u)
+    {
+        return ALG_ERROR_INVALID_PARAMETER;
+    }
+
+    while (atomic_flag_test_and_set_explicit(&privateKeyReservationLock, memory_order_acquire))
+    {
+        /* spin until the reservation transaction completes */
+    }
+
+    index = findPrivKeyIndex_L(keyId);
+    if (index == -1)
+    {
+        atomic_flag_clear_explicit(&privateKeyReservationLock, memory_order_release);
+        return ALG_ERROR_KID_NOT_FOUND;
+    }
+    if (privKeyStorage[index].privKeySize != privKeySize)
+    {
+        atomic_flag_clear_explicit(&privateKeyReservationLock, memory_order_release);
+        return ALG_ERROR_INVALID_PARAMETER;
+    }
+    if (memcmp(privKeyStorage[index].privKey, expectedPrivKey, privKeySize) != 0)
+    {
+        atomic_flag_clear_explicit(&privateKeyReservationLock, memory_order_release);
+        return ALG_ERROR_SYSTEM_IN_INCORRECT_STATE;
+    }
+
+    (void)memcpy(privKeyStorage[index].privKey, reservedPrivKey, privKeySize);
+    atomic_flag_clear_explicit(&privateKeyReservationLock, memory_order_release);
     return ALG_SUCCESS;
 }
 

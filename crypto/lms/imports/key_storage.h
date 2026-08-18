@@ -108,6 +108,21 @@ LMS_ALG_STATUS LMS_FetchPrivateKey(const IN LMS_KEY_ID_T keyId,
                                    OUT uint32_t*         privKeyBytesReal);
 
 /************************************************************************************************************
+ * @brief Atomically compare and replace a private key reservation state.
+ *
+ * The signing path uses this operation to reserve an LMS leaf.  Implementations
+ * must compare the complete stored private-key value with expectedPrivKey and,
+ * only when it matches, replace it with reservedPrivKey as one atomic operation.
+ * A compare failure must return ALG_ERROR_SYSTEM_IN_INCORRECT_STATE without
+ * modifying the stored key.  Callers must not fall back to a fetch followed
+ * by an ordinary store when this operation is unavailable.
+ ************************************************************************************************************/
+LMS_ALG_STATUS LMS_ReservePrivateKey(const IN LMS_KEY_ID_T keyId,
+                                     const IN void*         expectedPrivKey,
+                                     const IN void*         reservedPrivKey,
+                                     IN uint32_t            privKeySize);
+
+/************************************************************************************************************
  * @brief       This function stores the tree cache in HSM
  *
  * @param[in] keyId        Key Id of the merkle tree
