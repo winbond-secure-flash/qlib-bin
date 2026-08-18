@@ -383,8 +383,15 @@ LMS_ALG_STATUS lmsSignMessage(IN ALG_LMS_T* lmsAlg, IN OUT LMS_SIGN_MESSAGE_OP_T
         (void)memset(cache, 0, sizeof(LMS_CACHE_NODE_T) * LMS_MAX_CACHE_SIZE);
     }
 
-    // increment leaf number
-    priv.otsIdx++;
+    // increment the last-used leaf number; a new key starts immediately before q=0
+    if (priv.otsIdx == UINT32_MAX)
+    {
+        priv.otsIdx = 0u;
+    }
+    else
+    {
+        priv.otsIdx++;
+    }
 
     if (priv.otsIdx >= LMS_NUM_OF_LEAVES(priv.treeHeight))
     {
@@ -1186,6 +1193,8 @@ static LMS_ALG_STATUS lmsGenerateKeyPair_L(IN ALG_LMS_T* lmsAlg, IN LMS_GEN_KEY_
     {
         (void)memcpy(priv.seed, seed, LMS_PARAM_M); /*lint !e420 PCLP-5299u */
     }
+    /* The first signing reservation advances this sentinel to q=0. */
+    priv.otsIdx    = UINT32_MAX;
     priv.treeHeight = requestedTreeHeight;
 
     // store private key
