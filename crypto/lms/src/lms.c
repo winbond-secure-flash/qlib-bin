@@ -353,7 +353,8 @@ LMS_ALG_STATUS lmsSignMessage(IN ALG_LMS_T* lmsAlg, IN OUT LMS_SIGN_MESSAGE_OP_T
     LMS_CACHE_NODE_T cache[LMS_MAX_CACHE_SIZE];
     uint32_t         cacheSize = 0;
 
-    if (lmsAlg == NULL || params == NULL || params->keyId == NULL || params->message == NULL || params->messageLen == 0u)
+    if (lmsAlg == NULL || params == NULL || params->keyId == NULL || params->message == NULL || params->messageLen == 0u ||
+        params->signature == NULL)
     {
         return ALG_ERROR_INVALID_PARAMETER;
     }
@@ -450,6 +451,8 @@ LMS_ALG_STATUS lmsVerifySignature(IN ALG_LMS_T* lmsAlg, IN LMS_VERIFY_SIGNATURE_
     uint32_t        treeHeight;
     uint32_t        lmsParameterSetId;
     uint32_t        lmotsParameterSetId;
+    uint32_t        pubLmsParameterSetId;
+    uint32_t        pubLmotsParameterSetId;
     LMS_MSG_NONCE_T randomString;
     LMS_OTS_SIG_T   otsSignature;
     LMS_CHUNK_T     path[LMS_MAX_TREE_HEIGHT];
@@ -496,10 +499,19 @@ LMS_ALG_STATUS lmsVerifySignature(IN ALG_LMS_T* lmsAlg, IN LMS_VERIFY_SIGNATURE_
         return ALG_ERROR_INVALID_PARAMETER;
     }
 
-    ret = lmsPubKeyDeserialize_L(params->publicKey, params->publicKeyLen, NULL, NULL, keyId, rootPubKey);
+    ret = lmsPubKeyDeserialize_L(params->publicKey,
+                                 params->publicKeyLen,
+                                 &pubLmsParameterSetId,
+                                 &pubLmotsParameterSetId,
+                                 keyId,
+                                 rootPubKey);
     if (ret != ALG_SUCCESS)
     {
         return ret;
+    }
+    if ((lmsParameterSetId != pubLmsParameterSetId) || (lmotsParameterSetId != pubLmotsParameterSetId))
+    {
+        return ALG_ERROR_INVALID_PARAMETER;
     }
     // Calculate MSG hash
     lmsCalcMsgHash(keyId, leafIndex, randomString, params->message, params->messageLen, msgHash);
