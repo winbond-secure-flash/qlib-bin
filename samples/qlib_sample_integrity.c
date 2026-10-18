@@ -120,16 +120,13 @@ QLIB_STATUS_T QLIB_SAMPLE_Integrity_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     /*-------------------------------------------------------------------------------------------------------
      Set pre-provision master key if needed
     -------------------------------------------------------------------------------------------------------*/
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext,
-                                                   id.std.uniqueID,
-                                                   QLIB_KID__DEVICE_KEY_PRE_PROVISIONING,
-                                                   dieCfg.preProvisionedMasterKey));
+    QLIB_STATUS_RET_CHECK(
+        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     /*-------------------------------------------------------------------------------------------------------
      Set new master key
     -------------------------------------------------------------------------------------------------------*/
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
 #if QLIB_MAX_DIES_SUPPORTED > 1u
     QLIB_STATUS_RET_CHECK(QLIB_GetActiveDie(qlibContext, &die_u8));
@@ -138,6 +135,28 @@ QLIB_STATUS_T QLIB_SAMPLE_Integrity_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     sectCfg = cfgLine[die_u8].sectionConfigTable;
 
     /*-------------------------------------------------------------------------------------------------------
+     preliminary step: delete the sample test area, since the sample uses pre-calculated CRC and digest
+     for SIZE_512KB_ of 0xFF (erased flash). If the flash area is already deleted, this is redundant.
+    -------------------------------------------------------------------------------------------------------*/
+    sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].baseAddr = QLIB_SAMPLE_RESERVED_BOOT_SECTION_SIZE;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].size     = SIZE_512KB_;
+
+    memset(&sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy, 0, sizeof(QLIB_POLICY_T));
+    sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy.plainAccessReadEnable  = 1u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy.plainAccessWriteEnable = 1u;
+
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
+                                                          id.sec.wid,
+                                                          QLIB_KID__FULL_ACCESS_SECTION,
+                                                          QLIB_SAMPLE_INTEGRITY_CHECK_SECTION,
+                                                          die_u8,
+                                                          sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].fullAccessKey));
+
+    QLIB_STATUS_RET_CHECK(QLIB_ConfigDeviceMultiDie(qlibContext, &flashCfg, &dieCfg, cfgLine, diesNum_u8));
+    QLIB_STATUS_RET_CHECK(QLIB_EraseSection(qlibContext, QLIB_SAMPLE_INTEGRITY_CHECK_SECTION, (bool)false));
+
+    /*-------------------------------------------------------------------------------------------------------
+     Now configure the sections for the sample.
      Section 1 (check section): CRC and digest integrity protected, plain read enabled, plain write disabled.
      Both the CRC and the digest are pre-calculated for SIZE_512KB_ of 0xFF (erased flash).
      CRC integrity is verified by the device without a session; digest integrity requires a restricted session.
@@ -149,20 +168,22 @@ QLIB_STATUS_T QLIB_SAMPLE_Integrity_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy.plainAccessWriteEnable = 0u;
     sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy.checksumIntegrity      = 1u;
     sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy.digestIntegrity        = 1u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy.rollbackProt           = 0u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy.slog                   = 0u;
     sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.policy.digestIntegrityOnAccess =
         (QLIB_FeatureSupported(qlibContext, W77Q_FEATURE_AUTH_AC) != (bool)false) ? 1u : 0u;
     sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.crc    = QLIB_SAMPLE_INTEGRITY_CRC_EXPECTED;
     sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].sectionConfig.digest = QLIB_SAMPLE_INTEGRITY_DIGEST_EXPECTED;
 
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           QLIB_SAMPLE_INTEGRITY_CHECK_SECTION,
                                                           die_u8,
                                                           sectCfg[QLIB_SAMPLE_INTEGRITY_CHECK_SECTION].restrictedKey));
 
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           QLIB_SAMPLE_INTEGRITY_CHECK_SECTION,
                                                           die_u8,
@@ -173,13 +194,20 @@ QLIB_STATUS_T QLIB_SAMPLE_Integrity_manuf_flow(QLIB_CONTEXT_T* qlibContext)
      and will be used to corrupt section 1 data to demonstrate integrity detection.
     -------------------------------------------------------------------------------------------------------*/
     sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].baseAddr = QLIB_SAMPLE_RESERVED_BOOT_SECTION_SIZE;
-    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].size     = SIZE_2MB_;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].size     = SIZE_512KB_;
 
-    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.plainAccessReadEnable  = 1u;
-    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.plainAccessWriteEnable = 1u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.plainAccessReadEnable   = 1u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.plainAccessWriteEnable  = 1u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.authPlainAccess         = 0u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.checksumIntegrity       = 0u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.digestIntegrity         = 0u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.digestIntegrityOnAccess = 0u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.rollbackProt            = 0u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.slog                    = 0u;
+    sectCfg[QLIB_SAMPLE_INTEGRITY_TEST_SECTION].sectionConfig.policy.writeProt               = 0u;
 
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           QLIB_SAMPLE_INTEGRITY_TEST_SECTION,
                                                           die_u8,
@@ -214,7 +242,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Integrity_field_flow(QLIB_CONTEXT_T* qlibContext)
      Obtain the restricted key for the digest section (needed to open a session for digest checks)
     -------------------------------------------------------------------------------------------------------*/
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           QLIB_SAMPLE_INTEGRITY_CHECK_SECTION,
                                                           die_u8,
@@ -240,19 +268,26 @@ QLIB_STATUS_T QLIB_SAMPLE_Integrity_field_flow(QLIB_CONTEXT_T* qlibContext)
     -------------------------------------------------------------------------------------------------------*/
     QLIB_STATUS_RET_CHECK_GOTO(QLIB_SAMPLE_CheckDigestIntegrity_L(qlibContext, (bool)true), ret, close_session);
 
-    QLIB_SAMPLE_ALLOW_TO_FAIL__START();
     /*-------------------------------------------------------------------------------------------------------
      Corrupt section 1 data through section 2 (overlapping plain write)
     -------------------------------------------------------------------------------------------------------*/
-    QLIB_STATUS_RET_CHECK(
-        QLIB_Write(qlibContext, corruptedData_u8, QLIB_SAMPLE_INTEGRITY_TEST_SECTION, 0u, sizeof(corruptedData_u8), (bool)false));
+    QLIB_STATUS_RET_CHECK_GOTO(QLIB_Write(qlibContext,
+                                          corruptedData_u8,
+                                          QLIB_SAMPLE_INTEGRITY_TEST_SECTION,
+                                          0u,
+                                          sizeof(corruptedData_u8),
+                                          (bool)false),
+                               ret,
+                               close_session);
 
+    QLIB_SAMPLE_ALLOW_TO_FAIL__START();
     /*-------------------------------------------------------------------------------------------------------
      Verify section 1 CRC integrity now fails (data was corrupted)
     -------------------------------------------------------------------------------------------------------*/
-    QLIB_ASSERT_RET(QLIB_STATUS__OK != QLIB_CheckIntegrity(qlibContext, QLIB_SAMPLE_INTEGRITY_CHECK_SECTION, QLIB_INTEGRITY_CRC),
-                    QLIB_STATUS__TEST_FAIL);
+    ret = QLIB_CheckIntegrity(qlibContext, QLIB_SAMPLE_INTEGRITY_CHECK_SECTION, QLIB_INTEGRITY_CRC);
     QLIB_SAMPLE_ALLOW_TO_FAIL__END();
+
+    QLIB_ASSERT_WITH_ERROR_GOTO(QLIB_STATUS__OK != ret, QLIB_STATUS__TEST_FAIL, ret, close_session);
     /*-------------------------------------------------------------------------------------------------------
      Verify section 3 digest integrity now fails (data was corrupted)
     -------------------------------------------------------------------------------------------------------*/
@@ -310,7 +345,6 @@ static QLIB_STATUS_T QLIB_SAMPLE_CheckDigestIntegrity_L(QLIB_CONTEXT_T* qlibCont
     else
     {
         QLIB_ASSERT_RET(QLIB_STATUS__OK != ret, QLIB_STATUS__TEST_FAIL);
-        ret = QLIB_STATUS__OK;
     }
     /*-----------------------------------------------------------------------------------------------------
      Method 1: QLIB_GetSignedData + manual comparison
@@ -324,12 +358,10 @@ static QLIB_STATUS_T QLIB_SAMPLE_CheckDigestIntegrity_L(QLIB_CONTEXT_T* qlibCont
                                              sizeof(digestBuff_u8),
                                              NULL));
 
-    QLIB_SAMPLE_ALLOW_TO_FAIL__START();
     digestMatches_b = (memcmp(digestBuff_u8, &expectedDigest_u64, sizeof(expectedDigest_u64)) == 0);
-    QLIB_SAMPLE_ALLOW_TO_FAIL__END();
 
     QLIB_ASSERT_RET(expectPass_b == digestMatches_b, QLIB_STATUS__TEST_FAIL);
 
-    return ret;
+    return QLIB_STATUS__OK;
 }
 #endif // QLIB_ONLY_SECURE_STORAGE

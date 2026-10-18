@@ -19,8 +19,8 @@
 
 # Library Size
 
-- Code (text): 102688 bytes
-- Data: 688 bytes
+- Code (text): 1084688 bytes
+- Data: 36968 bytes
 
 # Shared Library Dependencies
 

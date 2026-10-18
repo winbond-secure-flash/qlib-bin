@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,12 +77,11 @@ $(function() {
   <div class="headertitle"><div class="title">Identification feature </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >Each w77q device has its unique identifiers burned during manufacture. All can be read without secure session. These identifiers are:</p>
+<div class="textblock"><p >Each W77Q device has unique identifiers programmed during manufacturing. These identifiers can be read without a secure session:</p>
 <ul>
-<li>UID - standard flash unique id. Set by Winbond during manufacture, read only, chip format resistant.</li>
-<li>WID - secure flash unique id. Set by Winbond during manufacture, read only, chip format resistant.</li>
-<li>SUID - secure user id. Set by user, read/write, chip format erases this field. <br  />
- <a href="qlib__sample__get__ids_8c_source.html">🔗Winbond Identifier c code</a> </li>
+<li>UID — Standard flash unique ID. Set by Winbond during manufacturing; read-only and retained through device formatting.</li>
+<li>WID — Secure flash unique ID. Set by Winbond during manufacturing; read-only and retained through device formatting.</li>
+<li>SUID — Secure user ID. Set by the user; readable and writable, and erased when the device is formatted. <a href="qlib_sample_get_ids_8c-example.html">🔗Winbond Identifier c code</a> </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

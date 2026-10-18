@@ -489,6 +489,7 @@ LMS_ALG_STATUS lmsVerifySignature(IN ALG_LMS_T* lmsAlg, IN LMS_VERIFY_SIGNATURE_
     {
         return ALG_ERROR_NOT_SUPPORTED;
     }
+
     if (lmsAlg == NULL || params->message == NULL || params->messageLen == 0u ||
         lmotsParameterSetId != LMOTS_SHA256_N24_W4_PARAM_SET_ID || params->publicKey == NULL ||
         params->publicKeyLen < LMS_PUBLIC_KEY_LENGTH)
@@ -1353,6 +1354,7 @@ static LMS_ALG_STATUS lmsSignatureDeserialize_L(IN const uint8_t*   sigBuf,
     const uint8_t* ptr = sigBuf;
     uint32_t       treeHeight;
     uint32_t       id;
+    uint32_t       leafIdx;
 
     if (sigBuf == NULL || sigBufSize < (uint32_t)LMS_SIGNATURE_LENGTH(0u))
     {
@@ -1362,6 +1364,11 @@ static LMS_ALG_STATUS lmsSignatureDeserialize_L(IN const uint8_t*   sigBuf,
     if (otsIdxQ != NULL)
     {
         LMS_GET_U32_FROM_BUF_BE(*otsIdxQ, ptr);
+    }
+    else
+    {
+        LMS_GET_U32_FROM_BUF_BE(leafIdx, ptr);
+        otsIdxQ = &leafIdx;
     }
     ptr += (uint32_t)sizeof(uint32_t);
     if (lmotsParameterSetId != NULL)
@@ -1401,6 +1408,10 @@ static LMS_ALG_STATUS lmsSignatureDeserialize_L(IN const uint8_t*   sigBuf,
     else
     {
         return ALG_ERROR_NOT_SUPPORTED;
+    }
+    if (*otsIdxQ >= LMS_NUM_OF_LEAVES(treeHeight))
+    {
+        return ALG_ERROR_INVALID_PARAMETER;
     }
     if (sigBufSize < LMS_SIGNATURE_LENGTH(treeHeight))
     {

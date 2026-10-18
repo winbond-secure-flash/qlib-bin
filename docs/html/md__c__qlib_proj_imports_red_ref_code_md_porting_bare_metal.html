@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,13 +77,13 @@ $(function() {
   <div class="headertitle"><div class="title">Bare Metal (No OS or Simple Scheduler) </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h3><a class="anchor" id="autotoc_md138"></a>
+<div class="textblock"><h3><a class="anchor" id="autotoc_md139"></a>
 Hardware Abstraction:</h3>
 <p >Direct register access. Reading/writing directly to the micro controller's SPI peripheral registers (e.g., Control Register, Status Register, Data Register). You'll need the microcontroller's datasheet and reference manual.</p>
-<h3><a class="anchor" id="autotoc_md139"></a>
+<h3><a class="anchor" id="autotoc_md140"></a>
 Implementation:</h3>
 <ul>
-<li>Manually control the Chip Select (CS) GPIO pin: Set it low before starting, set it high after completion.</li>
+<li>Manually control the Chip Select (CS#) GPIO pin: Set it low before starting, set it high after completion.</li>
 <li>Configure SPI parameters (mode specified by format, clock speed, etc.) by writing to control registers.</li>
 <li>Implement the sequence step-by-step:<ul>
 <li>Write command bytes: Loop cmdSize times, writing a byte to the SPI Data Register and waiting for the transmit buffer empty flag (or transmit complete flag) in the Status Register. Read the Data Register to clear the receive flag if necessary, even if ignoring the received data during write.</li>
@@ -94,18 +94,18 @@ Implementation:</h3>
 <li>Read data bytes: Loop dataInSize times, writing a dummy byte, waiting for the receive buffer full flag, and reading the received byte into the dataIn buffer.</li>
 </ul>
 </li>
-<li>The userData pointer might hold a pointer to a struct containing base addresses of SPI peripherals, GPIO pin configurations for CS, etc. </li>
+<li>The userData pointer might hold a pointer to a struct containing base addresses of SPI peripherals, GPIO pin configurations for CS#, etc. </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md140"></a>
-Concurrency:</h3>
-<p >Simple. Usually single-threaded. If interrupts are used, critical sections accessing SPI registers or controlling CS might need to be protected by disabling/enabling interrupts briefly. </p>
 <h3><a class="anchor" id="autotoc_md141"></a>
+Concurrency:</h3>
+<p >Simple. Usually single-threaded. If interrupts are used, critical sections accessing SPI registers or controlling CS# might need to be protected by disabling/enabling interrupts briefly. </p>
+<h3><a class="anchor" id="autotoc_md142"></a>
 Blocking:</h3>
 <p >The implementation will be inherently blocking, relying on polling status flags in loops (busy-waiting). </p>
-<h3><a class="anchor" id="autotoc_md142"></a>
-Atomicity:</h3>
-<p >Achieved by manually keeping CS low for the entire duration. </p>
 <h3><a class="anchor" id="autotoc_md143"></a>
+Atomicity:</h3>
+<p >Achieved by manually keeping CS# low for the entire duration. </p>
+<h3><a class="anchor" id="autotoc_md144"></a>
 Error Handling:</h3>
 <p >Check SPI status register flags (e.g., over run, under run, mode fault) after operations and return appropriate error codes.</p>
 <p >🔗<a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_porting_bare_metal_c.html">Example bare metal code</a> </p>

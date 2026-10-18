@@ -15,9 +15,11 @@
                                                    INCLUDES
 -----------------------------------------------------------------------------------------------------------*/
 
+#include <string.h>
 #include "qlib.h"
 #include "qlib_sample.h"
 #include "qlib_sample_recovery.h"
+
 
 #ifndef QLIB_ONLY_SECURE_STORAGE
 /*-----------------------------------------------------------------------------------------------------------
@@ -29,6 +31,8 @@
 #define RECOVERY_FAST_READ_DUMMY FLASH_CR_DUMMY_DEFAULT
 #endif // INIT_FAST_READ_DUMMY_CYCLES
 
+// Always-print step tracer for W77Q_reset_CR_L (independent of QLIB_VERBOSE level filtering).
+
 /*-----------------------------------------------------------------------------------------------------------
                                          LOCAL FUNCTIONS DECLARATION
 -----------------------------------------------------------------------------------------------------------*/
@@ -38,6 +42,7 @@ static void QLIB_SAMPLE_initLegacyConfig_L(QLIB_CONTEXT_T*             qlibConte
                                            QLIB_DIE_CONFIG_T*          dieCfg,
                                            QLIB_SECTIONS_CONF_TABLE_T* cfgSectionArray,
                                            uint32_t                    numOfDies_u32);
+
 
 /*-----------------------------------------------------------------------------------------------------------
                                              INTERFACE FUNCTIONS
@@ -110,6 +115,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Recovery_flow(QLIB_CONTEXT_T* qlibContext)
         (bool)false,          // fallbackEn (in flash that supports Q2_SUPPORT_AWDTCFG_FALLBACK)
     };
 
+
     QLIB_SAMPLE_initLegacyConfig_L(qlibContext, &flashCfg, &dieCfg, cfgSectionArray, QLIB_GET_NUM_OF_DIES(qlibContext));
 
     // See what chip is connected and its unique ids. We might need this info to obtain keys for this
@@ -117,21 +123,17 @@ QLIB_STATUS_T QLIB_SAMPLE_Recovery_flow(QLIB_CONTEXT_T* qlibContext)
     QLIB_STATUS_RET_CHECK(QLIB_GetId(qlibContext, &id));
 
     // get pre-provision key
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext,
-                                                   id.std.uniqueID,
-                                                   QLIB_KID__DEVICE_KEY_PRE_PROVISIONING,
-                                                   dieCfg.preProvisionedMasterKey));
+    QLIB_STATUS_RET_CHECK(
+        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     // get master key
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
     //get secret key
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_SECRET, dieCfg.deviceSecretKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_SECRET, dieCfg.deviceSecretKey));
 
     // get SUID
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSecureUID(qlibContext, id.std.uniqueID, dieCfg.suid));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSecureUID(qlibContext, id.sec.wid, dieCfg.suid));
 
     /*-------------------------------------------------------------------------------------------------------
      Ensure device can be formatted and configured
@@ -167,14 +169,14 @@ QLIB_STATUS_T QLIB_SAMPLE_Recovery_flow(QLIB_CONTEXT_T* qlibContext)
             {
                 QLIB_STATUS_RET_CHECK(
                     QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                    id.std.uniqueID,
+                                                    id.sec.wid,
                                                     QLIB_KID__FULL_ACCESS_SECTION,
                                                     sectionId_u32,
                                                     0u,
                                                     cfgSectionArray[dieId_u8].sectionConfigTable[sectionId_u32].fullAccessKey));
                 QLIB_STATUS_RET_CHECK(
                     QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                    id.std.uniqueID,
+                                                    id.sec.wid,
                                                     QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                     sectionId_u32,
                                                     0u,
@@ -208,10 +210,17 @@ QLIB_STATUS_T QLIB_SAMPLE_Recovery_flow(QLIB_CONTEXT_T* qlibContext)
 }
 
 
-/*-----------------------------------------------------------------------------------------------------------
-                                               LOCAL FUNCTIONS
------------------------------------------------------------------------------------------------------------*/
 
+/************************************************************************************************************
+ * @brief       Fills in flashCfg/dieCfg/cfgSectionArray with legacy (section 0/1 spanning the whole flash)
+ *              configuration values, shared by QLIB_SAMPLE_Recovery_flow and QLIB_SAMPLE_ConfigAsLegacy.
+ *
+ * @param[in]   qlibContext      [QLIB internal state](md_definitions.html#DEF_CONTEXT)
+ * @param[out]  flashCfg         Flash-level configuration to populate
+ * @param[out]  dieCfg           Per-die configuration to populate
+ * @param[out]  cfgSectionArray  Section configuration table to populate (section 0/1 legacy mapping)
+ * @param[in]   numOfDies_u32    Number of dies on the target flash
+ ************************************************************************************************************/
 static void QLIB_SAMPLE_initLegacyConfig_L(QLIB_CONTEXT_T*             qlibContext,
                                            QLIB_FLASH_CONFIG_T*        flashCfg,
                                            QLIB_DIE_CONFIG_T*          dieCfg,
@@ -379,10 +388,11 @@ static void QLIB_SAMPLE_initLegacyConfig_L(QLIB_CONTEXT_T*             qlibConte
 
             if (QLIB_FeatureSupported(qlibContext, W77Q_FEATURE_VAULT) != 0u)
             {
-                cfgSectionArray[dieId_u32].sectionConfigTable[QLIB_SECTION_ID_VAULT].size = SIZE_128KB_;
+                cfgSectionArray[dieId_u32].sectionConfigTable[QLIB_SECTION_ID_VAULT].size =
+                    (QLIB_FeatureSupported(qlibContext, W77Q_FEATURE_VAULT_128KB) != 0u) ? SIZE_128KB_ : SIZE_64KB_;
             }
         }
     }
 }
-
 #endif // QLIB_ONLY_SECURE_STORAGE
+

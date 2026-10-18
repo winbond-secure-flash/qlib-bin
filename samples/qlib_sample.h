@@ -195,9 +195,11 @@ extern "C" {
     {                       \
         0u                  \
     }
-#define QLIB_SAMPLE_LMS_K_2 \
-    {                       \
-        0u                  \
+#define QLIB_SAMPLE_LMS_K_2                                                                                                    \
+    {                                                                                                                          \
+        0x00u, 0x00u, 0x00u, 0x0Du, 0x00u, 0x00u, 0x00u, 0x07u, 0x07u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, \
+            0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x30u, 0xA6u, 0x3Bu, 0x15u, 0xF3u, 0x26u, 0xC3u, 0xE4u, 0x4Au,    \
+            0xB9u, 0x2Du, 0x6Du, 0x32u, 0xAAu, 0x1Bu, 0x36u, 0xC2u, 0xA6u, 0x21u, 0xA6u, 0x29u, 0x5Cu, 0x42u, 0x24u            \
     }
 #define QLIB_SAMPLE_LMS_K_3 \
     {                       \
@@ -224,6 +226,22 @@ extern "C" {
         0u                  \
     }
 
+// Device Master Secret (CMS) - the KDF key used to derive the pre-provisioned master key. Placeholder value; the real CMS is a
+// customer-specific secret provided by Winbond.
+#define QLIB_SAMPLE_CMS                                                                                                         \
+    {                                                                                                                           \
+        0x45, 0x92, 0xCF, 0x61, 0x91, 0x7E, 0xAE, 0x29, 0xEA, 0xC8, 0x87, 0x9C, 0x70, 0x9A, 0x44, 0xCF, 0xE2, 0x80, 0xCA, 0xAE, \
+            0xE1, 0x2F, 0xE5, 0xED, 0x67, 0xE8, 0xFE, 0xE7, 0x2D, 0x2F, 0x33, 0x06                                              \
+    }
+
+// Customer Development Secret - the KDF key used to derive the keys. Placeholder value; the real secret is a
+// customer-specific secret that the customer chooses
+#define QLIB_SAMPLE_DEV_SECRET                                                                                                  \
+    {                                                                                                                           \
+        0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, \
+            0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20                                              \
+    }
+
 typedef TYPE_128BIT UNIQUE_ID_T;
 
 /*---------------------------------------------------------------------------------------------------------*/
@@ -245,29 +263,22 @@ typedef TYPE_128BIT UNIQUE_ID_T;
 -----------------------------------------------------------------------------------------------------------*/
 
 QLIB_STATUS_T QLIB_SAMPLE_GetSectionAccessKey(QLIB_CONTEXT_T* ctx,
-                                              UNIQUE_ID_T     uid,
+                                              QLIB_WID_T      wid,
                                               QLIB_KID_TYPE_T keyType,
                                               uint32_t        section_u32,
                                               uint32_t        die_u32,
                                               KEY_T           key);
 #ifndef QLIB_ONLY_SECURE_STORAGE
 QLIB_STATUS_T QLIB_SAMPLE_GetSectionLmsKey(QLIB_CONTEXT_T* ctx,
-                                           UNIQUE_ID_T     uid,
+                                           QLIB_WID_T      wid,
                                            uint32_t        section_u32,
                                            uint32_t        die_u32,
                                            LMS_PUB_KEY_T   key);
-QLIB_STATUS_T QLIB_SAMPLE_GetDeviceKey(QLIB_CONTEXT_T* ctx, UNIQUE_ID_T uid, QLIB_KID_TYPE_T keyType, KEY_T deviceKey);
+QLIB_STATUS_T QLIB_SAMPLE_GetDeviceKey(QLIB_CONTEXT_T* ctx, QLIB_WID_T wid, QLIB_KID_TYPE_T keyType, KEY_T deviceKey);
 #endif // QLIB_ONLY_SECURE_STORAGE
 
-QLIB_STATUS_T QLIB_SAMPLE_GetSectionKeyPtr(QLIB_CONTEXT_T* ctx,
-                                           UNIQUE_ID_T     uid,
-                                           QLIB_KID_TYPE_T keyType,
-                                           uint32_t        section_u32,
-                                           uint32_t        die_u32,
-                                           CONST_KEY_P_T*  key);
-
 #ifndef QLIB_ONLY_SECURE_STORAGE
-QLIB_STATUS_T QLIB_SAMPLE_GetSecureUID(QLIB_CONTEXT_T* ctx, UNIQUE_ID_T uid, TYPE_128BIT suid);
+QLIB_STATUS_T QLIB_SAMPLE_GetSecureUID(QLIB_CONTEXT_T* ctx, QLIB_WID_T wid, TYPE_128BIT suid);
 #endif // QLIB_ONLY_SECURE_STORAGE
 #ifdef __cplusplus
 }

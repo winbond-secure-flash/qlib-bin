@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: QLIB usage</title>
+<title>QLIB Library User Guide: QLIB usage</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -77,17 +77,17 @@ $(function() {
   <div class="headertitle"><div class="title">QLIB usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >While using QLIB note the following:</p>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<div class="textblock"><p >Keep the following points in mind when using QLIB:</p>
+<h2><a class="anchor" id="autotoc_md30"></a>
 Mixed mode - standard flash driver for standard flash operations and QLIB for secure flash operations</h2>
-<p >W77Q 16Mb to 128Mb flash supports all the standard flash instructions that are supported by W25Q. W77Q/T 256Mb to 1Gb supports most of standard instructions that are supported by W25Q and W35T. The user should use the standard flash driver <b>as is</b> to execute standard flash instructions on W77Q/T. When secure operations are required, the user needs to use QLIB. If the user's code contains both standard flash instructions and secure commands, it is possible to operate both the standard flash driver and QLIB. Working in mixed mode requires:</p><ol type="1">
-<li>When executing standard flash instructions, errors resulting from the execution of standard flash instructions are registered in the SSR. In order to clear the errors, the user must call <a class="el" href="qlib_8h.html#a63c0f2b4454b761f3171426d1a7f02eb">QLIB_GetStatus</a> after each standard instruction or right before any secure command.</li>
-<li>When configuring the SPI interface using the standard flash driver (e.g change of bus mode or address mode), the user must use the <a class="el" href="qlib_8h.html#a00263cf1d528e2210719ba5e5375a3e2">QLIB_NotifyInterface</a> to notify QLIB of the new SPI state.</li>
+<p >W77Q-JW, W77Q-JV and W77Q-RV devices support all standard flash instructions supported by W25Q. W77Q/T-NW support most standard instructions supported by W25Q and W35T. Use the standard flash driver unchanged to execute standard flash instructions on W77Q/T. Use QLIB for secure operations. If an application uses both standard flash instructions and secure commands, it can use both the standard flash driver and QLIB. Working in mixed mode requires:</p><ol type="1">
+<li>When standard flash instructions are executed, any resulting errors are recorded in the SSR. To clear these errors, call <a class="el" href="qlib_8h.html#a63c0f2b4454b761f3171426d1a7f02eb">QLIB_GetStatus</a> after each standard instruction or immediately before a secure command.</li>
+<li>When changing the SPI interface configuration using the standard flash driver—for example, changing the bus mode or address mode—call <a class="el" href="qlib_8h.html#a00263cf1d528e2210719ba5e5375a3e2">QLIB_NotifyInterface</a> to notify QLIB of the new SPI state.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 Initial state</h2>
-<p >Note that QLIB assumes that the flash chip is not in bypass-mode. It is the user's responsibility to exit bypass mode before using QLIB. To exit bypass mode - input FFFFh/FFFFFh on IO0 for the next instruction (16/20 clocks).</p>
-<p >Some of W77Q/T commands are blocking commands - meaning the flash becomes busy and inaccessible during their execution. </p>
+<p >QLIB assumes that the W77Q/T device is not in bypass mode. Exit bypass mode before using QLIB. To exit bypass mode, input FFFFh/FFFFFh on IO0 for the next instruction (16/20 clocks).</p>
+<p >Some W77Q/T commands are blocking: the flash becomes busy and inaccessible while they execute. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

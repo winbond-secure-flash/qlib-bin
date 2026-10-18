@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,17 +77,15 @@ $(function() {
   <div class="headertitle"><div class="title">Integrity protection feature </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md126"></a>
-Read-only boot memory ( cryptographically write protected boot section )</h2>
-<p >User can configure boot section to be writable only by authorized user. Other actors can only read from such section. <br  />
-</p>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md127"></a>
+Read-only boot memory (cryptographically write-protected boot section)</h2>
+<p >A user can configure the boot section so that only authorized users can write to it. Other actors can read the section only.</p>
 <p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_feat_secure_storage.html">🔗 Secure Storage example </a>.</p>
-<h2><a class="anchor" id="autotoc_md127"></a>
-Integrity monitoring ( periodic digest calculation on the section data )</h2>
-<p >Another way to keep device resilient is to monitor its integrity. At any moment W77Q can calculate digest (hash function) of flash section so data damage can be detected. Such request can be signed, giving host ( remote or local ) not only the digest value to compare to the expected one but also certainty that this data was provided by W77Q and not spoofed during "man in the middle" attack. In addition, successfully verified signed command can be a basis to the device attestation. <br  />
-</p>
-<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__r_l_m_integrity_c.html">🔗 Integrity monitoring reference code</a></p>
 <h2><a class="anchor" id="autotoc_md128"></a>
+Integrity Monitoring (Periodic Digest Calculation for Section Data)</h2>
+<p >Another way to improve device resilience is to monitor data integrity. W77Q can calculate a digest of a flash section to detect data corruption. The request can be signed, giving the local or remote host both a digest to compare with an expected value and assurance that the response came from W77Q rather than being spoofed in a man-in-the-middle attack. A successfully verified signed command can also support device attestation.</p>
+<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__r_l_m_integrity_c.html">🔗 Integrity monitoring reference code</a></p>
+<h2><a class="anchor" id="autotoc_md129"></a>
 Integrity protected fallback ( remapping boot section upon attack )</h2>
 <p >See <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_feat_fallback.html">fallback feature</a> </p>
 </div></div><!-- contents -->

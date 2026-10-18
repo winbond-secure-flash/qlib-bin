@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: QLIB running locally and remotely</title>
+<title>QLIB Library User Guide: QLIB running locally and remotely</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -85,10 +85,10 @@ $(function() {
 <img src="sw_stack_remote_local.png" alt=""/>
 <div class="caption">
 Remote execution stack</div></div>
-    <p >For example: W77Q/T is configured to provide two security services: Secure data storage and Secure firmware update. The keys for these services are stored in W77Q/T.</p>
-<p >The microcontroller only has access to the Secure data storage key, and therefore it is allowed to perform this operation on W77Q/T. The microcontroller does not have access to the Secure firmware update key, and therefore cannot update its firmware code. However, the remote server can perform the Secure firmware update, as it does have access to the appropriate keys.</p>
-<p >The remote server and the microcontroller can both access W77Q/T using the Transaction Manager. The Transaction Manager allows only one session to be opened with W77Q/T to allow for an atomic session operation with W77Q/T. Therefore only one of the QLIB top instances can access W77Q/T in any given time.</p>
-<p >In this example both the remote server and local microcontroller can perform all W77Q/T security operations allowed by their keys, such as secure attestation, secure integrity check, secure watchdog control, etc. </p>
+    <p >For example, suppose W77Q/T is configured to provide two security services: secure data storage and secure firmware update. The keys for these services are stored in W77Q/T.</p>
+<p >The microcontroller has access only to the secure data storage key, so it can perform that operation on W77Q/T. The microcontroller does not have access to the secure firmware update key, so it cannot update its firmware. However, the remote server can perform the Secure firmware update, as it does have access to the appropriate keys.</p>
+<p >The remote server and the microcontroller can both access W77Q/T using the Transaction Manager. The Transaction Manager permits only one session with W77Q/T to be open at a time, allowing operations within that session to be atomic. Therefore, only one QLIB top instance can access W77Q/T at a time.</p>
+<p >In this example, both the remote server and the local microcontroller can perform the W77Q/T security operations allowed by their respective keys, including secure attestation, secure integrity checks, and secure watchdog control. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

@@ -300,37 +300,70 @@ QLIB_API QLIB_STATUS_T QLIB_Format(QLIB_CONTEXT_T* qlibContext, const KEY_T devi
 /************************************************************************************************************
  * @brief       This function deploys new security configuration to the flash
  *
+ * The function configures all the dies of the flash, one die after the other, using these inputs:\n
+ * - @p flashCfg - one configuration for the whole flash device. Fields marked "Relevant only for die 0" are
+ *   set only once, when die 0 is configured.\n
+ * - @p dieCfg - one die configuration (keys, SUID and DEVCFG settings). The same @p dieCfg is used for
+ *   all the dies. It is a single structure, not an array.\n
+ * - @p cfgSectionArray - an array of section configuration tables, one table per die. Element [i] is used
+ *   for die i, so the array must contain @p numOfDies_u8 elements.\n
+ * - @p numOfDies_u8 - the number of dies in the flash. It must be equal to the value returned by
+ *   @ref QLIB_GET_NUM_OF_DIES \n
+ *
+ * Single die flash: fill flashCfg, dieCfg and one section configuration table, and set @p numOfDies_u8 to 1:
+ * @code{.c}
+       QLIB_FLASH_CONFIG_T        flashCfg;
+       QLIB_DIE_CONFIG_T          dieCfg;
+       QLIB_SECTIONS_CONF_TABLE_T sectionTable;
+       QLIB_STATUS_RET_CHECK(QLIB_ConfigDeviceMultiDie(qlibContext, &flashCfg, &dieCfg, &sectionTable, 1u));
+ * @endcode
+ * Multi die flash: fill flashCfg, dieCfg and one section configuration table per die, from sectionTables[0]
+ * to sectionTables[numOfDies_u8 - 1]:
+ * @code{.c}
+       QLIB_SECTIONS_CONF_TABLE_T sectionTables[QLIB_MAX_DIES_SUPPORTED];
+       uint8_t                    numOfDies_u8 = QLIB_GET_NUM_OF_DIES(qlibContext);
+       QLIB_STATUS_RET_CHECK(QLIB_ConfigDeviceMultiDie(qlibContext, &flashCfg, &dieCfg, sectionTables, numOfDies_u8));
+ * @endcode
+ *
+ * <b>Keys</b>\n
  * This function should be used on a clean formatted flash in case it configures the keys.\n
  * In order to re-configure the flash keys, it need to be formatted with @ref QLIB_Format function.\n
- * Section configuration includes section size. When the section size equals to zero, the section is disabled
- * (Watchdog is allowed on such section from flash with security version 3).
- * Section policy can be reconfigured using @ref QLIB_ConfigDeviceSection function.\n
- * The 'dieCfg.restrictedKeys' and 'dieCfg.fullAccessKeys' can contain empty keys (zero value) elements in the
- * array. In such case all or the appropriate key locations will not be programmed to the chip,
+ * The 'restrictedKey' and 'fullAccessKey' of each section in @p cfgSectionArray can be empty keys (zero value).
+ * In such case the appropriate key locations will not be programmed to the chip,
  * and remain un-programmed. Note: When the keys are un-programmed all related security operations are
- * disabled
- * The function can receive optional 'suid' (Secure User ID) parameter, which can add
- * additional user-specific unique ID, in addition to Winbond WID. \n
- * Any section with PA enabled will stay enable after calling this function.
+ * disabled.\n
  * When trying to re-configure keys that are different from the previously configured keys for a specific section
- * and the section is disabled, no error will be returned.
+ * and the section is disabled, no error will be returned.\n
  * If the flash was configured with pre-provisioned master key, the pre-provisioned master key must be set in
  * dieCfg.preProvisionedMasterKey in order to configure the device keys. If user wants to configure the device master key,
- * the master key should be provided in dieCfg.deviceMasterKey. Otherwise, if user does not want to configure master key,
- * he should set both dieCfg.preProvisionedMasterKey and dieCfg.deviceMasterKey to the pre-provisioned key.
+ * the master key should be provided in dieCfg.deviceMasterKey. Otherwise, if user does not want to configure (burn) the
+ * device master key, he should set dieCfg.deviceMasterKey to zero (all zeros), and only dieCfg.preProvisionedMasterKey
+ * needs to be set to the pre-provisioned key. In that case, the pre-provisioned master key is used only to open the
+ * sessions required to configure the other keys (device secret key and section keys), and the device master key
+ * itself remains un-programmed.\n
+ * The optional 'dieCfg.suid' (Secure User ID) adds a user-specific unique ID, in addition to Winbond WID.\n
+ *
+ * <b>Sections</b>\n
+ * Section configuration includes section size. When the section size equals to zero, the section is disabled
+ * (Watchdog is allowed on such section from flash with security version 3).\n
+ * Section policy can be reconfigured using @ref QLIB_ConfigDeviceSection function.\n
+ * Any section with PA enabled will stay enable after calling this function.\n
+ *
  * Note, that after this function execution, the active die is 0.
  *
  * @param[out]  qlibContext                [QLIB internal state](md_definitions.html#DEF_CONTEXT)
  * @param[in]   flashCfg                   Configuration for the whole flash device.
- * @param[in]   dieCfg                     Configuration for each die. Uses the same configuration for all available dies.
- * @param[in]   cfgSectionArray            Section configuration table, for each die. See @ref QLIB_SECTIONS_CONF_TABLE_T for further information
- * @param[in]   numOfDies_u8               Number of dies in the flash. Must be in range of 1 to QLIB_MAX_DIES_SUPPORTED. \n
- *                                         cfgSectionArray must contain numOfDies elements.
+ * @param[in]   dieCfg                     Die configuration. A single structure that is used for all the dies.
+ * @param[in]   cfgSectionArray            Array of @p numOfDies_u8 section configuration tables, element [i] for die i.
+ *                                         See @ref QLIB_SECTIONS_CONF_TABLE_T for further information
+ * @param[in]   numOfDies_u8               Number of dies in the flash. Must be equal to the value returned by
+ *                                         @ref QLIB_GET_NUM_OF_DIES
  *
  * @return
  * QLIB_STATUS__OK = 0                    - no error occurred \n
  * QLIB_STATUS__INVALID_PARAMETER         - @p qlibContext is NULL \n
- * QLIB_STATUS__INVALID_PARAMETER         - dieCfg.deviceMasterKey is zero value \n
+ * QLIB_STATUS__INVALID_PARAMETER         - @p numOfDies_u8 is not equal to the number of dies in the flash \n
+ * QLIB_STATUS__INVALID_PARAMETER         - dieCfg.deviceMasterKey and dieCfg.preProvisionedMasterKey are both zero value \n
  * QLIB_STATUS__DEVICE_PRIVILEGE_ERR      - dieCfg.preProvisionedMasterKey is zero value when master key is not configured \n
  * QLIB_STATUS__INVALID_PARAMETER         - One of the section's address or size is wrong \n
  * QLIB_STATUS__INVALID_PARAMETER         - One of the section's policy includes plain access but the section (or part of it) can not be \n
@@ -750,8 +783,8 @@ QLIB_API QLIB_STATUS_T QLIB_ResetFlash(QLIB_CONTEXT_T* qlibContext);
  * This function should be used to check whether QLIB notifications are available.\n
  * Such notifications might suggest there are actions to be executed on the device.\n
  * @ref QLIB_PerformMaintenance should be called if mcMaintenance bit is set to 1 in reply.\n
- * Device reset is required if resetDevice bit is set to 1 in reply, as TC is close to its maximal value. (see also @ref QLIB_SEC_DMC_EOL_THRESHOLD)\n
- * If replaceDevice bit is set, the device is close to its End of Life and user should replace it. (see also @ref QLIB_SEC_TC_RESET_THRESHOLD)\n
+ * Device reset is required if resetDevice bit is set to 1 in reply, as TC is close to its maximal value (see also @c QLIB_SEC_TC_RESET_THRESHOLD).\n
+ * If replaceDevice bit is set, the device is close to its End of Life and user should replace it (see also @c QLIB_SEC_DMC_EOL_THRESHOLD).\n
  *
  * @param[out]  qlibContext   [QLIB internal state](md_definitions.html#DEF_CONTEXT)
  * @param[out]  notifs        Bitmap of active notifications.
@@ -762,6 +795,7 @@ QLIB_API QLIB_STATUS_T QLIB_ResetFlash(QLIB_CONTEXT_T* qlibContext);
  * QLIB_STATUS__INVALID_PARAMETER         - @p notifs is NULL\n
  * QLIB_STATUS__SYSTEM_IN_INCORRECT_STATE - Flash device was not initialized. use @ref QLIB_InitDevice or @ref QLIB_ImportState \n
  * QLIB_STATUS__NOT_CONNECTED             - Need to connect using @ref QLIB_Connect function\n
+ * QLIB_STATUS__COMMAND_FAILED            - Maintenance could not be completed within the retry limit\n
  * QLIB_STATUS__(ERROR)                   - Other error
 ************************************************************************************************************/
 QLIB_API QLIB_STATUS_T QLIB_GetNotifications(QLIB_CONTEXT_T* qlibContext, QLIB_NOTIFICATIONS_T* notifs);
@@ -1767,6 +1801,44 @@ QLIB_API uint32_t QLIB_GetFlashSize(QLIB_CONTEXT_T* qlibContext);
  * true if the feature is supported by flash, false otherwise
 ************************************************************************************************************/
 QLIB_API bool QLIB_FeatureSupported(QLIB_CONTEXT_T* qlibContext, uint8_t feature_u8);
+
+#ifdef OEM_SECTION_PROVISIONING
+/************************************************************************************************************
+ * @brief       This function calculates the section provisioning key from the device master key.
+ *              The function does not need qlib context and flash access, and therefore can be used without
+ *              QLIB_InitLib or QLIB_InitDevice.
+ *
+ * @param[in]   sectionId_u32          Section ID
+ * @param[in]   deviceMasterKey        Device Master Key
+ * @param[out]  sectionProvisioningKey Section Provisioning Key
+ *
+ * @return      QLIB_STATUS__OK on success or QLIB_STATUS__[ERROR] otherwise
+************************************************************************************************************/
+QLIB_API QLIB_STATUS_T QLIB_GetSectionProvisionKey(uint32_t        sectionId_u32,
+                                                   const KEY_T     deviceMasterKey,
+                                                   KEY_T           sectionProvisioningKey);
+
+/************************************************************************************************************
+ * @brief       This function sets section keys in flash.
+ *              It opens a secure session with the section provisioning key, and then sets the section full, restricted and LMS keys.
+ *
+ * @param[in]   qlibContext            [QLIB internal state](md_definitions.html#DEF_CONTEXT)
+ * @param[in]   sectionId_u32          Section ID
+ * @param[in]   provisioningKey        Section Provisioning Key
+ * @param[in]   fullAccessKey          Section Full Access Key to set or NULL if not to be set
+ * @param[in]   restrictedAccessKey    Section Restricted Access Key to set or NULL if not to be set
+ * @param[in]   lmsKey                 Section LMS Public Key to set or NULL if not to be set
+ *
+ * @return      QLIB_STATUS__OK on success or QLIB_STATUS__[ERROR] otherwise
+************************************************************************************************************/
+QLIB_API QLIB_STATUS_T QLIB_SetSectionKeys(QLIB_CONTEXT_T*     qlibContext,
+                                           uint32_t            sectionId_u32,
+                                           const KEY_T         provisioningKey,
+                                           const KEY_T         fullAccessKey,
+                                           const KEY_T         restrictedAccessKey,
+                                           const LMS_PUB_KEY_T lmsKey);
+#endif // OEM_SECTION_PROVISIONING
+
 #endif // QLIB_ONLY_SECURE_STORAGE
 
 

@@ -1,8 +1,8 @@
 /************************************************************************************************************
-* @internal
+*
 * @remark     Winbond Electronics Corporation
-* @copyright  Copyright (c) 2024 by Winbond Electronics Corporation . All rights reserved
-* @endinternal
+* @copyright  Copyright (c) 2026 by Winbond Electronics Corporation . All rights reserved
+*
 *
 * @file       common_platform_sha256.h
 * @brief      This file includes SHA256 definitions
@@ -61,6 +61,19 @@ int PLAT_SHA256_Update(void* ctx, const void* data, uint32_t dataSize);
  * non-zero               - error occurred
  ************************************************************************************************************/
 int PLAT_SHA256_Finish(void* ctx, uint32_t* output);
+
+/************************************************************************************************************
+ * @brief Hash with SHA256
+ *
+ * @param[out]  output       Hash data
+ * @param[in]   data         data buffer
+ * @param[in]   dataSize     data buffer size
+ * @param[in]   padValue     4 bytes padding after data value
+ * @param[in]   padSize      padding after data size
+ *
+ * @return      0 if no error occurred
+ ************************************************************************************************************/
+int PLAT_SHA256WithPadding(uint32_t* output, const void* data, uint32_t dataSize, uint32_t padValue, uint32_t padSize);
 
 #ifdef __cplusplus
 }

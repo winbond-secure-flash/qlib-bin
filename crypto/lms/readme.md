@@ -23,7 +23,7 @@ The LMS module is SW implementation of the LMS cryptographic algorithm written i
   - lms_config.cmake - defines the files, includes and definitions needed for the compilation
 - tests\compilation_tests - sample code with test vectors
   - main.c - test vectors code
-- SourceCodeLicenseAgreement.txt
+- LICENSE - License Agreement
 - README.md - this instructions
 - CMakeLists.txt - simple cmake script to compile the module
 ## Usage

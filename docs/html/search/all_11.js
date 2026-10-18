@@ -59,13 +59,12 @@ var searchData=
   ['suid_56',['suid',['../struct_q_l_i_b___d_i_e___c_o_n_f_i_g___t.html#a59aa7e09049359ddd77a8238454d4b33',1,'QLIB_DIE_CONFIG_T::suid()'],['../struct_q_l_i_b___s_e_c___i_d___t.html#aa5852737a062155264d62587c59b5d16',1,'QLIB_SEC_ID_T::suid()']]],
   ['suspend_5fe_57',['SUSPEND_E',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#a7b8a9124045af3ea704efebb81d3dae4',1,'QLIB_REG_SSR_STRUCT_T']]],
   ['suspend_5fw_58',['SUSPEND_W',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#ae05d2c69e8c39fd90373711cb2b77ed9',1,'QLIB_REG_SSR_STRUCT_T']]],
-  ['sw_20stack_59',['SW stack',['../md_sw_stack.html',1,'']]],
-  ['sw_5fstack_2emd_60',['sw_stack.md',['../sw__stack_8md.html',1,'']]],
-  ['sw_5fstack_5fspi_5fif_5flayer_2emd_61',['sw_stack_spi_if_layer.md',['../sw__stack__spi__if__layer_8md.html',1,'']]],
-  ['sw_5fstack_5ftm_5flayer_2emd_62',['sw_stack_tm_layer.md',['../sw__stack__tm__layer_8md.html',1,'']]],
-  ['sw_5fstack_5ftop_5flayer_2emd_63',['sw_stack_top_layer.md',['../sw__stack__top__layer_8md.html',1,'']]],
-  ['swap_64',['swap',['../struct_q_l_i_b___s_e_c_t_i_o_n___c_o_n_f___p_o_s_t___a_c_t_i_o_n_s___t.html#a96bbb97f2c253d85a667e5200e3284a7',1,'QLIB_SECTION_CONF_POST_ACTIONS_T']]],
-  ['swapped_65',['swapped',['../struct_q_l_i_b___s_e_c_t_i_o_n___r_u_n_t_i_m_e___s_t_a_t_u_s___t.html#a188847af790a1b5d4290cd2543187f74',1,'QLIB_SECTION_RUNTIME_STATUS_T']]],
-  ['swreseten_66',['swResetEn',['../struct_q_l_i_b___w_a_t_c_h_d_o_g___c_o_n_f___t.html#a694710a3c469fb15df70a01a7734c188',1,'QLIB_WATCHDOG_CONF_T']]],
-  ['sys_5ferr_5fs_67',['SYS_ERR_S',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#a3dddbd39fcd97637e51ddb715d2a0d0a',1,'QLIB_REG_SSR_STRUCT_T']]]
+  ['sw_5fstack_2emd_59',['sw_stack.md',['../sw__stack_8md.html',1,'']]],
+  ['sw_5fstack_5fspi_5fif_5flayer_2emd_60',['sw_stack_spi_if_layer.md',['../sw__stack__spi__if__layer_8md.html',1,'']]],
+  ['sw_5fstack_5ftm_5flayer_2emd_61',['sw_stack_tm_layer.md',['../sw__stack__tm__layer_8md.html',1,'']]],
+  ['sw_5fstack_5ftop_5flayer_2emd_62',['sw_stack_top_layer.md',['../sw__stack__top__layer_8md.html',1,'']]],
+  ['swap_63',['swap',['../struct_q_l_i_b___s_e_c_t_i_o_n___c_o_n_f___p_o_s_t___a_c_t_i_o_n_s___t.html#a96bbb97f2c253d85a667e5200e3284a7',1,'QLIB_SECTION_CONF_POST_ACTIONS_T']]],
+  ['swapped_64',['swapped',['../struct_q_l_i_b___s_e_c_t_i_o_n___r_u_n_t_i_m_e___s_t_a_t_u_s___t.html#a188847af790a1b5d4290cd2543187f74',1,'QLIB_SECTION_RUNTIME_STATUS_T']]],
+  ['swreseten_65',['swResetEn',['../struct_q_l_i_b___w_a_t_c_h_d_o_g___c_o_n_f___t.html#a694710a3c469fb15df70a01a7734c188',1,'QLIB_WATCHDOG_CONF_T']]],
+  ['sys_5ferr_5fs_66',['SYS_ERR_S',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#a3dddbd39fcd97637e51ddb715d2a0d0a',1,'QLIB_REG_SSR_STRUCT_T']]]
 ];

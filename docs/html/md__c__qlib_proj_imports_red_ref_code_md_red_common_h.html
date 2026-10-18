@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -84,16 +84,16 @@ $(function() {
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="qlib_8h.html">qlib.h</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*-------------------------------------------------------------------------------------------------------</span></div>
-<div class="line"><span class="comment">     function which provides master key for the device. Fw can use its own database or use formula like </span></div>
-<div class="line"><span class="comment">     hkdf to generate it from fw secret and device wid. </span></div>
+<div class="line"><span class="comment">    Provides the device master key. Firmware can retrieve it from its own database or derive it,</span></div>
+<div class="line"><span class="comment">    for example, by using HKDF with a firmware secret and the device WID.</span></div>
 <div class="line"><span class="comment">-------------------------------------------------------------------------------------------------------*/</span></div>
-<div class="line"><span class="keyword">extern</span> <a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> fwGetMasterKey(    <a class="code hl_variable" href="qlib__common_8h.html#a84c5a20e0f18fa1972bc319fc66ed341">QLIB_CONTEXT_T</a>* qlibContext, <a class="code hl_struct" href="struct_q_l_i_b___i_d___t.html">QLIB_ID_T</a>* <span class="keywordtype">id</span>, <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>  <a class="code hl_variable" href="namespacesize__report.html#aed38f72a4308ac4543962fd368944323">key</a>);</div>
+<div class="line"><span class="keyword">extern</span> <a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> fwGetMasterKey(    QLIB_CONTEXT_T* qlibContext, <a class="code hl_struct" href="struct_q_l_i_b___i_d___t.html">QLIB_ID_T</a>* <span class="keywordtype">id</span>, <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>  key);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*-------------------------------------------------------------------------------------------------------</span></div>
-<div class="line"><span class="comment">     function which provides section key for the device. Fw can use its own database or use formula like </span></div>
-<div class="line"><span class="comment">     hkdf to generate it from fw secret and device wid. </span></div>
+<div class="line"><span class="comment">    Provides a section key for the device. Firmware can retrieve it from its own database or derive it,</span></div>
+<div class="line"><span class="comment">    for example, by using HKDF with a firmware secret and the device WID.</span></div>
 <div class="line"><span class="comment">-------------------------------------------------------------------------------------------------------*/</span></div>
-<div class="line"><span class="keyword">extern</span> <a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> fwGetSectionKey(           <a class="code hl_variable" href="qlib__common_8h.html#a84c5a20e0f18fa1972bc319fc66ed341">QLIB_CONTEXT_T</a>* qlibContext, <a class="code hl_struct" href="struct_q_l_i_b___i_d___t.html">QLIB_ID_T</a>* <span class="keywordtype">id</span>,</div>
+<div class="line"><span class="keyword">extern</span> <a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> fwGetSectionKey(           QLIB_CONTEXT_T* qlibContext, <a class="code hl_struct" href="struct_q_l_i_b___i_d___t.html">QLIB_ID_T</a>* <span class="keywordtype">id</span>,</div>
 <div class="line">                                                <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> sectionNum, </div>
 <div class="line">                                                <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> die, <span class="keywordtype">void</span> * keyBuff, uint32_t keySize);</div>
 <div class="line"> </div>
@@ -101,7 +101,7 @@ $(function() {
 <div class="line"><span class="preprocessor">#ifndef EXCLUDE_LMS</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;lms_api.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="qlib__utils__lms_8h.html">qlib_utils_lms.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;qlib_utils_lms.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">typedef</span> uint8_t LMS_KEY_ID_T[LMS_KEY_ID_SIZE];</div>
@@ -114,8 +114,8 @@ $(function() {
 <div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> hsm_lms_verify(<a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a> pub,        <a class="code hl_typedef" href="qlib__types_8h.html#a9ea2d9a29657f8b086fcbf35c805bff1">QLIB_LMS_MSG_DATA_STRUCT_T</a> msg, <a class="code hl_typedef" href="qlib__types_8h.html#a70e09e25741570c61f11e6bfd1e1a80f">QLIB_LMS_SIG_BUFFER_T</a> sign);</div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Years can pass between manufacture and field flows. So once key pair generated and chip is configured</span></div>
-<div class="line"><span class="comment">// with it we must keep KeyId for future use. Once need it is retrieved and used versus HSM  </span></div>
+<div class="line"><span class="comment">// Years may pass between manufacturing and field use. Retain the key ID after generating the key pair</span></div>
+<div class="line"><span class="comment">// and configuring the device so it can be retrieved later and used with the HSM.</span></div>
 <div class="line"><span class="keyword">extern</span> <span class="keywordtype">int</span> storeLmsKid(LMS_KEY_ID_T kidToStore);</div>
 <div class="line"><span class="keyword">extern</span> <span class="keywordtype">int</span> retrieveLmsKid(LMS_KEY_ID_T kidRetrieved);</div>
 <div class="line"> </div>
@@ -201,17 +201,14 @@ $(function() {
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#endif </span></div>
-<div class="ttc" id="anamespacesize__report_html_aed38f72a4308ac4543962fd368944323"><div class="ttname"><a href="namespacesize__report.html#aed38f72a4308ac4543962fd368944323">size_report.key</a></div><div class="ttdeci">key</div><div class="ttdef"><b>Definition:</b> <a href="size__report_8py_source.html#l00241">size_report.py:241</a></div></div>
 <div class="ttc" id="aqlib_8h_html"><div class="ttname"><a href="qlib_8h.html">qlib.h</a></div><div class="ttdoc">This file contains QLIB main interface.</div></div>
-<div class="ttc" id="aqlib__common_8h_html_a84c5a20e0f18fa1972bc319fc66ed341"><div class="ttname"><a href="qlib__common_8h.html#a84c5a20e0f18fa1972bc319fc66ed341">QLIB_CONTEXT_T</a></div><div class="ttdeci">PACKED_END typedef QLIB_CTX_T QLIB_CONTEXT_T</div><div class="ttdef"><b>Definition:</b> <a href="qlib__common_8h_source.html#l00432">qlib_common.h:432</a></div></div>
-<div class="ttc" id="aqlib__errors_8h_html_a1ea3e84a713396a86969e1c9988145ba"><div class="ttname"><a href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a></div><div class="ttdeci">QLIB_STATUS_T</div><div class="ttdef"><b>Definition:</b> <a href="qlib__errors_8h_source.html#l00068">qlib_errors.h:69</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a></div><div class="ttdeci">QLIB_KID_TYPE_T</div><div class="ttdoc">Key type.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00791">qlib_types.h:792</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a70e09e25741570c61f11e6bfd1e1a80f"><div class="ttname"><a href="qlib__types_8h.html#a70e09e25741570c61f11e6bfd1e1a80f">QLIB_LMS_SIG_BUFFER_T</a></div><div class="ttdeci">uint8_t QLIB_LMS_SIG_BUFFER_T[QLIB_LMS_SIGNATURE_SIZE(QLIB_LMS_PARAM_M, QLIB_LMS_PARAM_N, QLIB_LMS_PARAM_P, QLIB_LMS_TREE_HEIGHT)]</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00527">qlib_types.h:527</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a950b633a3c041949839f4e2736ab2a07"><div class="ttname"><a href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a></div><div class="ttdeci">TYPE_128BIT KEY_T</div><div class="ttdoc">Keys.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00277">qlib_types.h:277</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a9ea2d9a29657f8b086fcbf35c805bff1"><div class="ttname"><a href="qlib__types_8h.html#a9ea2d9a29657f8b086fcbf35c805bff1">QLIB_LMS_MSG_DATA_STRUCT_T</a></div><div class="ttdeci">uint8_t QLIB_LMS_MSG_DATA_STRUCT_T[64]</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00525">qlib_types.h:525</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_aab4f0c47059326b642167faf4f7d1333"><div class="ttname"><a href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a></div><div class="ttdeci">uint8_t LMS_PUB_KEY_T[QLIB_LMS_PUBLIC_KEY_SIZE(QLIB_LMS_PARAM_M)]</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00524">qlib_types.h:524</a></div></div>
-<div class="ttc" id="aqlib__utils__lms_8h_html"><div class="ttname"><a href="qlib__utils__lms_8h.html">qlib_utils_lms.h</a></div><div class="ttdoc">This file contains LMS utility functions.</div></div>
-<div class="ttc" id="astruct_q_l_i_b___i_d___t_html"><div class="ttname"><a href="struct_q_l_i_b___i_d___t.html">QLIB_ID_T</a></div><div class="ttdoc">Flash ID.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00661">qlib_types.h:662</a></div></div>
+<div class="ttc" id="aqlib__errors_8h_html_a1ea3e84a713396a86969e1c9988145ba"><div class="ttname"><a href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a></div><div class="ttdeci">QLIB_STATUS_T</div><div class="ttdef"><b>Definition:</b> qlib_errors.h:69</div></div>
+<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a></div><div class="ttdeci">QLIB_KID_TYPE_T</div><div class="ttdoc">Key type.</div><div class="ttdef"><b>Definition:</b> qlib_types.h:794</div></div>
+<div class="ttc" id="aqlib__types_8h_html_a70e09e25741570c61f11e6bfd1e1a80f"><div class="ttname"><a href="qlib__types_8h.html#a70e09e25741570c61f11e6bfd1e1a80f">QLIB_LMS_SIG_BUFFER_T</a></div><div class="ttdeci">uint8_t QLIB_LMS_SIG_BUFFER_T[QLIB_LMS_SIGNATURE_SIZE(QLIB_LMS_PARAM_M, QLIB_LMS_PARAM_N, QLIB_LMS_PARAM_P, QLIB_LMS_TREE_HEIGHT)]</div><div class="ttdef"><b>Definition:</b> qlib_types.h:529</div></div>
+<div class="ttc" id="aqlib__types_8h_html_a950b633a3c041949839f4e2736ab2a07"><div class="ttname"><a href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a></div><div class="ttdeci">TYPE_128BIT KEY_T</div><div class="ttdoc">Keys.</div><div class="ttdef"><b>Definition:</b> qlib_types.h:279</div></div>
+<div class="ttc" id="aqlib__types_8h_html_a9ea2d9a29657f8b086fcbf35c805bff1"><div class="ttname"><a href="qlib__types_8h.html#a9ea2d9a29657f8b086fcbf35c805bff1">QLIB_LMS_MSG_DATA_STRUCT_T</a></div><div class="ttdeci">uint8_t QLIB_LMS_MSG_DATA_STRUCT_T[64]</div><div class="ttdef"><b>Definition:</b> qlib_types.h:527</div></div>
+<div class="ttc" id="aqlib__types_8h_html_aab4f0c47059326b642167faf4f7d1333"><div class="ttname"><a href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a></div><div class="ttdeci">uint8_t LMS_PUB_KEY_T[QLIB_LMS_PUBLIC_KEY_SIZE(QLIB_LMS_PARAM_M)]</div><div class="ttdef"><b>Definition:</b> qlib_types.h:526</div></div>
+<div class="ttc" id="astruct_q_l_i_b___i_d___t_html"><div class="ttname"><a href="struct_q_l_i_b___i_d___t.html">QLIB_ID_T</a></div><div class="ttdoc">Flash ID.</div><div class="ttdef"><b>Definition:</b> qlib_types.h:664</div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

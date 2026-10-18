@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,22 +77,22 @@ $(function() {
   <div class="headertitle"><div class="title">Supporting [CRY] Cryptography </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >W77Q provides the <b>fundamental</b> contribution to the device CRY.</p>
-<h1><a class="anchor" id="autotoc_md176"></a>
-Secure monotonic counters ( for implementing rollback protection )</h1>
-<h2><a class="anchor" id="autotoc_md177"></a>
-JDEC RPMC standard</h2>
-<p >Some W77Q chips support JDEC RPMC standard, same way as W25R flash series. Such counters do not take flash volume.</p>
+<div class="textblock"><p >W77Q provides fundamental support for the device's cryptography requirements (CRY).</p>
+<h1><a class="anchor" id="autotoc_md177"></a>
+Secure Monotonic Counters (for Rollback Protection)</h1>
 <h2><a class="anchor" id="autotoc_md178"></a>
-Secure MCs ( Monotonic Counters ) on flash</h2>
-<p >All W77Q chips can support secure monotonic counters kept on secure flash, thus obtaining protected counters. Such counters will reside on flash and are as flexible as W77Q's policy. Their number is also not limited to 4 like it is usually implemented in JDEC RPMC.</p>
-<h3><a class="anchor" id="autotoc_md179"></a>
+JEDEC RPMC standard</h2>
+<p >Some W77Q devices support the JEDEC RPMC standard, as do devices in the W25R flash series. These counters do not consume flash density.</p>
+<h2><a class="anchor" id="autotoc_md179"></a>
+Secure Monotonic Counters on Flash</h2>
+<p >All W77Q devices support secure monotonic counters stored in secure flash. These counters are protected and governed by the W77Q access policy. Their number is not limited to four, unlike typical JEDEC RPMC implementations.</p>
+<h3><a class="anchor" id="autotoc_md180"></a>
 C code implementation</h3>
-<p >Monotonic counters sample is split in two phases - manufacture and field. During manufacture flash sections are configured with different policies and monotonic counters are formatted on it, during field phase we show how the counters are used.</p>
-<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__c_r_y_c.html">🔗Secure Monotonic counters on flash c reference code</a></p>
-<h1><a class="anchor" id="autotoc_md180"></a>
-Secure storage ( for storing CRY-related assets )</h1>
-<p >Use <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__s_s_m.html">secure storage </a> to store the cryptographic keys, signatures, and monotonic counters that adhere to your chosen [CRY]. </p>
+<p >The monotonic-counter sample has two phases: manufacturing and field use. During manufacturing, flash sections are configured with different policies and the monotonic counters are formatted. During field use, the sample demonstrates how to use the counters.</p>
+<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__c_r_y_c.html">🔗Secure monotonic counters on flash C reference code</a></p>
+<h1><a class="anchor" id="autotoc_md181"></a>
+Secure Storage for Cryptographic Assets</h1>
+<p >Use <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__s_s_m.html">secure storage</a> for the cryptographic keys, signatures, and monotonic counters associated with the selected cryptographic mechanisms ([CRY]). </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

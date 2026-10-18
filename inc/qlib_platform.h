@@ -296,8 +296,8 @@ PLAT_API uint64_t PLAT_GetNONCE(void);
  * @brief       This routine performs SPI write-read transaction.
  * This function should be linked to RAM memory.\n
  * In order to verify that the function works properly, please use the following wave form examples:\n\n
- * PLAT_SPI_WriteReadTransaction(format=1_1_1, flags_u32=0, dataOutStream_pu8=[0x90, 0x00, 0x00, 0x00], \n
- * cmdSize_u32=1, addressSize_u32=3, dataOutSize_u32=0, dummy=0, dataIn_pu8=Ptr, dataInSize_u32=2)\n
+ * PLAT_SPI_WriteReadTransaction(format=1_1_1, flags_u32=0, dataOutStream_pu8=[0x9F], \n
+ * cmdSize_u32=1, addressSize_u32=0, dataOutSize_u32=0, dummy=0, dataIn_pu8=Ptr, dataInSize_u32=3)\n
  * ![wave form example 1](spi_wave_form_1.png)\n\n
  * PLAT_SPI_WriteReadTransaction(format=1_1_1, flags_u32=0, dataOutStream_pu8=[0x0B, 0x00, 0x00, 0x00], \n
  * cmdSize_u32=1, addressSize_u32=3, dataOutSize_u32=0, dummy=8, dataIn_pu8=Ptr, dataInSize_u32=32)\n

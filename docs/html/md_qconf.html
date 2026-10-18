@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: Chip Configuration</title>
+<title>QLIB Library User Guide: Chip Configuration</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -77,70 +77,72 @@ $(function() {
   <div class="headertitle"><div class="title">Chip Configuration </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >W77Q/T chip configuration can be done in two main ways: via <a class="el" href="qlib_8h.html" title="This file contains QLIB main interface.">qlib.h</a> api and via qconf.h api. In most of the case <a class="el" href="qlib_8h.html" title="This file contains QLIB main interface.">qlib.h</a> is the way to work (also used in sample code).</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
-Via Qlib.h API - Main</h1>
-<p >This is a main tool to configure your chip, which is also used in sample code - every manufacture flow function will use this code. Note that configuration function may change your flash access policy so if you are working XIP (execution in place) you must carefully arbitrate QLIB and CPU access to flash chip. There is a following configuration API (<a class="el" href="qlib_8h.html" title="This file contains QLIB main interface.">qlib.h</a>).</p>
+<div class="textblock"><p >W77Q/T devices can be configured through either the <code><a class="el" href="qlib_8h.html" title="This file contains QLIB main interface.">qlib.h</a></code> API or the <code>qconf.h</code> API. In most cases, the <code><a class="el" href="qlib_8h.html" title="This file contains QLIB main interface.">qlib.h</a></code> API is the preferred approach and is also used in the sample code.</p>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Using the QLIB API - Main</h1>
+<p >The QLIB API is the primary method for configuring a device and is used by the manufacturing flows in the sample code. Configuration operations can change the flash access policy. If the system uses execute-in-place (XIP), carefully coordinate access to the flash between QLIB and the microcontroller.</p>
+<p >The following configuration APIs are declared in <code><a class="el" href="qlib_8h.html" title="This file contains QLIB main interface.">qlib.h</a></code>:</p>
 <ol type="1">
-<li>Section Policy: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a4731b45e5310a38f1b2d818d8df71156">QLIB_ConfigDeviceSection</a>()</div>
+<li>Section policy: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a4731b45e5310a38f1b2d818d8df71156">QLIB_ConfigDeviceSection</a>()</div>
 <div class="ttc" id="aqlib_8h_html_a4731b45e5310a38f1b2d818d8df71156"><div class="ttname"><a href="qlib_8h.html#a4731b45e5310a38f1b2d818d8df71156">QLIB_ConfigDeviceSection</a></div><div class="ttdeci">QLIB_API QLIB_STATUS_T QLIB_ConfigDeviceSection(QLIB_CONTEXT_T *qlibContext, uint32_t sectionID_u32, QLIB_SECTION_CONF_T *sectionConfig)</div><div class="ttdoc">This function configures a section.</div></div>
 </div><!-- fragment --></li>
-<li>Section Access Permissions: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#ada4c44368eda8b3f183dd4173e52f63f">QLIB_ConfigAccess</a>()</div>
+<li>Section access permissions: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#ada4c44368eda8b3f183dd4173e52f63f">QLIB_ConfigAccess</a>()</div>
 <div class="ttc" id="aqlib_8h_html_ada4c44368eda8b3f183dd4173e52f63f"><div class="ttname"><a href="qlib_8h.html#ada4c44368eda8b3f183dd4173e52f63f">QLIB_ConfigAccess</a></div><div class="ttdeci">QLIB_API QLIB_STATUS_T QLIB_ConfigAccess(QLIB_CONTEXT_T *qlibContext, uint32_t sectionID_u32, bool readEnable_b, bool writeEnable_b)</div><div class="ttdoc">This function configures volatile access permissions to a given section.</div></div>
 </div><!-- fragment --></li>
-<li>Watchdog Parameters: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a68ef03ae06f254a746646ac6e0150267">QLIB_Watchdog_ConfigSet</a>()</div>
+<li>Watchdog parameters: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a68ef03ae06f254a746646ac6e0150267">QLIB_Watchdog_ConfigSet</a>()</div>
 <div class="ttc" id="aqlib_8h_html_a68ef03ae06f254a746646ac6e0150267"><div class="ttname"><a href="qlib_8h.html#a68ef03ae06f254a746646ac6e0150267">QLIB_Watchdog_ConfigSet</a></div><div class="ttdeci">QLIB_API QLIB_STATUS_T QLIB_Watchdog_ConfigSet(QLIB_CONTEXT_T *qlibContext, const QLIB_WATCHDOG_CONF_T *watchdogCFG)</div><div class="ttdoc">This function configures the Secure Watchdog.</div></div>
 </div><!-- fragment --></li>
-<li>Watchdog Default Reset Value: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a5094c1327cfd0941ad3e4c5e48121de6">QLIB_ConfigDeviceMultiDie</a>(flashCfg)</div>
+<li>Watchdog default reset value: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a5094c1327cfd0941ad3e4c5e48121de6">QLIB_ConfigDeviceMultiDie</a>(flashCfg)</div>
 <div class="ttc" id="aqlib_8h_html_a5094c1327cfd0941ad3e4c5e48121de6"><div class="ttname"><a href="qlib_8h.html#a5094c1327cfd0941ad3e4c5e48121de6">QLIB_ConfigDeviceMultiDie</a></div><div class="ttdeci">QLIB_API QLIB_STATUS_T QLIB_ConfigDeviceMultiDie(QLIB_CONTEXT_T *qlibContext, QLIB_FLASH_CONFIG_T *flashCfg, QLIB_DIE_CONFIG_T *dieCfg, QLIB_SECTIONS_CONF_TABLE_T *cfgSectionArray, uint8_t numOfDies_u8)</div><div class="ttdoc">This function deploys new security configuration to the flash.</div></div>
 </div><!-- fragment --></li>
-<li>Section Configuration Table (Sections address, size and length): <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a5094c1327cfd0941ad3e4c5e48121de6">QLIB_ConfigDeviceMultiDie</a>()</div>
+<li>Section configuration table (section address, size, and length): <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a5094c1327cfd0941ad3e4c5e48121de6">QLIB_ConfigDeviceMultiDie</a>()</div>
 </div><!-- fragment --></li>
-<li>SPI Bus Mode: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a120d13bbaf88aab388c4cd428c03ca93">QLIB_SetInterface</a>()</div>
+<li>SPI bus mode: <div class="fragment"><div class="line"><a class="code hl_function" href="qlib_8h.html#a120d13bbaf88aab388c4cd428c03ca93">QLIB_SetInterface</a>()</div>
 <div class="ttc" id="aqlib_8h_html_a120d13bbaf88aab388c4cd428c03ca93"><div class="ttname"><a href="qlib_8h.html#a120d13bbaf88aab388c4cd428c03ca93">QLIB_SetInterface</a></div><div class="ttdeci">QLIB_API QLIB_STATUS_T QLIB_SetInterface(QLIB_CONTEXT_T *qlibContext, QLIB_BUS_FORMAT_T busFormat) RAM_SECTION</div><div class="ttdoc">This function sets the flash SPI bus mode Note that changes in the interface may require a change in ...</div></div>
-</div><!-- fragment --> See qlib sample code functions for details - manufacture flow of every sample is implemented using <a class="el" href="qlib_8h.html" title="This file contains QLIB main interface.">qlib.h</a> API. <br  />
-</li>
+</div><!-- fragment --></li>
 </ol>
-<h1><a class="anchor" id="autotoc_md6"></a>
-Via Qconf.h API - Custom</h1>
-<p >Qconf is a software library that allows W77Q/T chip configuration during bootstrapping it firmware. The idea is to write all configuration on flash during standard loading to flash and then when firmware starts to run it will find the configuration according to magic number, configure the flash and erase that location so that next time configuration does not happen. This module can be used both for W77Q/T development and production support if needed, but requires to RUN firmware on the board. Qconf extends the standard QLIB functionality which is not part of QLIB implementation.</p>
-<p >Basic Qconf flow:</p>
+<p >Refer to the QLIB sample code for details. Each sample's manufacturing flow uses the <code><a class="el" href="qlib_8h.html" title="This file contains QLIB main interface.">qlib.h</a></code> API.</p>
+<h1><a class="anchor" id="autotoc_md10"></a>
+Using the Qconf API - Custom</h1>
+<p >Qconf is a software library that configures W77Q/T devices during firmware startup. The configuration is included in the image when it is programmed to flash. When the firmware starts, Qconf locates the configuration by its magic number, configures the flash, and erases that location so the configuration is not applied again on the next startup. Qconf can be used for development or production, but it requires firmware to run on the target. Qconf extends the standard QLIB functionality and is not part of the core QLIB implementation.</p>
+<p >The basic Qconf flow is shown below:</p>
 <div class="image">
 <img src="qconf_general_flow.png" alt=""/>
 <div class="caption">
-qconf_general_flow.png</div></div>
-    <h2><a class="anchor" id="autotoc_md7"></a>
-Use-cases</h2>
-<h3><a class="anchor" id="autotoc_md8"></a>
-First-time use of W77Q</h3>
-<p >The first time use of W77Q is a common scenario in both production and development environments. W77Q arrives formatted and configured as a standard flash. To deploy W77Q configuration using Qconf, the user must perform the following 3 steps:</p>
+Qconf configuration flow</div></div>
+    <h2><a class="anchor" id="autotoc_md11"></a>
+Use cases</h2>
+<h3><a class="anchor" id="autotoc_md12"></a>
+First-time use of W77Q/T</h3>
+<p >First-time configuration is common in both production and development. W77Q/T devices are supplied formatted and configured as standard flash. To configure a W77Q/T device using Qconf, follow these steps:</p>
 <ol type="1">
-<li>Compile the firmware with Qconf code and Qconf data configuration structure into a single firmware binary (for example named "fw.bin").</li>
-<li>Program the "fw.bin" into W77Q using standard flash programming methods.</li>
-<li>Perform the first power-up. During this power-up, Qconf programs the configuration into secure W77Q, and then erases its plaintext shadow. On following power-ups Qconf skips the configuration process, as the plaintext configuration no longer exists on the flash. See <b>QCONF_Config</b> for detail.</li>
+<li>Compile the firmware and Qconf configuration structure into a single firmware image, such as <code>fw.bin</code>.</li>
+<li>Program <code>fw.bin</code> to the W77Q/T device using standard flash-programming methods.</li>
+<li>Power on the device. Qconf applies the configuration to the secure W77Q/T device and then erases the plaintext copy. On subsequent power-ups, Qconf skips configuration because the plaintext data is no longer present in flash.</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md9"></a>
-W77Q recovery (to the standard flash configuration)</h3>
-<p >In this scenario, the W77Q configuration or code area was corrupted. This can happen, for example, due to power-failure during the above mentioned scenarios. Recovery flow will format chip and configure its legacy access configuration. See <b>QCONF_Recovery</b> section for details.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<p >See <a class="el" href="md_qconf.html#qconf_config">QCONF_Config</a> for details.</p>
+<h3><a class="anchor" id="autotoc_md13"></a>
+W77Q/T recovery (to the standard flash configuration)</h3>
+<p >If the W77Q/T configuration or code area is corrupted—for example, due to a power failure during one of the steps above—the recovery flow formats the device and restores its legacy access configuration. See the <a class="el" href="md_qconf.html#qconf_recovery">QCONF_Recovery</a> section for details.</p>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Qconf functional description</h2>
-<p >Qconf is a library written on top of QLIB and used by the main customer firmware.</p>
+<p >Qconf is a library built on top of QLIB and used by the main customer firmware.</p>
 <div class="image">
 <img src="qconf_sw_stack.png" alt=""/>
 <div class="caption">
 Qconf software stack</div></div>
-    <p >The following control flow chart describes the Qconf main algorithm:</p>
+    <p >The following flowchart illustrates the main Qconf algorithm:</p>
 <div class="image">
 <img src="qconf_alg.png" alt=""/>
 <div class="caption">
 Qconf algorithm</div></div>
-    <p >Qconf flow is implemented by <a class="el" href="md_qconf.html#qconf_config">QCONF_Config</a> function.</p>
-<h2><a class="anchor" id="autotoc_md11"></a>
+    <p >The Qconf flow is implemented by the <a class="el" href="md_qconf.html#qconf_config">QCONF_Config</a> function.</p>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Qconf configuration structure</h2>
-<p >Qconf configuration structure, is a single structure that needs to be supplied by the user. This structure includes all W77Q configuration and key values, to be deployed to W77Q, in plaintext. This structure must reside in a read-only flash region. Qconf erases this structure from the flash before applying the read-only configuration. The read-only configuration is necessary to prevent malicious usage of this mechanism.</p>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<p >The user supplies a single Qconf configuration structure containing the W77Q/T configuration and key values to be deployed. These values are stored in plaintext. The structure must reside in a read-only flash region. Qconf erases this structure from flash before applying the configuration. Storing the structure in read-only memory is intended to prevent misuse of this mechanism.</p>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Qconf integration with target firmware</h2>
-<p >Qconf is expected to be integrated into the user firmware. The user firmware must execute Qconf on every power-up after QLIB initialization.</p>
+<p >Integrate Qconf into the target firmware and call it at every power-up after initializing QLIB.</p>
 <p >For example:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include qlib.h</span></div>
 <div class="line"><span class="preprocessor">#include qconf.h</span></div>
@@ -149,12 +151,12 @@ Qconf integration with target firmware</h2>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="qlib__sample__main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">void</span>)</div>
 <div class="line">{</div>
-<div class="line">  <a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> qlibContext;</div>
-<div class="line">  <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(<a class="code hl_function" href="qlib_8h.html#a68bc001edbe5718eb8984498c2e1e52b">QLIB_InitLib</a>(&amp;qlibContext));</div>
-<div class="line">  <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(<a class="code hl_function" href="qlib_8h.html#ac30cd0fe984d46d9caa214a2ed9c9fb4">QLIB_Connect</a>(&amp;qlibContext));</div>
-<div class="line">  <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(<a class="code hl_function" href="qlib_8h.html#a1f9752b6585a5e6c9c46f3c01277c582">QLIB_InitDevice</a>(&amp;qlibContext));</div>
-<div class="line">  <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(QCONF_Config(&amp;qlibContext, QCONF_CONFIGURATION));</div>
-<div class="line">  ...</div>
+<div class="line">    <a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> qlibContext;</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(<a class="code hl_function" href="qlib_8h.html#a68bc001edbe5718eb8984498c2e1e52b">QLIB_InitLib</a>(&amp;qlibContext));</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(<a class="code hl_function" href="qlib_8h.html#ac30cd0fe984d46d9caa214a2ed9c9fb4">QLIB_Connect</a>(&amp;qlibContext));</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(<a class="code hl_function" href="qlib_8h.html#a1f9752b6585a5e6c9c46f3c01277c582">QLIB_InitDevice</a>(&amp;qlibContext));</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(QCONF_Config(&amp;qlibContext, QCONF_CONFIGURATION));</div>
+<div class="line">    ...</div>
 <div class="line">}</div>
 <div class="ttc" id="aqlib_8h_html_a1f9752b6585a5e6c9c46f3c01277c582"><div class="ttname"><a href="qlib_8h.html#a1f9752b6585a5e6c9c46f3c01277c582">QLIB_InitDevice</a></div><div class="ttdeci">QLIB_API QLIB_STATUS_T QLIB_InitDevice(QLIB_CONTEXT_T *qlibContext, QLIB_BUS_FORMAT_T busFormat)</div><div class="ttdoc">This function initializes the communication with W77Q/T.</div></div>
 <div class="ttc" id="aqlib_8h_html_a68bc001edbe5718eb8984498c2e1e52b"><div class="ttname"><a href="qlib_8h.html#a68bc001edbe5718eb8984498c2e1e52b">QLIB_InitLib</a></div><div class="ttdeci">QLIB_API QLIB_STATUS_T QLIB_InitLib(QLIB_CONTEXT_T *qlibContext)</div><div class="ttdoc">This function performs QLIB library initialization.</div></div>
@@ -162,21 +164,21 @@ Qconf integration with target firmware</h2>
 <div class="ttc" id="aqlib__errors_8h_html_a71d6b9d11c1380f771954756bc12312b"><div class="ttname"><a href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a></div><div class="ttdeci">#define QLIB_STATUS_RET_CHECK(func)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__errors_8h_source.html#l00079">qlib_errors.h:79</a></div></div>
 <div class="ttc" id="aqlib__sample__main_8c_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="qlib__sample__main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__main_8c_source.html#l00047">qlib_sample_main.c:47</a></div></div>
 <div class="ttc" id="aunion_q_l_i_b___c_o_n_t_e_x_t___t_html"><div class="ttname"><a href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a></div><div class="ttdoc">Opaque QLIB context.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00072">qlib_types.h:73</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md17"></a>
 Qconf One-Time-Configure (OTC) structure</h2>
-<p >This structure includes all the configurations that can only be performed once after format or on a factory-formatted device. If the user wants to reprogram this structure with new values, the <a class="el" href="md_qconf.html#qconf_recovery">QCONF_Recovery</a> must be used.</p>
+<p >This structure contains configuration values that can be applied only once, after formatting or to a factory-formatted device. To program new values into this structure, use <a class="el" href="md_qconf.html#qconf_recovery">QCONF_Recovery</a>.</p>
 <div class="fragment"><div class="line">typedef struct</div>
 <div class="line">{</div>
-<div class="line">  KEY_T   deviceMasterKey;</div>
-<div class="line">  KEY_T   deviceSecretKey;</div>
-<div class="line">  KEY_T   restrictedKeys[QLIB_NUM_OF_SECTIONS];</div>
-<div class="line">  KEY_T   fullAccessKeys[QLIB_NUM_OF_SECTIONS];</div>
-<div class="line">  _128BIT suid;</div>
+<div class="line">    KEY_T   deviceMasterKey;</div>
+<div class="line">    KEY_T   deviceSecretKey;</div>
+<div class="line">    KEY_T   restrictedKeys[QLIB_NUM_OF_SECTIONS];</div>
+<div class="line">    KEY_T   fullAccessKeys[QLIB_NUM_OF_SECTIONS];</div>
+<div class="line">    _128BIT suid;</div>
 <div class="line">} QCONF_OTC_T;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md14"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md18"></a>
 Qconf configuration structure</h2>
-<p >Qconf configuration structure includes all configurations, required by <a class="el" href="qlib_8h.html#a5094c1327cfd0941ad3e4c5e48121de6">QLIB_ConfigDeviceMultiDie</a> function. This structure is used by <a class="el" href="md_qconf.html#qconf_config">QCONF_Config</a> to configure or reconfigure W77Q. The configuration in this structure can be reapplied without format, with some exceptions.</p>
-<p >For example, one of the exceptions is setting read-only sections. Read-only sections can only be reprogrammed after <a class="el" href="md_qconf.html#qconf_recovery">QCONF_Recovery</a> execution.</p>
+<p >The Qconf configuration structure contains the configuration required by <code>QLIB_ConfigDeviceMultiDie</code>. <a class="el" href="md_qconf.html#qconf_config">QCONF_Config</a> uses this structure to configure or reconfigure W77Q/T. In some cases, the configuration can be reapplied without formatting the device.</p>
+<p >For example, read-only sections can be reprogrammed only after running <a class="el" href="md_qconf.html#qconf_recovery">QCONF_Recovery</a>.</p>
 <div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line">{</div>
 <div class="line">    uint32_t                   magicWord;     </div>
@@ -186,22 +188,22 @@ Qconf configuration structure</h2>
 <div class="line">    <a class="code hl_struct" href="struct_q_l_i_b___d_i_e___c_o_n_f_i_g___t.html">QLIB_DIE_CONFIG_T</a>          dieConfig;     </div>
 <div class="line">    <a class="code hl_struct" href="struct_q_l_i_b___s_e_c_t_i_o_n_s___c_o_n_f___t_a_b_l_e___t.html">QLIB_SECTIONS_CONF_TABLE_T</a> cfgSectionArray[QLIB_MAX_DIES_SUPPORTED]; </div>
 <div class="line">} QCONF_T;</div>
-<div class="ttc" id="astruct_q_l_i_b___d_i_e___c_o_n_f_i_g___t_html"><div class="ttname"><a href="struct_q_l_i_b___d_i_e___c_o_n_f_i_g___t.html">QLIB_DIE_CONFIG_T</a></div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00471">qlib_types.h:472</a></div></div>
-<div class="ttc" id="astruct_q_l_i_b___f_l_a_s_h___c_o_n_f_i_g___t_html"><div class="ttname"><a href="struct_q_l_i_b___f_l_a_s_h___c_o_n_f_i_g___t.html">QLIB_FLASH_CONFIG_T</a></div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00452">qlib_types.h:453</a></div></div>
-<div class="ttc" id="astruct_q_l_i_b___s_e_c_t_i_o_n_s___c_o_n_f___t_a_b_l_e___t_html"><div class="ttname"><a href="struct_q_l_i_b___s_e_c_t_i_o_n_s___c_o_n_f___t_a_b_l_e___t.html">QLIB_SECTIONS_CONF_TABLE_T</a></div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00591">qlib_types.h:592</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md15"></a>
+<div class="ttc" id="astruct_q_l_i_b___d_i_e___c_o_n_f_i_g___t_html"><div class="ttname"><a href="struct_q_l_i_b___d_i_e___c_o_n_f_i_g___t.html">QLIB_DIE_CONFIG_T</a></div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00473">qlib_types.h:474</a></div></div>
+<div class="ttc" id="astruct_q_l_i_b___f_l_a_s_h___c_o_n_f_i_g___t_html"><div class="ttname"><a href="struct_q_l_i_b___f_l_a_s_h___c_o_n_f_i_g___t.html">QLIB_FLASH_CONFIG_T</a></div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00454">qlib_types.h:455</a></div></div>
+<div class="ttc" id="astruct_q_l_i_b___s_e_c_t_i_o_n_s___c_o_n_f___t_a_b_l_e___t_html"><div class="ttname"><a href="struct_q_l_i_b___s_e_c_t_i_o_n_s___c_o_n_f___t_a_b_l_e___t.html">QLIB_SECTIONS_CONF_TABLE_T</a></div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00593">qlib_types.h:594</a></div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md19"></a>
 Qconf functions</h2>
 <p ><a class="anchor" id="qconf_config"></a></p>
-<h3><a class="anchor" id="autotoc_md16"></a>
+<h3><a class="anchor" id="autotoc_md20"></a>
 QCONF_Config</h3>
 <div class="fragment"><div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> QCONF_Config(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* qlibContext, QCONF_T* config);</div>
 <div class="ttc" id="aqlib__errors_8h_html_a1ea3e84a713396a86969e1c9988145ba"><div class="ttname"><a href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a></div><div class="ttdeci">QLIB_STATUS_T</div><div class="ttdef"><b>Definition:</b> <a href="qlib__errors_8h_source.html#l00068">qlib_errors.h:69</a></div></div>
-</div><!-- fragment --><p >This function must be executed during firmware power-up and provided with the address of Qconf configuration structure. The structure must reside in a read-only flash memory region to prevent malicious usage of this function.</p>
+</div><!-- fragment --><p >Call this function during firmware startup and pass it the address of the Qconf configuration structure. The structure must reside in a read-only flash region to prevent misuse of this function.</p>
 <p ><a class="anchor" id="qconf_recovery"></a></p>
-<h3><a class="anchor" id="autotoc_md17"></a>
+<h3><a class="anchor" id="autotoc_md21"></a>
 QCONF_Recovery</h3>
 <div class="fragment"><div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> QCONF_Recovery(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* qlibContext, QCONF_OTC_T* otc);</div>
-</div><!-- fragment --><p >This function must be executed by the recovery firmware run from RAM. This function must be provided with Qconf OTC configuration structure. The structure must be loaded to RAM as part of the recovery firmware. </p>
+</div><!-- fragment --><p >Run this function from recovery firmware executing in RAM and pass it the Qconf OTC configuration structure. The recovery firmware must load the structure into RAM. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

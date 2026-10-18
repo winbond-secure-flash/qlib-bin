@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: qlib_sample_recovery.c File Reference</title>
+<title>QLIB Library User Guide: qlib_sample_recovery.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -87,7 +87,8 @@ $(function() {
 
 <p>This file contains configuration recovery code.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="qlib_8h_source.html">qlib.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="qlib_8h_source.html">qlib.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="qlib__sample__recovery_8h_source.html">qlib_sample_recovery.h</a>&quot;</code><br />
 </div>
@@ -105,6 +106,7 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:af9f8a1586b426f16ff80c87074d6e519"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample__recovery_8c.html#af9f8a1586b426f16ff80c87074d6e519">QLIB_SAMPLE_initLegacyConfig_L</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *qlibContext, <a class="el" href="struct_q_l_i_b___f_l_a_s_h___c_o_n_f_i_g___t.html">QLIB_FLASH_CONFIG_T</a> *flashCfg, <a class="el" href="struct_q_l_i_b___d_i_e___c_o_n_f_i_g___t.html">QLIB_DIE_CONFIG_T</a> *dieCfg, <a class="el" href="struct_q_l_i_b___s_e_c_t_i_o_n_s___c_o_n_f___t_a_b_l_e___t.html">QLIB_SECTIONS_CONF_TABLE_T</a> *cfgSectionArray, uint32_t numOfDies_u32)</td></tr>
+<tr class="memdesc:af9f8a1586b426f16ff80c87074d6e519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills in flashCfg/dieCfg/cfgSectionArray with legacy (section 0/1 spanning the whole flash) configuration values, shared by QLIB_SAMPLE_Recovery_flow and QLIB_SAMPLE_ConfigAsLegacy.  <a href="qlib__sample__recovery_8c.html#af9f8a1586b426f16ff80c87074d6e519">More...</a><br /></td></tr>
 <tr class="separator:af9f8a1586b426f16ff80c87074d6e519"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af20a312eb956a0a0792621f7952476c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample__recovery_8c.html#af20a312eb956a0a0792621f7952476c8">QLIB_SAMPLE_Recovery</a> (void *userData_pv)</td></tr>
 <tr class="memdesc:af20a312eb956a0a0792621f7952476c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This routine shows QCONF recovery flow with initialization sequence.  <a href="qlib__sample__recovery_8c.html#af20a312eb956a0a0792621f7952476c8">More...</a><br /></td></tr>
@@ -115,7 +117,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This file contains configuration recovery code. </p>
-<h3><a class="anchor" id="autotoc_md81"></a>
+<h3><a class="anchor" id="autotoc_md87"></a>
 project qlib_samples</h3>
 <hr  />
  
@@ -133,7 +135,7 @@ project qlib_samples</h3>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__recovery_8c_source.html#l00029">29</a> of file <a class="el" href="qlib__sample__recovery_8c_source.html">qlib_sample_recovery.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__recovery_8c_source.html#l00031">31</a> of file <a class="el" href="qlib__sample__recovery_8c_source.html">qlib_sample_recovery.c</a>.</p>
 
 </div>
 </div>
@@ -218,7 +220,19 @@ project qlib_samples</h3>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__recovery_8c_source.html#l00215">215</a> of file <a class="el" href="qlib__sample__recovery_8c_source.html">qlib_sample_recovery.c</a>.</p>
+<p>Fills in flashCfg/dieCfg/cfgSectionArray with legacy (section 0/1 spanning the whole flash) configuration values, shared by QLIB_SAMPLE_Recovery_flow and QLIB_SAMPLE_ConfigAsLegacy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">qlibContext</td><td><a href="md_definitions.html#DEF_CONTEXT">QLIB internal state</a> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">flashCfg</td><td>Flash-level configuration to populate </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dieCfg</td><td>Per-die configuration to populate </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">cfgSectionArray</td><td>Section configuration table to populate (section 0/1 legacy mapping) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numOfDies_u32</td><td>Number of dies on the target flash </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="qlib__sample__recovery_8c_source.html#l00224">224</a> of file <a class="el" href="qlib__sample__recovery_8c_source.html">qlib_sample_recovery.c</a>.</p>
 
 </div>
 </div>
@@ -247,7 +261,7 @@ project qlib_samples</h3>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if no error occurred, QLIB_STATUS__(ERROR) otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__recovery_8c_source.html#l00045">45</a> of file <a class="el" href="qlib__sample__recovery_8c_source.html">qlib_sample_recovery.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__recovery_8c_source.html#l00050">50</a> of file <a class="el" href="qlib__sample__recovery_8c_source.html">qlib_sample_recovery.c</a>.</p>
 
 </div>
 </div>
@@ -276,7 +290,7 @@ project qlib_samples</h3>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if no error occurred, QLIB_STATUS__(ERROR) otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__recovery_8c_source.html#l00089">89</a> of file <a class="el" href="qlib__sample__recovery_8c_source.html">qlib_sample_recovery.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__recovery_8c_source.html#l00094">94</a> of file <a class="el" href="qlib__sample__recovery_8c_source.html">qlib_sample_recovery.c</a>.</p>
 
 </div>
 </div>

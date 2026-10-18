@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: QLIB running locally</title>
+<title>QLIB Library User Guide: QLIB running locally</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -77,13 +77,13 @@ $(function() {
   <div class="headertitle"><div class="title">QLIB running locally </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >QLIB typical library mode allows a microcontroller with a standard SPI interface to communicate with W77Q/T.</p>
+<div class="textblock"><p >In its typical local mode, QLIB allows a microcontroller with a standard SPI interface to communicate with W77Q/T.</p>
 <div class="image">
 <img src="sw_stack_local.png" alt=""/>
 <div class="caption">
 Local execution stack</div></div>
     <p >In this scenario, the microcontroller can perform all W77Q/T secure operations allowed by the keys it stores.</p>
-<p >Note: The keys used by the microcontroller for secure communication with W77Q/T need to be well protected and stored outside of the W77Q/T memory (for example in OTP/Fuses). </p>
+<p ><b>Note:</b> Protect the keys used by the microcontroller for secure communication with W77Q/T, and store them outside W77Q/T memory—for example, in OTP or fuses. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

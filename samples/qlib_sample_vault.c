@@ -123,21 +123,18 @@ QLIB_STATUS_T QLIB_SAMPLE_Vault_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     // modify configuration
 
     // set pre provision master key if needed
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext,
-                                                   id.std.uniqueID,
-                                                   QLIB_KID__DEVICE_KEY_PRE_PROVISIONING,
-                                                   dieCfg.preProvisionedMasterKey));
+    QLIB_STATUS_RET_CHECK(
+        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     // set new master key
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
     // setting layout and policy of the vault section - only secure access
     sect_u32 = QLIB_SECTION_ID_VAULT;
 
     sectCfg = cfgLine[die_u8].sectionConfigTable;
 
-    sectCfg[sect_u32].size = SIZE_128KB_;
+    sectCfg[sect_u32].size = (QLIB_FeatureSupported(qlibContext, W77Q_FEATURE_VAULT_128KB) != 0u) ? SIZE_128KB_ : SIZE_64KB_;
 
     sectCfg[sect_u32].sectionConfig.policy.plainAccessReadEnable   = 0u;
     sectCfg[sect_u32].sectionConfig.policy.plainAccessWriteEnable  = 0u;
@@ -152,7 +149,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Vault_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     // Full access key configuration.This is the key to use later for the section configuration
     // changes or write access
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -160,7 +157,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Vault_manuf_flow(QLIB_CONTEXT_T* qlibContext)
 
     // get restricted access key to configure into chip.
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -192,7 +189,7 @@ QLIB_STATUS_T QLIB_SAMPLE_VaultFullKey(QLIB_CONTEXT_T* qlibContext)
 {
     QLIB_STATUS_T status      = QLIB_STATUS__OK;
     uint32_t      section_u32 = QLIB_SECTION_ID_VAULT;
-    CONST_KEY_P_T key;
+    KEY_T         key;
     uint8_t       writeBuf_u8[QLIB_FLASH_PAGE_SIZE];
     uint8_t       readBuf_u8[QLIB_FLASH_PAGE_SIZE];
     uint8_t       eraseBuf_u8[QLIB_FLASH_PAGE_SIZE];
@@ -211,7 +208,7 @@ QLIB_STATUS_T QLIB_SAMPLE_VaultFullKey(QLIB_CONTEXT_T* qlibContext)
     QLIB_STATUS_RET_CHECK(QLIB_GetActiveDie(qlibContext, &die_u8));
 #endif // QLIB_MAX_DIES_SUPPORTED > 1u
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetSectionKeyPtr(qlibContext, id.std.uniqueID, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, &key));
+        QLIB_SAMPLE_GetSectionAccessKey(qlibContext, id.sec.wid, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, key));
 
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(qlibContext, section_u32, key, (bool)true));
 
@@ -293,8 +290,8 @@ QLIB_STATUS_T QLIB_SAMPLE_VaultRestrictedKey(QLIB_CONTEXT_T* qlibContext)
 {
     QLIB_STATUS_T status      = QLIB_STATUS__OK;
     uint32_t      section_u32 = QLIB_SECTION_ID_VAULT;
-    CONST_KEY_P_T fullAccessKey;
-    CONST_KEY_P_T restrictedAccessKey;
+    KEY_T         fullAccessKey;
+    KEY_T         restrictedAccessKey;
     uint8_t       writeBuf_u8[QLIB_FLASH_PAGE_SIZE];
     uint8_t       readBuf_u8[QLIB_FLASH_PAGE_SIZE];
     uint8_t       eraseBuf_u8[QLIB_FLASH_PAGE_SIZE];
@@ -315,12 +312,12 @@ QLIB_STATUS_T QLIB_SAMPLE_VaultRestrictedKey(QLIB_CONTEXT_T* qlibContext)
 #if QLIB_MAX_DIES_SUPPORTED > 1u
     QLIB_STATUS_RET_CHECK(QLIB_GetActiveDie(qlibContext, &die_u8));
 #endif // QLIB_MAX_DIES_SUPPORTED > 1u
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionKeyPtr(qlibContext,
-                                                       id.std.uniqueID,
-                                                       QLIB_KID__FULL_ACCESS_SECTION,
-                                                       section_u32,
-                                                       die_u8,
-                                                       &fullAccessKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
+                                                          id.sec.wid,
+                                                          QLIB_KID__FULL_ACCESS_SECTION,
+                                                          section_u32,
+                                                          die_u8,
+                                                          fullAccessKey));
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(qlibContext, section_u32, fullAccessKey, (bool)true));
     QLIB_STATUS_RET_CHECK_GOTO(QLIB_OpenSession(qlibContext, section_u32, QLIB_SESSION_ACCESS_FULL), status, remove_key);
     QLIB_STATUS_RET_CHECK_GOTO(QLIB_Erase(qlibContext, section_u32, 0u, QLIB_FLASH_SECTOR_SIZE, (bool)true),
@@ -335,12 +332,12 @@ QLIB_STATUS_T QLIB_SAMPLE_VaultRestrictedKey(QLIB_CONTEXT_T* qlibContext)
     /*-------------------------------------------------------------------------------------------------------
      Load the restricted key for the secure read operations
     -------------------------------------------------------------------------------------------------------*/
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionKeyPtr(qlibContext,
-                                                       id.std.uniqueID,
-                                                       QLIB_KID__RESTRICTED_ACCESS_SECTION,
-                                                       section_u32,
-                                                       die_u8,
-                                                       &restrictedAccessKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
+                                                          id.sec.wid,
+                                                          QLIB_KID__RESTRICTED_ACCESS_SECTION,
+                                                          section_u32,
+                                                          die_u8,
+                                                          restrictedAccessKey));
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(qlibContext, section_u32, restrictedAccessKey, (bool)false));
     isFullAccess_b = (bool)false;
 

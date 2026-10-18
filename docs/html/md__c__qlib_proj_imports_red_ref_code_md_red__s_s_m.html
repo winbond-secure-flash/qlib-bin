@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,9 +77,10 @@ $(function() {
   <div class="headertitle"><div class="title">[SSM] Secure storage mechanism </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >W77Q provides the <b>fundamental</b> contribution to the device SSM with its secure storage feature.</p>
-<p >Secure storage is provided via imposing cryptographically protected policies to the flash sections. After policies and keys are configured, flash access obeys to very certain security rules. Section policy has multiple attributes, each can be used to implement your security architecture. Next example shows simple 3 sections layout with different plain read/write policy attributes.</p>
-<div align="center"></div><div align="center"><img src="SSM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >Following table reflects SSM for the user with/without keys as a result of section policy configured.</p>
+<div class="textblock"><p >W77Q provides fundamental support for the device's secure storage mechanism (SSM).</p>
+<p >Secure storage uses cryptographically protected policies applied to flash sections. Once policies and keys are configured, flash access is governed by the selected security rules. Section policies provide multiple attributes that can be used to implement a security architecture.</p>
+<p >The following example shows a simple layout of three sections with different plain read/write policy attributes.</p>
+<div align="center"></div><div align="center"><img src="SSM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >The following table summarizes the access available to users with and without keys under the configured section policies.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">#   </th><th class="markdownTableHeadNone">plain read/write policy attribute   </th><th class="markdownTableHeadCenter">has no keys   </th><th class="markdownTableHeadCenter">has restricted key   </th><th class="markdownTableHeadCenter">has full access key    </th></tr>
@@ -90,11 +91,10 @@ $(function() {
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">plain read disabled, plain write disabled   </td><td class="markdownTableBodyCenter"><strike>read</strike> <strike>write</strike>   </td><td class="markdownTableBodyCenter">read <strike>write</strike>   </td><td class="markdownTableBodyCenter">read write   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md206"></a>
-C code implementation</h2>
-<p >SSM example is split in two phases - manufacture and field. During manufacture phase we create 3 sections each one with different access policy. During field phase we show how this policy affects flash access. <br  />
-</p>
-<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__s_s_m_c.html">🔗Secure storage mechanism c reference code</a> </p>
+<h2><a class="anchor" id="autotoc_md207"></a>
+Example Implementation</h2>
+<p >The SSM example has two phases: manufacturing and field use. During manufacturing, three sections are configured with different access policies. During field use, the example demonstrates how each policy affects flash access.</p>
+<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__s_s_m_c.html">🔗Secure storage mechanism C reference code</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

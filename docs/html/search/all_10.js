@@ -19,9 +19,8 @@ var searchData=
   ['resp_5fready_16',['RESP_READY',['../struct_q_l_i_b___r_e_g___s_s_r___s_t_r_u_c_t___t.html#a55540e34673d0c22bbfe8293368b3255',1,'QLIB_REG_SSR_STRUCT_T']]],
   ['restrictedkey_17',['restrictedKey',['../struct_q_l_i_b___e_x_t_e_n_d_e_d___s_e_c_t_i_o_n___c_o_n_f___t.html#ad88018205c23bc85843f21738176c87c',1,'QLIB_EXTENDED_SECTION_CONF_T']]],
   ['revision_18',['revision',['../struct_q_l_i_b___s_e_c___h_w___v_e_r___t.html#ada2dc412ea3cbf9ea48788cb50d6b059',1,'QLIB_SEC_HW_VER_T::revision()'],['../struct_q_l_i_b___h_w___i_n_f_o___t.html#a23ce181b65b39139cd50175db7da2ad3',1,'QLIB_HW_INFO_T::revision()']]],
-  ['rkeys_5fl_19',['rKeys_L',['../qlib__sample__fw_8c.html#adeeda75aff946faf7190f6639d0646f2',1,'qlib_sample_fw.c']]],
-  ['rng_5frdy_5fu32_20',['RNG_RDY_u32',['../struct_q_l_i_b___r_e_g___e_s_s_r___s_t_r_u_c_t___t.html#a742bd6af45437eac15084d63c256d8dd',1,'QLIB_REG_ESSR_STRUCT_T']]],
-  ['rngpaen_21',['rngPAEn',['../struct_q_l_i_b___d_i_e___c_o_n_f_i_g___t.html#abe7b0c5a8fb0a931b02b85631cf084ab',1,'QLIB_DIE_CONFIG_T']]],
-  ['rollbackenabled_22',['rollbackEnabled',['../struct_q_l_i_b___s_e_c_t_i_o_n___r_u_n_t_i_m_e___s_t_a_t_u_s___t.html#a51f48fa1d97a0c95d011129bb09414a1',1,'QLIB_SECTION_RUNTIME_STATUS_T']]],
-  ['rollbackprot_23',['rollbackProt',['../struct_q_l_i_b___p_o_l_i_c_y___t.html#ab8c4f452e76d49663db257541a8ba992',1,'QLIB_POLICY_T']]]
+  ['rng_5frdy_5fu32_19',['RNG_RDY_u32',['../struct_q_l_i_b___r_e_g___e_s_s_r___s_t_r_u_c_t___t.html#a742bd6af45437eac15084d63c256d8dd',1,'QLIB_REG_ESSR_STRUCT_T']]],
+  ['rngpaen_20',['rngPAEn',['../struct_q_l_i_b___d_i_e___c_o_n_f_i_g___t.html#abe7b0c5a8fb0a931b02b85631cf084ab',1,'QLIB_DIE_CONFIG_T']]],
+  ['rollbackenabled_21',['rollbackEnabled',['../struct_q_l_i_b___s_e_c_t_i_o_n___r_u_n_t_i_m_e___s_t_a_t_u_s___t.html#a51f48fa1d97a0c95d011129bb09414a1',1,'QLIB_SECTION_RUNTIME_STATUS_T']]],
+  ['rollbackprot_22',['rollbackProt',['../struct_q_l_i_b___p_o_l_i_c_y___t.html#ab8c4f452e76d49663db257541a8ba992',1,'QLIB_POLICY_T']]]
 ];

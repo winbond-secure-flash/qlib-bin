@@ -90,7 +90,7 @@ QLIB_STATUS_T QLIB_UTILS_CalcCRCForSection(QLIB_CONTEXT_T* qlibContext,
                                            uint32_t*       crc_pu32)
 {
     uint32_t res_u32 = 0xFFFFFFFFu;
-    uint32_t i_u32   = 0u;
+    uint32_t i_u32;
     uint32_t readBuf_u32[QLIB_UTILS_CRC_READ_BUFFER_SIZE / sizeof(uint32_t)];
     uint32_t readSize_u32;
 

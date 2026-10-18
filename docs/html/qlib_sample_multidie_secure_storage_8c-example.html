@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: qlib_sample_multidie_secure_storage.c</title>
+<title>QLIB Library User Guide: qlib_sample_multidie_secure_storage.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -228,13 +228,13 @@ $(function() {
 <div class="ttc" id="aqlib__sample__spi__interface_8c_html_aa2d6eed15e77bb3316ac157fa428269d"><div class="ttname"><a href="qlib__sample__spi__interface_8c.html#aa2d6eed15e77bb3316ac157fa428269d">QLIB_SAMPLE_SetSPI</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_SetSPI(QLIB_CONTEXT_T *qlibContext, QLIB_BUS_FORMAT_T busFormat, uint32_t dummyCycles_pu32, QLIB_STD_ADDR_MODE_T addrMode, QLIB_SAMPLE_SetFetchCmd_CB setFetchCmd)</div><div class="ttdoc">This function sets the SPI interface parameters in core, qlib and flash.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__spi__interface_8c_source.html#l00156">qlib_sample_spi_interface.c:156</a></div></div>
 <div class="ttc" id="aqlib__sample__spi__interface_8h_html_ae57bd6b9682e7c1262afe77d26126ccb"><div class="ttname"><a href="qlib__sample__spi__interface_8h.html#ae57bd6b9682e7c1262afe77d26126ccb">QLIB_SAMPLE_SetFetchCmd_CB</a></div><div class="ttdeci">int(* QLIB_SAMPLE_SetFetchCmd_CB)(QLIB_BUS_FORMAT_T busFormat, uint32_t dummyCycles_u32, bool addrMode3Bytes_b)</div><div class="ttdoc">Callback to be implemented according to user platform This callback is needed if user uses direct fla...</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__spi__interface_8h_source.html#l00026">qlib_sample_spi_interface.h:26</a></div></div>
 <div class="ttc" id="aqlib__types_8h_html_a3823bfefe67800cfb98be577a4f01f93"><div class="ttname"><a href="qlib__types_8h.html#a3823bfefe67800cfb98be577a4f01f93">W77Q_FEATURE_FAST_READ_DUMMY_CONFIG</a></div><div class="ttdeci">#define W77Q_FEATURE_FAST_READ_DUMMY_CONFIG</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00187">qlib_types.h:187</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a3cd8df0af18391d878a2543877efe82c"><div class="ttname"><a href="qlib__types_8h.html#a3cd8df0af18391d878a2543877efe82c">QLIB_STD_ADDR_MODE_T</a></div><div class="ttdeci">QLIB_STD_ADDR_MODE_T</div><div class="ttdoc">Standard commands address mode.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00407">qlib_types.h:408</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a3cd8df0af18391d878a2543877efe82ca02392ed3205734a0429c0aecf7ec59ed"><div class="ttname"><a href="qlib__types_8h.html#a3cd8df0af18391d878a2543877efe82ca02392ed3205734a0429c0aecf7ec59ed">QLIB_STD_ADDR_MODE__4_BYTE</a></div><div class="ttdeci">@ QLIB_STD_ADDR_MODE__4_BYTE</div><div class="ttdoc">4 bytes address mode</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00411">qlib_types.h:410</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a3cd8df0af18391d878a2543877efe82ca4f4c3fc142de4c9f43febc7cb1a753b0"><div class="ttname"><a href="qlib__types_8h.html#a3cd8df0af18391d878a2543877efe82ca4f4c3fc142de4c9f43febc7cb1a753b0">QLIB_STD_ADDR_MODE__3_BYTE</a></div><div class="ttdeci">@ QLIB_STD_ADDR_MODE__3_BYTE</div><div class="ttdoc">3 bytes address mode</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00409">qlib_types.h:409</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a400b694bfe4f9d9650f2642814dcc710"><div class="ttname"><a href="qlib__types_8h.html#a400b694bfe4f9d9650f2642814dcc710">QLIB_BUS_FORMAT_T</a></div><div class="ttdeci">uint32_t QLIB_BUS_FORMAT_T</div><div class="ttdoc">SPI bus format including dtr.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00283">qlib_types.h:283</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a3cd8df0af18391d878a2543877efe82c"><div class="ttname"><a href="qlib__types_8h.html#a3cd8df0af18391d878a2543877efe82c">QLIB_STD_ADDR_MODE_T</a></div><div class="ttdeci">QLIB_STD_ADDR_MODE_T</div><div class="ttdoc">Standard commands address mode.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00409">qlib_types.h:410</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a3cd8df0af18391d878a2543877efe82ca02392ed3205734a0429c0aecf7ec59ed"><div class="ttname"><a href="qlib__types_8h.html#a3cd8df0af18391d878a2543877efe82ca02392ed3205734a0429c0aecf7ec59ed">QLIB_STD_ADDR_MODE__4_BYTE</a></div><div class="ttdeci">@ QLIB_STD_ADDR_MODE__4_BYTE</div><div class="ttdoc">4 bytes address mode</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00413">qlib_types.h:412</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a3cd8df0af18391d878a2543877efe82ca4f4c3fc142de4c9f43febc7cb1a753b0"><div class="ttname"><a href="qlib__types_8h.html#a3cd8df0af18391d878a2543877efe82ca4f4c3fc142de4c9f43febc7cb1a753b0">QLIB_STD_ADDR_MODE__3_BYTE</a></div><div class="ttdeci">@ QLIB_STD_ADDR_MODE__3_BYTE</div><div class="ttdoc">3 bytes address mode</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00411">qlib_types.h:411</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a400b694bfe4f9d9650f2642814dcc710"><div class="ttname"><a href="qlib__types_8h.html#a400b694bfe4f9d9650f2642814dcc710">QLIB_BUS_FORMAT_T</a></div><div class="ttdeci">uint32_t QLIB_BUS_FORMAT_T</div><div class="ttdoc">SPI bus format including dtr.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00285">qlib_types.h:285</a></div></div>
 <div class="ttc" id="aqlib__types_8h_html_a59e34bd2ed21ff1abf14cbbf0b188bec"><div class="ttname"><a href="qlib__types_8h.html#a59e34bd2ed21ff1abf14cbbf0b188bec">W77Q_FEATURE_4_BYTES_ADDRESS_MODE</a></div><div class="ttdeci">#define W77Q_FEATURE_4_BYTES_ADDRESS_MODE</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00176">qlib_types.h:176</a></div></div>
 <div class="ttc" id="aqlib__types_8h_html_a8e5414d63678dbf7d77365c9a0beb0a1"><div class="ttname"><a href="qlib__types_8h.html#a8e5414d63678dbf7d77365c9a0beb0a1">FLASH_CR_DUMMY_DEFAULT</a></div><div class="ttdeci">#define FLASH_CR_DUMMY_DEFAULT</div><div class="ttdoc">Default Definitions.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00051">qlib_types.h:51</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_aa43f318f69cb35831bf7d8dab4a8f4b1"><div class="ttname"><a href="qlib__types_8h.html#aa43f318f69cb35831bf7d8dab4a8f4b1">QLIB_BUS_FORMAT</a></div><div class="ttdeci">#define QLIB_BUS_FORMAT(mode, dtr)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00290">qlib_types.h:290</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_aa43f318f69cb35831bf7d8dab4a8f4b1"><div class="ttname"><a href="qlib__types_8h.html#aa43f318f69cb35831bf7d8dab4a8f4b1">QLIB_BUS_FORMAT</a></div><div class="ttdeci">#define QLIB_BUS_FORMAT(mode, dtr)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00292">qlib_types.h:292</a></div></div>
 <div class="ttc" id="aunion_q_l_i_b___c_o_n_t_e_x_t___t_html"><div class="ttname"><a href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a></div><div class="ttdoc">Opaque QLIB context.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00072">qlib_types.h:73</a></div></div>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.17-->

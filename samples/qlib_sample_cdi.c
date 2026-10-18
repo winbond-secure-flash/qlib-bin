@@ -110,21 +110,17 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_manuf_flow(QLIB_CONTEXT_T* qlibContext
     // modify configuration
 
     // set pre provision master key if needed
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext,
-                                                   id.std.uniqueID,
-                                                   QLIB_KID__DEVICE_KEY_PRE_PROVISIONING,
-                                                   dieCfg.preProvisionedMasterKey));
+    QLIB_STATUS_RET_CHECK(
+        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     // set new master key
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
     // set device secret key as it participates in the CDI calculation
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_SECRET, dieCfg.deviceSecretKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_SECRET, dieCfg.deviceSecretKey));
 
     // set Secure device ID as it participate in the CDI calculation
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSecureUID(qlibContext, id.std.uniqueID, dieCfg.suid));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSecureUID(qlibContext, id.sec.wid, dieCfg.suid));
 
     // configure sections 0, 1, 2 with digest
     // first configure without digest, then erase section_u32 contents, write some data, calculate digest and enable it on flash
@@ -149,7 +145,7 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_manuf_flow(QLIB_CONTEXT_T* qlibContext
     // Get boot section full access key (needed for digest configuration below)
     QLIB_STATUS_RET_CHECK(
         QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                        id.std.uniqueID,
+                                        id.sec.wid,
                                         QLIB_KID__FULL_ACCESS_SECTION,
                                         QLIB_SAMPLE_CDI_BOOT_SECTION,
                                         die_u8,
@@ -171,7 +167,7 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_manuf_flow(QLIB_CONTEXT_T* qlibContext
 
         // Full access key configuration.This is the key to use later for the section configuration and write
         QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                              id.std.uniqueID,
+                                                              id.sec.wid,
                                                               QLIB_KID__FULL_ACCESS_SECTION,
                                                               sect_u32,
                                                               die_u8,
@@ -283,14 +279,14 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_field_flow(QLIB_CONTEXT_T* qlibContext
     QLIB_ID_T     id;
     uint8_t       die_u8 = 0u;
     uint32_t      section_u32;
-    CONST_KEY_P_T keyF;
+    KEY_T         keyF;
 
 #if QLIB_MAX_DIES_SUPPORTED > 1u
     QLIB_GetActiveDie(qlibContext, &die_u8);
 #endif // QLIB_MAX_DIES_SUPPORTED > 1u
 
     // See what chip is connected and its unique ids. We might need this info to obtain keys for this
-    // chips according to formula or via DB. see QLIB_SAMPLE_GetSectionKeyPtr() function
+    // chips according to formula or via DB. see QLIB_SAMPLE_GetSectionAccessKey() function
     QLIB_STATUS_RET_CHECK(QLIB_GetHWVersion(qlibContext, &hwVer));
     QLIB_STATUS_RET_CHECK(QLIB_GetId(qlibContext, &id));
 
@@ -300,7 +296,7 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_field_flow(QLIB_CONTEXT_T* qlibContext
      obtain full access key
     -------------------------------------------------------------------------------------------------------*/
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetSectionKeyPtr(qlibContext, id.std.uniqueID, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, &keyF));
+        QLIB_SAMPLE_GetSectionAccessKey(qlibContext, id.sec.wid, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, keyF));
 
     /*-------------------------------------------------------------------------------------------------------
      to retrieve first CDI in the fw trust chain, section 0u is used
@@ -317,7 +313,7 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_field_flow(QLIB_CONTEXT_T* qlibContext
      ------------------------------------------------------------------------------------------------------*/
     section_u32 = 1u;
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetSectionKeyPtr(qlibContext, id.std.uniqueID, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, &keyF));
+        QLIB_SAMPLE_GetSectionAccessKey(qlibContext, id.sec.wid, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, keyF));
     (void)memcpy(prevCdi, nextCdi, sizeof(TYPE_256BIT));
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetCdi(qlibContext, nextCdi, prevCdi, section_u32, keyF));
 
@@ -327,7 +323,7 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_field_flow(QLIB_CONTEXT_T* qlibContext
      ------------------------------------------------------------------------------------------------------*/
     section_u32 = 2u;
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetSectionKeyPtr(qlibContext, id.std.uniqueID, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, &keyF));
+        QLIB_SAMPLE_GetSectionAccessKey(qlibContext, id.sec.wid, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, keyF));
     (void)memcpy(prevCdi, nextCdi, sizeof(TYPE_256BIT));
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetCdi(qlibContext, nextCdi, prevCdi, section_u32, keyF));
 

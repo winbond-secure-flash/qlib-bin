@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,30 +77,29 @@ $(function() {
   <div class="headertitle"><div class="title">[RLM] Resilience mechanism </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >W77Q provides the <b>fundamental</b> contribution to the device RLM with its several features.</p>
-<h2><a class="anchor" id="autotoc_md196"></a>
-Read-only boot memory ( cryptographically write protected boot section )</h2>
-<p >User can configure boot section to be writable only by authorized user. Other actors can only read from such section. See how to configure such section in <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__s_s_m.html">SSM example </a>.</p>
+<div class="textblock"><p >W77Q provides fundamental support for the device's resilience mechanism (RLM) through several features.</p>
 <h2><a class="anchor" id="autotoc_md197"></a>
-Integrity protected fallback ( remapping boot section upon attack )</h2>
-<p >If during boot data integrity of the boot section is found to be damaged W77Q will automatically boot section ( aka 0 ) to another one in the flash. So in case of attack on boot section device will boot from another one to the firmware which probably handles attack incident, thus staying <b>resilient</b>.</p>
-<div align="center"></div><div align="center"><img src="RLM.png" alt="" class="inline" title="W77Q Secure Flash fallback"/>    </div><div align="center"></div><h2><a class="anchor" id="autotoc_md198"></a>
-C code implementation</h2>
-<p >RLM code is split in two phases - manufacture and field. During manufacture we make 3 sections and exercise fallback feature. To achieve this we will spoil boot section integrity and see how in this case read from boot section is mapped to fallback section.</p>
-<h3><a class="anchor" id="autotoc_md199"></a>
-section 0 - [ 0 -&gt; 1MB ]</h3>
-<p >Boot section to be integrity protected ( in picture). Plain read access is enabled, plain write is disabled. Note that we use checksum (crc32) integrity policy, digest (sha256) is also possible.</p>
+Read-only boot memory (cryptographically write-protected boot section)</h2>
+<p >A user can configure the boot section so that only authorized users can write to it. Other actors can read it only. See the <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__s_s_m.html">SSM example</a> for configuration details.</p>
+<h2><a class="anchor" id="autotoc_md198"></a>
+Integrity-protected fallback (remapping the boot section after an integrity failure)</h2>
+<p >If the boot section fails its integrity check, W77Q automatically redirects access from the boot section (section 0) to another flash section. If an attack affects the boot section, the fallback section can contain firmware intended to handle the incident, helping maintain resilience.</p>
+<div align="center"></div><div align="center"><img src="RLM.png" alt="" class="inline" title="W77Q Secure Flash fallback"/>    </div><div align="center"></div><h2><a class="anchor" id="autotoc_md199"></a>
+Example Implementation</h2>
+<p >The RLM example has two phases: manufacturing and field use. During manufacturing, three sections are configured for the fallback demonstration. During field use, the boot-section integrity is deliberately invalidated to demonstrate how reads are redirected to the fallback section.</p>
 <h3><a class="anchor" id="autotoc_md200"></a>
-section 1 - [ 0 -&gt; 2MB ]</h3>
-<p >This section will overlap section 0 and used as a "hacker window" to spoil integrity of section 0. Both plain read and write access are enabled.</p>
+Section 0 — [0–1 MB]</h3>
+<p >This is the boot section protected by an integrity policy. Plain read access is enabled, and plain write access is disabled. This example uses CRC-32; digest-based integrity (SHA-256) is also supported.</p>
 <h3><a class="anchor" id="autotoc_md201"></a>
-section 7 - [ 2MB -&gt; 3MB ]</h3>
-<p >This section is to be fallback section to which section 0 access to be mapped if section 0 integrity is corrupt(in picture). This is where you might store your emergency firmware. Both plain read and write access are enabled.</p>
+Section 1 — [0–2 MB]</h3>
+<p >This section overlaps section 0 and is used to demonstrate how its integrity can be invalidated. Plain read and write access are enabled.</p>
+<h3><a class="anchor" id="autotoc_md202"></a>
+Section 7 — [2–3 MB]</h3>
+<p >This is the fallback section to which section 0 access is mapped if section 0 fails its integrity check. It can hold recovery firmware. Plain read and write access are enabled.</p>
 <p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__r_l_m_fallback_c.html">🔗 Resilience mechanism via fallback reference code</a></p>
-<h2><a class="anchor" id="autotoc_md202"></a>
-Integrity monitoring ( periodic digest calculation on the section data )</h2>
-<p >Another way to keep device resilient is to monitor its integrity. At any moment W77Q can calculate digest (hash function) of flash section so data damage can be detected. Such request can be signed, giving host ( remote or local ) not only the digest value to compare to the expected one but also certainty that this data was provided by W77Q and not spoofed during "man in the middle" attack. In addition, successfully verified signed command can be a basis to the device attestation. <br  />
-</p>
+<h2><a class="anchor" id="autotoc_md203"></a>
+Integrity Monitoring (Periodic Digest Calculation for Section Data)</h2>
+<p >Another way to improve device resilience is to monitor data integrity. W77Q can calculate a digest of a flash section to detect data corruption. The request can be signed, giving the local or remote host both a digest to compare with an expected value and assurance that the response came from W77Q rather than being spoofed in a man-in-the-middle attack. A successfully verified signed command can also support device attestation.</p>
 <p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__r_l_m_integrity_c.html">🔗 Resilience mechanism via integrity reference code</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

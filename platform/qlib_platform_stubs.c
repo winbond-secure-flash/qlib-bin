@@ -24,6 +24,12 @@
 #include <string.h>
 
 #include "qlib_platform.h"
+#include "common_platform_hmac_sha256.h"
+
+/*-----------------------------------------------------------------------------------------------------------
+                                                 DEFINITIONS
+-----------------------------------------------------------------------------------------------------------*/
+#define PLAT_HMAC_SHA256_DIGEST_SIZE_BYTES 32u
 
 
 /*-----------------------------------------------------------------------------------------------------------
@@ -32,7 +38,7 @@
 
 void CORE_RESET(void)
 {
-    /* stub: no hardware to reset */
+#pragma message("WARNING: CORE_RESET stub - provide valid implementation for your platform ")
 }
 
 /*-----------------------------------------------------------------------------------------------------------
@@ -100,6 +106,7 @@ int PLAT_HASH_Finish(void* ctx_pv, uint32_t* output_pu32)
     return -1;
 }
 
+
 /*-----------------------------------------------------------------------------------------------------------
                                         NONCE
 -----------------------------------------------------------------------------------------------------------*/
@@ -109,5 +116,52 @@ uint64_t PLAT_GetNONCE(void)
 #pragma message("WARNING: PLAT_GetNONCE stub - provide valid implementation for your platform ")
 
     return 0u;
+}
+
+#ifdef USE_CONSTANT_NONCE
+int PLAT_SetNONCE(uint64_t constNonce_u64)
+{
+#pragma message("WARNING: PLAT_SetNONCE stub - provide valid implementation for your platform ")
+
+    (void)constNonce_u64;
+
+    return -1;
+}
+#endif // USE_CONSTANT_NONCE
+
+/*-----------------------------------------------------------------------------------------------------------
+                                        SPI OPTIMIZATION
+-----------------------------------------------------------------------------------------------------------*/
+
+#ifdef QLIB_SPI_OPTIMIZATION_ENABLED
+void PLAT_SPI_MultiTransactionStart(void)
+{
+#pragma message("WARNING: PLAT_SPI_MultiTransactionStart stub - provide valid implementation for your platform ")
+}
+
+void PLAT_SPI_MultiTransactionStop(void)
+{
+#pragma message("WARNING: PLAT_SPI_MultiTransactionStop stub - provide valid implementation for your platform ")
+}
+#endif // QLIB_SPI_OPTIMIZATION_ENABLED
+
+/*-----------------------------------------------------------------------------------------------------------
+                  HMAC, not required by QLIB, only for KDF key generation supplied in QLIB utils
+-----------------------------------------------------------------------------------------------------------*/
+
+void PLAT_HMAC_SHA256(uint8_t*       output_pu8,
+                      const uint8_t* key_pu8,
+                      uint32_t       keySize_u32,
+                      const void*    data_pv,
+                      uint32_t       dataSize_u32)
+{
+#pragma message("WARNING: PLAT_HMAC_SHA256 stub - provide valid implementation for your platform ")
+
+    (void)key_pu8;
+    (void)keySize_u32;
+    (void)data_pv;
+    (void)dataSize_u32;
+
+    (void)memset(output_pu8, 0, PLAT_HMAC_SHA256_DIGEST_SIZE_BYTES);
 }
 

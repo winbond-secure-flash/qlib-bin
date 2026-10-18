@@ -1,6 +1,6 @@
 # QLIB Library Release
 
-Prebuilt shared library for the Winbond W77Q/W77T secure flash family.
+Prebuilt shared library for Winbond W77Q/T secure flash devices.
 
 ## Package Contents
 
@@ -22,7 +22,7 @@ Prebuilt shared library for the Winbond W77Q/W77T secure flash family.
 | `qlib_types.h` | Type definitions — contexts, keys, bus modes, section descriptors, etc. |
 | `qlib_errors.h` | Error codes returned by all QLIB functions |
 | `qlib_safety.h` | Safety-related API — safe read, write, and erase with CRC verification |
-| `qlib_targets.h` | Supported W77Q / W77T target device definitions |
+| `qlib_targets.h` | Supported W77Q/T target device definitions |
 
 ## Quick Start
 
@@ -33,7 +33,7 @@ Prebuilt shared library for the Winbond W77Q/W77T secure flash family.
    bin/install.sh
    ```
 
-   On a Linux PC you may need to run with `sudo`:
+   On a Linux PC, you may need to run the script with `sudo`:
 
    ```sh
    chmod +x bin/install.sh
@@ -54,17 +54,17 @@ Prebuilt shared library for the Winbond W77Q/W77T secure flash family.
 
 2. Implement the mandatory platform functions declared in `inc/qlib_platform.h`:
 
-   - **PLAT_SPI_WriteReadTransaction** — SPI master read-write transaction. Ensure the function generates correct waveforms as described in the function documentation. The precompiled library uses `QLIB_MAX_SPI_INPUT_SIZE` = 256 bytes; the library splits large transfers internally, so your implementation must support input sizes of up to 256 bytes.
+   - **PLAT_SPI_WriteReadTransaction** — Performs an SPI master read/write transaction. Ensure that it generates the waveforms specified in its documentation. The precompiled library sets `QLIB_MAX_SPI_INPUT_SIZE` to 256 bytes and splits larger transfers internally, so your implementation must support inputs of up to 256 bytes.
 
-   - **CORE_RESET** — Resets the core CPU.
+   - **CORE_RESET** — Resets the microcontroller core.
 
-   - **PLAT_HASH_Init / PLAT_HASH_Update / PLAT_HASH_Finish** — SHA-256 hash implementation. You must provide your own implementation (e.g. OpenSSL or hardware-accelerated).
+   - **PLAT_HASH_Init / PLAT_HASH_Update / PLAT_HASH_Finish** — Implement SHA-256 using these functions. Provide your own implementation, for example with OpenSSL or hardware acceleration.
 
-   - **PLAT_GetNONCE** — Returns a unique, non-repeating random number each time it is called. Use a hardware-based TRNG for high entropy.
+   - **PLAT_GetNONCE** — Return a unique, non-repeating random number on each call. Use a hardware-based TRNG to provide high entropy.
 
    > **Note:** `platform/qlib_platform_stubs.c` provides stub implementations of all mandatory platform callbacks. Replace them with your platform's actual implementation.
 
-3. Build using `make` from the root of the deliverable package (see below).
+3. Run `make` from the root of the deliverable package to build the samples.
 
 ## Initialize QLIB
 
@@ -140,7 +140,7 @@ By default, this will build the `qlib_samples` executable in the current directo
 
 ## License
 
-See [License.txt](License.txt).
+See [LICENSE](LICENSE).
 
 ---
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: qlib_sample.h File Reference</title>
+<title>QLIB Library User Guide: qlib_sample.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -168,6 +168,10 @@ Macros</h2></td></tr>
 <tr class="separator:a9876b064036c6c3571394f33964ca1dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05b9fd49e8dea6ecb9bd8761485c433d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a05b9fd49e8dea6ecb9bd8761485c433d">QLIB_SAMPLE_LMS_K_8</a></td></tr>
 <tr class="separator:a05b9fd49e8dea6ecb9bd8761485c433d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae430c1b84428a72e4efd64266c4ed0ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#ae430c1b84428a72e4efd64266c4ed0ec">QLIB_SAMPLE_CMS</a></td></tr>
+<tr class="separator:ae430c1b84428a72e4efd64266c4ed0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ead05c81c85326be42288ad22b46343"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a7ead05c81c85326be42288ad22b46343">QLIB_SAMPLE_DEV_SECRET</a></td></tr>
+<tr class="separator:a7ead05c81c85326be42288ad22b46343"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c5161cb9fa4c1227252b4f2c7711451"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a8c5161cb9fa4c1227252b4f2c7711451">QLIB_FLASH_BLOCK_SIZE</a>&#160;&#160;&#160;SIZE_64KB_</td></tr>
 <tr class="separator:a8c5161cb9fa4c1227252b4f2c7711451"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f0c88cbeacdc04b6be5bec563ac09f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a6f0c88cbeacdc04b6be5bec563ac09f3">QLIB_FLASH_SECTOR_SIZE</a>&#160;&#160;&#160;SIZE_4KB_</td></tr>
@@ -182,20 +186,18 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a302cb34c480ef329f0b4461941bd98ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a302cb34c480ef329f0b4461941bd98ad">QLIB_SAMPLE_GetSectionAccessKey</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, <a class="el" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, uint32_t section_u32, uint32_t die_u32, <a class="el" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key)</td></tr>
-<tr class="separator:a302cb34c480ef329f0b4461941bd98ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac533a44f34038f2a94e67915563ed6b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#ac533a44f34038f2a94e67915563ed6b6">QLIB_SAMPLE_GetSectionLmsKey</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, uint32_t section_u32, uint32_t die_u32, <a class="el" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a> key)</td></tr>
-<tr class="separator:ac533a44f34038f2a94e67915563ed6b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78742d40a8443c10bcbf8131c2b87529"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a78742d40a8443c10bcbf8131c2b87529">QLIB_SAMPLE_GetDeviceKey</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, <a class="el" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <a class="el" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> deviceKey)</td></tr>
-<tr class="separator:a78742d40a8443c10bcbf8131c2b87529"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d57dfbc3668ee26b20ec3ecc4a1ab20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a2d57dfbc3668ee26b20ec3ecc4a1ab20">QLIB_SAMPLE_GetSectionKeyPtr</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, <a class="el" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, uint32_t section_u32, uint32_t die_u32, <a class="el" href="qlib__types_8h.html#a6ded6bb9d1cb07a3929688e4630dc7a6">CONST_KEY_P_T</a> *key)</td></tr>
-<tr class="separator:a2d57dfbc3668ee26b20ec3ecc4a1ab20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc63b2b27f2adf9387e7823edc372bc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#afc63b2b27f2adf9387e7823edc372bc9">QLIB_SAMPLE_GetSecureUID</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, TYPE_128BIT suid)</td></tr>
-<tr class="separator:afc63b2b27f2adf9387e7823edc372bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02fc67da9d04e6e586eb077e052e57da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a02fc67da9d04e6e586eb077e052e57da">QLIB_SAMPLE_GetSectionAccessKey</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a> wid, <a class="el" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, uint32_t section_u32, uint32_t die_u32, <a class="el" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key)</td></tr>
+<tr class="separator:a02fc67da9d04e6e586eb077e052e57da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc278b8ecd6f7cd1fa5f494cb370a585"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#adc278b8ecd6f7cd1fa5f494cb370a585">QLIB_SAMPLE_GetSectionLmsKey</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a> wid, uint32_t section_u32, uint32_t die_u32, <a class="el" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a> key)</td></tr>
+<tr class="separator:adc278b8ecd6f7cd1fa5f494cb370a585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a485311221bd7777de85bca180f8056cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#a485311221bd7777de85bca180f8056cc">QLIB_SAMPLE_GetDeviceKey</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a> wid, <a class="el" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <a class="el" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> deviceKey)</td></tr>
+<tr class="separator:a485311221bd7777de85bca180f8056cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbfbc01c621fedc8f3fb79197edcc53f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample_8h.html#acbfbc01c621fedc8f3fb79197edcc53f">QLIB_SAMPLE_GetSecureUID</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *ctx, <a class="el" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a> wid, TYPE_128BIT suid)</td></tr>
+<tr class="separator:acbfbc01c621fedc8f3fb79197edcc53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This file contains sample types definitions and checks. </p>
-<h3><a class="anchor" id="autotoc_md66"></a>
+<h3><a class="anchor" id="autotoc_md70"></a>
 project qlib</h3>
 
 <p class="definition">Definition in file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -215,7 +217,7 @@ project qlib</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a56">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a72">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_get_ids_8c-example.html#a5">qlib_sample_get_ids.c</a>, <a class="el" href="qlib_sample_lms_attestation_8c-example.html#a23">qlib_sample_lms_attestation.c</a>, and <a class="el" href="qlib_sample_vault_8c-example.html#a12">qlib_sample_vault.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a56">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a71">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_get_ids_8c-example.html#a5">qlib_sample_get_ids.c</a>, <a class="el" href="qlib_sample_kd1_config_8c-example.html#a6">qlib_sample_kd1_config.c</a>, and <a class="el" href="qlib_sample_vault_8c-example.html#a12">qlib_sample_vault.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00033">33</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -236,7 +238,7 @@ project qlib</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_erase_8c-example.html#a65">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a55">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a60">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a65">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a62">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a50">qlib_sample_sign_verify.c</a>, and <a class="el" href="qlib_sample_vault_8c-example.html#a61">qlib_sample_vault.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_erase_8c-example.html#a65">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a54">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a67">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a64">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a61">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a49">qlib_sample_sign_verify.c</a>, and <a class="el" href="qlib_sample_vault_8c-example.html#a61">qlib_sample_vault.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00037">37</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -257,7 +259,7 @@ project qlib</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_erase_8c-example.html#a66">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a56">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a63">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a66">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a63">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a51">qlib_sample_sign_verify.c</a>, and <a class="el" href="qlib_sample_vault_8c-example.html#a63">qlib_sample_vault.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_erase_8c-example.html#a66">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a55">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a68">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a65">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a62">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a50">qlib_sample_sign_verify.c</a>, and <a class="el" href="qlib_sample_vault_8c-example.html#a63">qlib_sample_vault.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00038">38</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -294,7 +296,7 @@ project qlib</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a39">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_direct_attestation_8c-example.html#a33">qlib_sample_direct_attestation.c</a>, <a class="el" href="qlib_sample_erase_8c-example.html#a37">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a33">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a33">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_lms_fw_update_8c-example.html#a37">qlib_sample_lms_fw_update.c</a>, <a class="el" href="qlib_sample_lms_key_backup_8c-example.html#a43">qlib_sample_lms_key_backup.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a33">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a31">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a20">qlib_sample_sign_verify.c</a>, and <a class="el" href="qlib_sample_wd_8c-example.html#a53">qlib_sample_wd.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a39">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_direct_attestation_8c-example.html#a33">qlib_sample_direct_attestation.c</a>, <a class="el" href="qlib_sample_erase_8c-example.html#a37">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a33">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a33">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_kd1_config_8c-example.html#a35">qlib_sample_kd1_config.c</a>, <a class="el" href="qlib_sample_lms_fw_update_8c-example.html#a37">qlib_sample_lms_fw_update.c</a>, <a class="el" href="qlib_sample_lms_key_backup_8c-example.html#a43">qlib_sample_lms_key_backup.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a33">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a31">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a20">qlib_sample_sign_verify.c</a>, and <a class="el" href="qlib_sample_wd_8c-example.html#a53">qlib_sample_wd.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00042">42</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -315,7 +317,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                  \</div>
 <div class="line">        0x11111111, 0x12121212, 0x13131313, 0x14141414 \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a46">qlib_sample_fw.c</a>, and <a class="el" href="qlib_sample_safety_8c-example.html#a5">qlib_sample_safety.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a45">qlib_sample_fw.c</a>, and <a class="el" href="qlib_sample_safety_8c-example.html#a5">qlib_sample_safety.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00048">48</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -336,7 +338,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                  \</div>
 <div class="line">        0x15151515, 0x16161616, 0x17171717, 0x18181818 \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a48">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a47">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00054">54</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -357,7 +359,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                  \</div>
 <div class="line">        0x01010101, 0x02020202, 0x03030303, 0x04040404 \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a44">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a43">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00062">62</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -378,7 +380,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x19191919u, 0x10101010u, 0x21212121u, 0x22222222u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a50">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a49">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00074">74</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -399,7 +401,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x23232323u, 0x24242424u, 0x25252525u, 0x26262626u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a12">qlib_sample_fw.c</a>, and <a class="el" href="qlib_sample_safety_8c-example.html#a6">qlib_sample_safety.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a19">qlib_sample_fw.c</a>, and <a class="el" href="qlib_sample_safety_8c-example.html#a6">qlib_sample_safety.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00080">80</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -420,7 +422,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x27272727u, 0x28282828u, 0x29292929u, 0x20202020u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a13">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a20">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00086">86</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -441,7 +443,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x31313131u, 0x32323232u, 0x33333333u, 0x34343434u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a14">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a21">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00092">92</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -462,7 +464,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x35353535u, 0x36363636u, 0x37373737u, 0x38383838u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a15">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a22">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00098">98</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -483,7 +485,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x39393939u, 0x30303030u, 0x41414141u, 0x42424242u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a16">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a23">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00104">104</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -504,7 +506,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x43434343u, 0x44444444u, 0x45454545u, 0x46464646u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a17">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a24">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00110">110</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -525,7 +527,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x47474747u, 0x48484848u, 0x49494949u, 0x40404040u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a18">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a25">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00116">116</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -546,7 +548,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x51515151u, 0x52525252u, 0x53535353u, 0x54545454u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a19">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a26">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00122">122</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -567,7 +569,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x55555555u, 0x56565656u, 0x57575757u, 0x58585858u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a2">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a10">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00128">128</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -588,7 +590,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x59595959u, 0x50505050u, 0x61616161u, 0x62626262u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a3">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a11">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00134">134</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -609,7 +611,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x63636363u, 0x64646464u, 0x65656565u, 0x66666666u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a4">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a12">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00140">140</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -630,7 +632,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x67676767u, 0x68686868u, 0x69696969u, 0x60606060u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a5">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a13">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00146">146</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -651,7 +653,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x71717171u, 0x72727272u, 0x73737373u, 0x74747474u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a6">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a14">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00152">152</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -672,7 +674,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x75757575u, 0x76767676u, 0x77777777u, 0x78787878u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a7">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a15">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00158">158</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -693,7 +695,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x79797979u, 0x70707070u, 0x81818181u, 0x82828282u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a8">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a16">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00164">164</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -714,7 +716,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x83838383u, 0x84848484u, 0x85858585u, 0x86868686u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a9">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a17">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00170">170</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -735,7 +737,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x87878787u, 0x88888888u, 0x89898989u, 0x90909090u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a20">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a27">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00176">176</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -756,7 +758,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                      \</div>
 <div class="line">        0x91919191u, 0x92929292u, 0x93939393u, 0x94949494u \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a10">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a18">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00182">182</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -779,7 +781,7 @@ project qlib</h3>
 <div class="line">            0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x29u, 0xAAu, 0x2Bu, 0x31u, 0x4Fu, 0x16u, 0xD3u, 0x1Eu, 0x4Cu,    \</div>
 <div class="line">            0xDBu, 0x5Du, 0x36u, 0x63u, 0x50u, 0xE0u, 0x63u, 0x2Cu, 0xE7u, 0x11u, 0x2Au, 0x30u, 0x8Au, 0xB2u, 0x64u            \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a28">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a30">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00188">188</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -800,7 +802,7 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                       \</div>
 <div class="line">        0u                  \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a29">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a31">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00194">194</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -818,10 +820,12 @@ project qlib</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    {                       \</div>
-<div class="line">        0u                  \</div>
+<b>Value:</b><div class="fragment"><div class="line">    {                                                                                                                          \</div>
+<div class="line">        0x00u, 0x00u, 0x00u, 0x0Du, 0x00u, 0x00u, 0x00u, 0x07u, 0x07u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, \</div>
+<div class="line">            0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x30u, 0xA6u, 0x3Bu, 0x15u, 0xF3u, 0x26u, 0xC3u, 0xE4u, 0x4Au,    \</div>
+<div class="line">            0xB9u, 0x2Du, 0x6Du, 0x32u, 0xAAu, 0x1Bu, 0x36u, 0xC2u, 0xA6u, 0x21u, 0xA6u, 0x29u, 0x5Cu, 0x42u, 0x24u            \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a30">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a32">qlib_sample_fw.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00198">198</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
@@ -842,10 +846,10 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                       \</div>
 <div class="line">        0u                  \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a31">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a33">qlib_sample_fw.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00202">202</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00204">204</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -863,10 +867,10 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                       \</div>
 <div class="line">        0u                  \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a32">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a34">qlib_sample_fw.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00206">206</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00208">208</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -884,10 +888,10 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                       \</div>
 <div class="line">        0u                  \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a33">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a35">qlib_sample_fw.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00210">210</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00212">212</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -905,10 +909,10 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                       \</div>
 <div class="line">        0u                  \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a34">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a36">qlib_sample_fw.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00214">214</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00216">216</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -926,10 +930,10 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                       \</div>
 <div class="line">        0u                  \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a35">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a37">qlib_sample_fw.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00218">218</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00220">220</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -947,10 +951,54 @@ project qlib</h3>
 <b>Value:</b><div class="fragment"><div class="line">    {                       \</div>
 <div class="line">        0u                  \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a36">qlib_sample_fw.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a38">qlib_sample_fw.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00222">222</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00224">224</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+
+</div>
+</div>
+<a id="ae430c1b84428a72e4efd64266c4ed0ec" name="ae430c1b84428a72e4efd64266c4ed0ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae430c1b84428a72e4efd64266c4ed0ec">&#9670;&nbsp;</a></span>QLIB_SAMPLE_CMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QLIB_SAMPLE_CMS</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    {                                                                                                                           \</div>
+<div class="line">        0x45, 0x92, 0xCF, 0x61, 0x91, 0x7E, 0xAE, 0x29, 0xEA, 0xC8, 0x87, 0x9C, 0x70, 0x9A, 0x44, 0xCF, 0xE2, 0x80, 0xCA, 0xAE, \</div>
+<div class="line">            0xE1, 0x2F, 0xE5, 0xED, 0x67, 0xE8, 0xFE, 0xE7, 0x2D, 0x2F, 0x33, 0x06                                              \</div>
+<div class="line">    }</div>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a0">qlib_sample_fw.c</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00231">231</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+
+</div>
+</div>
+<a id="a7ead05c81c85326be42288ad22b46343" name="a7ead05c81c85326be42288ad22b46343"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ead05c81c85326be42288ad22b46343">&#9670;&nbsp;</a></span>QLIB_SAMPLE_DEV_SECRET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QLIB_SAMPLE_DEV_SECRET</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    {                                                                                                                           \</div>
+<div class="line">        0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, \</div>
+<div class="line">            0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20                                              \</div>
+<div class="line">    }</div>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_fw_8c-example.html#a1">qlib_sample_fw.c</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00239">239</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -966,7 +1014,7 @@ project qlib</h3>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00233">233</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00251">251</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -982,7 +1030,7 @@ project qlib</h3>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00236">236</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00254">254</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -998,7 +1046,7 @@ project qlib</h3>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00240">240</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00258">258</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
@@ -1015,13 +1063,13 @@ project qlib</h3>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00227">227</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample_8h_source.html#l00245">245</a> of file <a class="el" href="qlib__sample_8h_source.html">qlib_sample.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a302cb34c480ef329f0b4461941bd98ad" name="a302cb34c480ef329f0b4461941bd98ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a302cb34c480ef329f0b4461941bd98ad">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetSectionAccessKey()</h2>
+<a id="a02fc67da9d04e6e586eb077e052e57da" name="a02fc67da9d04e6e586eb077e052e57da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02fc67da9d04e6e586eb077e052e57da">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetSectionAccessKey()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1035,8 +1083,8 @@ project qlib</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>&#160;</td>
-          <td class="paramname"><em>uid</em>, </td>
+          <td class="paramtype"><a class="el" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a>&#160;</td>
+          <td class="paramname"><em>wid</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1069,15 +1117,15 @@ project qlib</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a40">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_direct_attestation_8c-example.html#a46">qlib_sample_direct_attestation.c</a>, <a class="el" href="qlib_sample_erase_8c-example.html#a50">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fallback_8c-example.html#a63">qlib_sample_fallback.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a46">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a48">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_lms_fw_update_8c-example.html#a50">qlib_sample_lms_fw_update.c</a>, <a class="el" href="qlib_sample_lms_key_backup_8c-example.html#a56">qlib_sample_lms_key_backup.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a48">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a44">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a33">qlib_sample_sign_verify.c</a>, <a class="el" href="qlib_sample_vault_8c-example.html#a46">qlib_sample_vault.c</a>, and <a class="el" href="qlib_sample_wd_8c-example.html#a66">qlib_sample_wd.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a40">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_direct_attestation_8c-example.html#a46">qlib_sample_direct_attestation.c</a>, <a class="el" href="qlib_sample_erase_8c-example.html#a50">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fallback_8c-example.html#a26">qlib_sample_fallback.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a46">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a40">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_kd1_config_8c-example.html#a49">qlib_sample_kd1_config.c</a>, <a class="el" href="qlib_sample_lms_fw_update_8c-example.html#a50">qlib_sample_lms_fw_update.c</a>, <a class="el" href="qlib_sample_lms_key_backup_8c-example.html#a56">qlib_sample_lms_key_backup.c</a>, <a class="el" href="qlib_sample_oem_section_provisioning_8c-example.html#a31">qlib_sample_oem_section_provisioning.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a48">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a44">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a33">qlib_sample_sign_verify.c</a>, <a class="el" href="qlib_sample_vault_8c-example.html#a47">qlib_sample_vault.c</a>, and <a class="el" href="qlib_sample_wd_8c-example.html#a66">qlib_sample_wd.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00047">47</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00042">42</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
 
 </div>
 </div>
-<a id="ac533a44f34038f2a94e67915563ed6b6" name="ac533a44f34038f2a94e67915563ed6b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac533a44f34038f2a94e67915563ed6b6">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetSectionLmsKey()</h2>
+<a id="adc278b8ecd6f7cd1fa5f494cb370a585" name="adc278b8ecd6f7cd1fa5f494cb370a585"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc278b8ecd6f7cd1fa5f494cb370a585">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetSectionLmsKey()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1091,8 +1139,8 @@ project qlib</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>&#160;</td>
-          <td class="paramname"><em>uid</em>, </td>
+          <td class="paramtype"><a class="el" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a>&#160;</td>
+          <td class="paramname"><em>wid</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1119,13 +1167,15 @@ project qlib</h3>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_oem_section_provisioning_8c-example.html#a45">qlib_sample_oem_section_provisioning.c</a>.</dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00061">61</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00094">94</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
 
 </div>
 </div>
-<a id="a78742d40a8443c10bcbf8131c2b87529" name="a78742d40a8443c10bcbf8131c2b87529"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78742d40a8443c10bcbf8131c2b87529">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetDeviceKey()</h2>
+<a id="a485311221bd7777de85bca180f8056cc" name="a485311221bd7777de85bca180f8056cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a485311221bd7777de85bca180f8056cc">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetDeviceKey()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1139,8 +1189,8 @@ project qlib</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>&#160;</td>
-          <td class="paramname"><em>uid</em>, </td>
+          <td class="paramtype"><a class="el" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a>&#160;</td>
+          <td class="paramname"><em>wid</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1161,71 +1211,15 @@ project qlib</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a25">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_direct_attestation_8c-example.html#a25">qlib_sample_direct_attestation.c</a>, <a class="el" href="qlib_sample_erase_8c-example.html#a26">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fallback_8c-example.html#a47">qlib_sample_fallback.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a25">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a24">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_lms_fw_update_8c-example.html#a28">qlib_sample_lms_fw_update.c</a>, <a class="el" href="qlib_sample_lms_key_backup_8c-example.html#a34">qlib_sample_lms_key_backup.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a24">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a23">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a13">qlib_sample_sign_verify.c</a>, <a class="el" href="qlib_sample_vault_8c-example.html#a27">qlib_sample_vault.c</a>, and <a class="el" href="qlib_sample_wd_8c-example.html#a43">qlib_sample_wd.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a25">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_direct_attestation_8c-example.html#a25">qlib_sample_direct_attestation.c</a>, <a class="el" href="qlib_sample_erase_8c-example.html#a26">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fallback_8c-example.html#a47">qlib_sample_fallback.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a25">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_integrity_8c-example.html#a24">qlib_sample_integrity.c</a>, <a class="el" href="qlib_sample_kd1_config_8c-example.html#a19">qlib_sample_kd1_config.c</a>, <a class="el" href="qlib_sample_lms_fw_update_8c-example.html#a28">qlib_sample_lms_fw_update.c</a>, <a class="el" href="qlib_sample_lms_key_backup_8c-example.html#a34">qlib_sample_lms_key_backup.c</a>, <a class="el" href="qlib_sample_oem_section_provisioning_8c-example.html#a11">qlib_sample_oem_section_provisioning.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a24">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a23">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a13">qlib_sample_sign_verify.c</a>, <a class="el" href="qlib_sample_vault_8c-example.html#a27">qlib_sample_vault.c</a>, and <a class="el" href="qlib_sample_wd_8c-example.html#a43">qlib_sample_wd.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00117">117</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00122">122</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
 
 </div>
 </div>
-<a id="a2d57dfbc3668ee26b20ec3ecc4a1ab20" name="a2d57dfbc3668ee26b20ec3ecc4a1ab20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d57dfbc3668ee26b20ec3ecc4a1ab20">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetSectionKeyPtr()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> QLIB_SAMPLE_GetSectionKeyPtr </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *&#160;</td>
-          <td class="paramname"><em>ctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>&#160;</td>
-          <td class="paramname"><em>uid</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a>&#160;</td>
-          <td class="paramname"><em>keyType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>section_u32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>die_u32</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="qlib__types_8h.html#a6ded6bb9d1cb07a3929688e4630dc7a6">CONST_KEY_P_T</a> *&#160;</td>
-          <td class="paramname"><em>key</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a72">qlib_sample_cdi.c</a>, <a class="el" href="qlib_sample_direct_attestation_8c-example.html#a63">qlib_sample_direct_attestation.c</a>, <a class="el" href="qlib_sample_erase_8c-example.html#a67">qlib_sample_erase.c</a>, <a class="el" href="qlib_sample_fallback_8c-example.html#a26">qlib_sample_fallback.c</a>, <a class="el" href="qlib_sample_fw_update_8c-example.html#a53">qlib_sample_fw_update.c</a>, <a class="el" href="qlib_sample_lms_fw_update_8c-example.html#a64">qlib_sample_lms_fw_update.c</a>, <a class="el" href="qlib_sample_secure_log_8c-example.html#a54">qlib_sample_secure_log.c</a>, <a class="el" href="qlib_sample_secure_storage_8c-example.html#a58">qlib_sample_secure_storage.c</a>, <a class="el" href="qlib_sample_sign_verify_8c-example.html#a41">qlib_sample_sign_verify.c</a>, <a class="el" href="qlib_sample_vault_8c-example.html#a54">qlib_sample_vault.c</a>, and <a class="el" href="qlib_sample_wd_8c-example.html#a71">qlib_sample_wd.c</a>.</dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00088">88</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
-
-</div>
-</div>
-<a id="afc63b2b27f2adf9387e7823edc372bc9" name="afc63b2b27f2adf9387e7823edc372bc9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc63b2b27f2adf9387e7823edc372bc9">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetSecureUID()</h2>
+<a id="acbfbc01c621fedc8f3fb79197edcc53f" name="acbfbc01c621fedc8f3fb79197edcc53f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbfbc01c621fedc8f3fb79197edcc53f">&#9670;&nbsp;</a></span>QLIB_SAMPLE_GetSecureUID()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1239,8 +1233,8 @@ project qlib</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>&#160;</td>
-          <td class="paramname"><em>uid</em>, </td>
+          <td class="paramtype"><a class="el" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a>&#160;</td>
+          <td class="paramname"><em>wid</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1258,7 +1252,7 @@ project qlib</h3>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_cdi_8c-example.html#a32">qlib_sample_cdi.c</a>, and <a class="el" href="qlib_sample_erase_8c-example.html#a33">qlib_sample_erase.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00149">149</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__fw_8c_source.html#l00190">190</a> of file <a class="el" href="qlib__sample__fw_8c_source.html">qlib_sample_fw.c</a>.</p>
 
 </div>
 </div>

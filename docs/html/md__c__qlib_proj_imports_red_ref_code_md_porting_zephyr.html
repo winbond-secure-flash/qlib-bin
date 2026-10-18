@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,14 +77,14 @@ $(function() {
   <div class="headertitle"><div class="title">Zephyr RTOS </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h3><a class="anchor" id="autotoc_md162"></a>
+<div class="textblock"><h3><a class="anchor" id="autotoc_md163"></a>
 Hardware Abstraction:</h3>
 <p >Uses the Zephyr Device Driver Model. You interact with the SPI driver via the standard Zephyr SPI API (spi_transceive, spi_write, spi_read). You get a device pointer using device_get_binding(). </p>
-<h3><a class="anchor" id="autotoc_md163"></a>
+<h3><a class="anchor" id="autotoc_md164"></a>
 Implementation:</h3>
 <ul>
 <li>Mutual Exclusion: Handled internally by the Zephyr SPI driver API when you call functions like spi_transceive. It uses spi_context structures to manage locking.</li>
-<li>Transaction: The spi_transceive() function is ideal here. It takes an array of spi_buf_set structures, where each spi_buf_set contains an array of spi_buf structures (buffers for TX or RX). This allows you to define the entire sequence (write cmd, write addr, write data, dummy clocks (often by TXing null bytes), read data) as a series of buffers within a single API call, ensuring atomicity (CS stays asserted).</li>
+<li>Transaction: The spi_transceive() function is ideal here. It takes an array of spi_buf_set structures, where each spi_buf_set contains an array of spi_buf structures (buffers for TX or RX). This allows you to define the entire sequence (write cmd, write addr, write data, dummy clocks (often by TXing null bytes), read data) as a series of buffers within a single API call, ensuring atomicity (CS# stays asserted).</li>
 <li>You would construct spi_buf entries for dataOutStream (potentially splitting cmd, addr, data if required by the underlying driver or for clarity, though often combined into one TX buffer), dummy bytes (a TX buffer with dummy data), and dataIn (an RX buffer).</li>
 <li>You'd group these into one or more spi_buf_sets.</li>
 <li>Create an spi_config struct populated based on format, flags, and potentially device-specific settings (speed, operation bits like SPI_OP_MODE_MASTER, SPI_WORD_SET(8), SPI_TRANSFER_MSB, specific mode flags). The userData would likely contain the const struct device *spi_dev pointer and possibly parts of the spi_config.</li>
@@ -94,18 +94,18 @@ Implementation:</h3>
 <li>RX buffer set: Contains buffer for dataIn.</li>
 </ul>
 </li>
-<li>The userData would likely point to a struct containing the Zephyr const struct device * for the SPI controller and perhaps the CS pin configuration if manually controlled (though usually handled by the driver). </li>
+<li>The userData would likely point to a struct containing the Zephyr const struct device * for the SPI controller and perhaps the CS# pin configuration if manually controlled (though usually handled by the driver). </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md164"></a>
+<h3><a class="anchor" id="autotoc_md165"></a>
 Concurrency:</h3>
 <p >Handled by Zephyr's driver model and kernel locking mechanisms. </p>
-<h3><a class="anchor" id="autotoc_md165"></a>
+<h3><a class="anchor" id="autotoc_md166"></a>
 Blocking:</h3>
 <p >spi_transceive is a blocking call from the application's perspective, though the driver underneath likely uses interrupts or DMA efficiently. Asynchronous APIs exist but aren't needed for this synchronous function signature. </p>
-<h3><a class="anchor" id="autotoc_md166"></a>
+<h3><a class="anchor" id="autotoc_md167"></a>
 Atomicity:</h3>
 <p >Naturally handled by spi_transceive when defining the whole sequence in one call. </p>
-<h3><a class="anchor" id="autotoc_md167"></a>
+<h3><a class="anchor" id="autotoc_md168"></a>
 Error Handling:</h3>
 <p >Zephyr API functions return 0 on success or negative errno codes on failure. Translate these to your library's error codes.</p>
 <p >🔗<a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_porting_zephyr_c.html">Example zephyr source code</a> <br  />

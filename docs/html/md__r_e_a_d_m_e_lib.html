@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: QLIB Library Release</title>
+<title>QLIB Library User Guide: QLIB Library Release</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -77,8 +77,8 @@ $(function() {
   <div class="headertitle"><div class="title">QLIB Library Release </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >Prebuilt shared library for the Winbond W77Q/W77T secure flash family.</p>
-<h1><a class="anchor" id="autotoc_md29"></a>
+<div class="textblock"><p >Prebuilt shared library for Winbond W77Q/T secure flash devices.</p>
+<h1><a class="anchor" id="autotoc_md33"></a>
 Package Contents</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -96,7 +96,7 @@ Package Contents</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>lms/</code>   </td><td class="markdownTableBodyNone">LMS library (if included)   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md30"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 Key API Headers</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -112,15 +112,15 @@ Key API Headers</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code><a class="el" href="qlib__safety_8h.html" title="This file contains the Safe QLIB interface.">qlib_safety.h</a></code>   </td><td class="markdownTableBodyLeft">Safety-related API — safe read, write, and erase with CRC verification    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code><a class="el" href="qlib__targets_8h.html" title="This file contains qlib targets definitions.">qlib_targets.h</a></code>   </td><td class="markdownTableBodyLeft">Supported W77Q / W77T target device definitions   </td></tr>
+<td class="markdownTableBodyLeft"><code><a class="el" href="qlib__targets_8h.html" title="This file contains qlib targets definitions.">qlib_targets.h</a></code>   </td><td class="markdownTableBodyLeft">Supported W77Q/T target device definitions   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md35"></a>
 Quick Start</h1>
 <ol type="1">
 <li><p class="startli">Install the library on your board:</p>
 <div class="fragment"><div class="line">chmod +x bin/install.sh</div>
 <div class="line">bin/install.sh</div>
-</div><!-- fragment --><p class="startli">On a Linux PC you may need to run with <code>sudo</code>:</p>
+</div><!-- fragment --><p class="startli">On a Linux PC, you may need to run the script with <code>sudo</code>:</p>
 <div class="fragment"><div class="line">chmod +x bin/install.sh</div>
 <div class="line">sudo bin/install.sh</div>
 </div><!-- fragment --><p class="startli">The script detects the board architecture, copies <code>libqlib.so</code> to <code>/usr/lib</code>, and refreshes the library cache.</p>
@@ -131,10 +131,10 @@ Quick Start</h1>
 <div class="line">Done.</div>
 </div><!-- fragment --></li>
 <li>Implement the mandatory platform functions declared in <code><a class="el" href="qlib__platform_8h.html" title="This file includes platform specific definitions.">inc/qlib_platform.h</a></code>:<ul>
-<li><b>PLAT_SPI_WriteReadTransaction</b> — SPI master read-write transaction. Ensure the function generates correct waveforms as described in the function documentation. The precompiled library uses <code>QLIB_MAX_SPI_INPUT_SIZE</code> = 256 bytes; the library splits large transfers internally, so your implementation must support input sizes of up to 256 bytes.</li>
-<li><b>CORE_RESET</b> — Resets the core CPU.</li>
-<li><b>PLAT_HASH_Init / PLAT_HASH_Update / PLAT_HASH_Finish</b> — SHA-256 hash implementation. You must provide your own implementation (e.g. OpenSSL or hardware-accelerated).</li>
-<li><b>PLAT_GetNONCE</b> — Returns a unique, non-repeating random number each time it is called. Use a hardware-based TRNG for high entropy.</li>
+<li><b>PLAT_SPI_WriteReadTransaction</b> — Performs an SPI master read/write transaction. Ensure that it generates the waveforms specified in its documentation. The precompiled library sets <code>QLIB_MAX_SPI_INPUT_SIZE</code> to 256 bytes and splits larger transfers internally, so your implementation must support inputs of up to 256 bytes.</li>
+<li><b>CORE_RESET</b> — Resets the microcontroller core.</li>
+<li><b>PLAT_HASH_Init / PLAT_HASH_Update / PLAT_HASH_Finish</b> — Implement SHA-256 using these functions. Provide your own implementation, for example with OpenSSL or hardware acceleration.</li>
+<li><b>PLAT_GetNONCE</b> — Return a unique, non-repeating random number on each call. Use a hardware-based TRNG to provide high entropy.</li>
 </ul>
 </li>
 </ol>
@@ -142,9 +142,9 @@ Quick Start</h1>
 <p >&zwj;<b>Note:</b> <code>platform/qlib_platform_stubs.c</code> provides stub implementations of all mandatory platform callbacks. Replace them with your platform's actual implementation. </p>
 </blockquote>
 <ol type="1">
-<li>Build using <code>make</code> from the root of the deliverable package (see below).</li>
+<li>Run <code>make</code> from the root of the deliverable package to build the samples.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md32"></a>
+<h1><a class="anchor" id="autotoc_md36"></a>
 Initialize QLIB</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="qlib_8h.html">qlib.h</a>&quot;</span></div>
 <div class="line"> </div>
@@ -179,10 +179,10 @@ Initialize QLIB</h1>
 <div class="ttc" id="aqlib_8h_html_ac30cd0fe984d46d9caa214a2ed9c9fb4"><div class="ttname"><a href="qlib_8h.html#ac30cd0fe984d46d9caa214a2ed9c9fb4">QLIB_Connect</a></div><div class="ttdeci">QLIB_API QLIB_STATUS_T QLIB_Connect(QLIB_CONTEXT_T *qlibContext)</div><div class="ttdoc">This function establishes a communication channel with the flash and sets the active die to 0.</div></div>
 <div class="ttc" id="aqlib__errors_8h_html_a1ea3e84a713396a86969e1c9988145ba"><div class="ttname"><a href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a></div><div class="ttdeci">QLIB_STATUS_T</div><div class="ttdef"><b>Definition:</b> <a href="qlib__errors_8h_source.html#l00068">qlib_errors.h:69</a></div></div>
 <div class="ttc" id="aqlib__platform_8h_html_a96afa0e841ac339dff2a72096eb2f5aba49fb1ebc6492873a62204ce62feb9552"><div class="ttname"><a href="qlib__platform_8h.html#a96afa0e841ac339dff2a72096eb2f5aba49fb1ebc6492873a62204ce62feb9552">QLIB_BUS_MODE_1_1_1</a></div><div class="ttdeci">@ QLIB_BUS_MODE_1_1_1</div><div class="ttdef"><b>Definition:</b> <a href="qlib__platform_8h_source.html#l00092">qlib_platform.h:92</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_aa43f318f69cb35831bf7d8dab4a8f4b1"><div class="ttname"><a href="qlib__types_8h.html#aa43f318f69cb35831bf7d8dab4a8f4b1">QLIB_BUS_FORMAT</a></div><div class="ttdeci">#define QLIB_BUS_FORMAT(mode, dtr)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00290">qlib_types.h:290</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_aa43f318f69cb35831bf7d8dab4a8f4b1"><div class="ttname"><a href="qlib__types_8h.html#aa43f318f69cb35831bf7d8dab4a8f4b1">QLIB_BUS_FORMAT</a></div><div class="ttdeci">#define QLIB_BUS_FORMAT(mode, dtr)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00292">qlib_types.h:292</a></div></div>
 <div class="ttc" id="aunion_q_l_i_b___c_o_n_t_e_x_t___t_html"><div class="ttname"><a href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a></div><div class="ttdoc">Opaque QLIB context.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00072">qlib_types.h:73</a></div></div>
 </div><!-- fragment --><p >Refer to the <code>samples/</code> directory for complete usage examples.</p>
-<h1><a class="anchor" id="autotoc_md33"></a>
+<h1><a class="anchor" id="autotoc_md37"></a>
 Building the Samples</h1>
 <p >The root directory contains a Makefile for building the sample application.</p>
 <p >Build from the root of the deliverable package:</p>
@@ -191,7 +191,7 @@ Building the Samples</h1>
 <blockquote class="doxtable">
 <p >&zwj;<b>Note:</b> <code>test.c</code> provides stub implementations of <code>QLIB_SAMPLE_GetFlashHandle</code> and <code>QLIB_SAMPLE_ReleaseFlashHandle</code>, which handle SPI interface setup and teardown for the sample application. Replace the stubs with your platform's actual implementation. </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md34"></a>
+<h1><a class="anchor" id="autotoc_md38"></a>
 Running the Samples</h1>
 <div class="fragment"><div class="line">./qlib_samples ids</div>
 <div class="line">./qlib_samples fw_update</div>
@@ -208,9 +208,9 @@ Running the Samples</h1>
 <div class="line">./qlib_samples lms_attest       # LMS builds only</div>
 </div><!-- fragment --><p >Expected output for a passing sample:</p>
 <div class="fragment"><div class="line">QLIB sample &#39;ids&#39; PASSED</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md35"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md39"></a>
 License</h1>
-<p >See <a href="License.txt">License.txt</a>.</p>
+<p >See [LICENSE](LICENSE).</p>
 <hr  />
 <p >Copyright (c) 2026 Winbond Electronics Corporation. All Rights Reserved. </p>
 </div></div><!-- contents -->

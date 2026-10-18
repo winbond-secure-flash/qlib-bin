@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,13 +77,12 @@ $(function() {
   <div class="headertitle"><div class="title">Supporting [LGM] Logging mechanism </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >W77Q contributes to the device LGM as a <b>fundamental</b> feature with its log support.</p>
-<p >Log can be protected with different access policies, it can be plain/read only/full access. This stack-like feature can be used to implement different log-related device features for instance: <br  />
-</p><ul>
-<li>device event log</li>
-<li>additional rollback protection for securely storing information of previous update ( not necessarily fw ) event.</li>
+<div class="textblock"><p >W77Q provides a fundamental contribution to the device's logging mechanism (LGM) through its secure-log feature.</p>
+<p >A log can use different access policies, including plain, read-only, and full access. This stack-like feature can support logging use cases such as:</p><ul>
+<li>device event logging</li>
+<li>additional rollback protection by securely storing information about previous update events, including events unrelated to firmware.</li>
 </ul>
-<div align="center"></div><div align="center"><img src="LGM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >To use section as log you need to configure it with the log attribute. The idea of log is that log entries can be written (appended to the head of the log ) and read <b>but not erased</b> other then together with the whole section. The rules of log restriction work similar to secure storage ones and depend on the section policy of PA_R ( plain read ) and PA_W ( plain write ).</p>
+<div align="center"></div><div align="center"><img src="LGM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >To use a section as a log, configure it with the log attribute. Log entries can be appended and read, but cannot be erased individually; erasure applies to the entire section. Access restrictions are similar to those for secure storage and depend on the section's PA_R (plain read) and PA_W (plain write) policy settings.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">#   </th><th class="markdownTableHeadNone">PA_R / PA_W section policy   </th><th class="markdownTableHeadCenter">has no keys   </th><th class="markdownTableHeadCenter">has restricted key   </th><th class="markdownTableHeadCenter">has full access key    </th></tr>
@@ -96,10 +95,10 @@ $(function() {
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">PA_R disabled, PA_W disabled   </td><td class="markdownTableBodyCenter"><strike>read</strike> <strike>append</strike> <strike>erase</strike>   </td><td class="markdownTableBodyCenter">read append <strike>erase</strike>   </td><td class="markdownTableBodyCenter">read append erase   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md193"></a>
-C code implementation</h2>
-<p >LOG implementation is split in two phases - manufacture and field. During manufacture we configure 3 secure log sections with different policies. During field we see how section policy affects log usage.</p>
-<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__l_g_m_c.html">🔗Logging mechanism c reference code</a> </p>
+<h2><a class="anchor" id="autotoc_md194"></a>
+Example Implementation</h2>
+<p >The secure-log example has two phases: manufacturing and field use. During manufacturing, three secure-log sections are configured with different policies. During field use, the example demonstrates how each policy affects log operations.</p>
+<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__l_g_m_c.html">🔗Logging mechanism C reference code</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

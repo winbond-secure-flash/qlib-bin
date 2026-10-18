@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB User-Guide: Fallback feature ( remapping boot section upon attack )</title>
+<title>QLIB User-Guide: Fallback Feature (Remapping the Boot Section After an Integrity Failure)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -74,12 +74,11 @@ $(function() {
 
 </div><!-- top -->
 <div><div class="header">
-  <div class="headertitle"><div class="title">Fallback feature ( remapping boot section upon attack ) </div></div>
+  <div class="headertitle"><div class="title">Fallback Feature (Remapping the Boot Section After an Integrity Failure) </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >If during boot data integrity of the section is found to be damaged, W77Q will automatically map this section's address to another section in the flash. For example in case of attack on boot section device will boot from another one to the firmware which is the same or handles attack incident. <br  />
-</p>
-<div align="center"></div><div align="center"><img src="RLM.png" alt="" class="inline" title="W77Q Secure Flash fallback"/>    </div><div align="center"></div><h2><a class="anchor" id="autotoc_md122"></a>
+<div class="textblock"><p >If the boot section fails its integrity check, W77Q automatically redirects access from that section to another flash section. For example, if an attack affects the boot section, the device can boot from a fallback section containing the same firmware or firmware designed to handle the incident.</p>
+<div align="center"></div><div align="center"><img src="RLM.png" alt="" class="inline" title="W77Q Secure Flash fallback"/>    </div><div align="center"></div><h2><a class="anchor" id="autotoc_md123"></a>
 C code implementation</h2>
 <p ><a href="qlib_sample_fallback_8c-example.html">🔗 Fallback reference code</a> </p>
 </div></div><!-- contents -->

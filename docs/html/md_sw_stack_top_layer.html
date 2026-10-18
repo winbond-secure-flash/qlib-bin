@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: QLIB top layer</title>
+<title>QLIB Library User Guide: QLIB top layer</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -81,9 +81,9 @@ $(function() {
 <img src="qlib_top.png" alt=""/>
 <div class="caption">
 QLIB top diagram</div></div>
-    <p >The QLIB top layer provides a top-level API for W77Q/T operations. It handles all cryptographic operations, key management and other W77Q/T advanced functionalities. This layer translates the top-level QLIB API into a flow of encrypted and signed commands. The encrypted commands are then passed for execution to the lower-level Transaction Manager (TM).</p>
-<p >Note: The QLIB integrator should provide the implementation of the HASH function if hardware acceleration is available (See Quick start). If not, the integrator should provide a software implementation of the HASH function.</p>
-<p >See <a class="el" href="qlib_8h.html">QLIB API</a> for more details. </p>
+    <p >The QLIB top layer provides the high-level API for W77Q/T operations. It manages cryptographic operations, keys, and other device features. It translates API calls into encrypted and signed commands and passes them to the Transaction Manager (TM) for execution.</p>
+<p ><b>Note:</b> The QLIB integrator must provide a HASH implementation. Use a hardware-accelerated implementation when available; otherwise, provide a software implementation. See Quick Start.</p>
+<p >See the <a class="el" href="qlib_8h.html">QLIB API</a> for details. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

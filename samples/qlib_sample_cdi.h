@@ -48,7 +48,7 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation(void* userData_pv, bool runFieldFlow_b
 *
 * @return      QLIB_STATUS__OK if no error occurred, QLIB_STATUS__(ERROR) otherwise
 ************************************************************************************************************/
-QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_manuf_flow(QLIB_CONTEXT_T* ctx);
+QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_manuf_flow(QLIB_CONTEXT_T* qlibContext);
 
 /************************************************************************************************************
 * @brief      This function demonstrates cdi value retrieval through the boot chain consisted of 3 boot stages.
@@ -58,7 +58,7 @@ QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_manuf_flow(QLIB_CONTEXT_T* ctx);
 *
 * @return      QLIB_STATUS__OK if no error occurred, QLIB_STATUS__(ERROR) otherwise
 ************************************************************************************************************/
-QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_field_flow(QLIB_CONTEXT_T* ctx);
+QLIB_STATUS_T QLIB_SAMPLE_DiceAttestation_field_flow(QLIB_CONTEXT_T* qlibContext);
 
 /************************************************************************************************************
 * @brief      This function shows how CDI value is retrieved.

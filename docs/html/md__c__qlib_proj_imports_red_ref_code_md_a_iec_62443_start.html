@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB User-Guide: IEC 62443 code reference for W77Q Secure flash</title>
+<title>QLIB User-Guide: IEC 62443 Code Reference for W77Q Secure Flash</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -74,13 +74,13 @@ $(function() {
 
 </div><!-- top -->
 <div><div class="header">
-  <div class="headertitle"><div class="title">IEC 62443 code reference for W77Q Secure flash </div></div>
+  <div class="headertitle"><div class="title">IEC 62443 Code Reference for W77Q Secure Flash </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >The IEC 62443 series of standards define requirements and processes for implementing and maintaining electronically secure Industrial Automation and Control Systems (IACS). These standards set best practices for security and provide a way to assess the level of security performance. Their approach to the cybersecurity challenge is a holistic one, bridging the gap between operations and information technology as well as between process safety and cybersecurity. <br  />
 </p>
-<p >Following is <b>IEC 62443</b> reference with explanations and C code that can be used in your project to simplify IEC 62443 compliance effort. For more details on IEC 62443 compliance see AN0200036. Each requirement contains link to more detailed explanation how it is fulfilled using W77Q devices and ready code snippets for each scenario.</p>
-<h1><a class="anchor" id="autotoc_md84"></a>
+<p >This reference maps IEC 62443 requirements to W77Q features and example C code. For more information about IEC 62443 compliance, see application note AN0200036. Each requirement links to further explanation and relevant code examples.</p>
+<h1><a class="anchor" id="autotoc_md85"></a>
 FR 1: Identification and Authentication Control (IAC)</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -114,7 +114,7 @@ FR 1: Identification and Authentication Control (IAC)</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">1.14   </td><td class="markdownTableBodyLeft">Strength of Symmetric Key-Based Authentication   </td><td class="markdownTableBodyLeft"><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-data-storage">Secure Data Storage</a>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md85"></a>
+<h1><a class="anchor" id="autotoc_md86"></a>
 FR 2 – Use Control (UC)</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -144,7 +144,7 @@ FR 2 – Use Control (UC)</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">2.13   </td><td class="markdownTableBodyLeft">Use of Physical Diagnostic and Test interfaces   </td><td class="markdownTableBodyLeft"><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-data-storage">Secure Data Storage</a>, <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-log">Secure Log</a>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md86"></a>
+<h1><a class="anchor" id="autotoc_md87"></a>
 FR 3 – System Integrity (SI)</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -178,7 +178,7 @@ FR 3 – System Integrity (SI)</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">3.14   </td><td class="markdownTableBodyLeft">Integrity of the Boot Process   </td><td class="markdownTableBodyLeft"><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-boot">Secure Boot</a>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md87"></a>
+<h1><a class="anchor" id="autotoc_md88"></a>
 FR 4 – Data confidentiality</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -190,7 +190,7 @@ FR 4 – Data confidentiality</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">4.3   </td><td class="markdownTableBodyLeft">Use of Cryptography   </td><td class="markdownTableBodyLeft"><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-data-storage">Secure Data Storage</a> (+ any specific features using cryptography used for other Component Requirements)   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md88"></a>
+<h1><a class="anchor" id="autotoc_md89"></a>
 FR 5 – Restricted data flow</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -202,7 +202,7 @@ FR 5 – Restricted data flow</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">5.3   </td><td class="markdownTableBodyLeft">General Purpose, Person-to-Person Communication Restrictions   </td><td class="markdownTableBodyLeft"><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-data-storage">Cryptographic Write Protection</a>, <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-data-storage">Secure Data Storage</a>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md89"></a>
+<h1><a class="anchor" id="autotoc_md90"></a>
 FR 6 – Timely response to event</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -212,7 +212,7 @@ FR 6 – Timely response to event</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">6.2   </td><td class="markdownTableBodyLeft">Continuous Monitoring   </td><td class="markdownTableBodyLeft"><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-data-storage">Secure Data Storage</a>, <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#secure-log">Secure Log</a>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md90"></a>
+<h1><a class="anchor" id="autotoc_md91"></a>
 FR 7 – Resource availability</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -234,7 +234,7 @@ FR 7 – Resource availability</h1>
 </table>
 <h1><a class="anchor" id="secure-data-storage"></a>
 Secure Data Storage / Cryptographic Write Protection</h1>
-<p >W77Q provides the <b>fundamental</b> contribution to the device its secure storage feature. Secure storage is provided via imposing cryptographically protected policies to the flash sections. After policies and keys are configured, flash access obeys to very certain security rules. Section policy has multiple attributes, each can be used to implement your security architecture.</p>
+<p >W77Q provides a fundamental contribution to device security through its secure-storage feature. Cryptographically protected policies can be applied to flash sections. Once the policies and keys are configured, flash access is governed by the selected security rules. Section policies provide multiple attributes that can be used to implement a security architecture.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">#   </th><th class="markdownTableHeadNone">plain read/write policy attribute   </th><th class="markdownTableHeadCenter">has no keys   </th><th class="markdownTableHeadCenter">has restricted key   </th><th class="markdownTableHeadCenter">has full access key    </th></tr>
@@ -245,20 +245,18 @@ Secure Data Storage / Cryptographic Write Protection</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">plain read disabled, plain write disabled   </td><td class="markdownTableBodyCenter"><strike>read</strike> <strike>write</strike>   </td><td class="markdownTableBodyCenter">read <strike>write</strike>   </td><td class="markdownTableBodyCenter">read write   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md91"></a>
-C code implementation</h2>
-<p >Secure storage example is split in two phases - manufacture and field. During manufacture phase we create sections - each one with different access policy. During field phase we show how this policy affects flash access. <br  />
-</p>
-<p ><a href="secure_storage.html">🔗Secure storage c code</a></p>
+<h2><a class="anchor" id="autotoc_md92"></a>
+Example implementation</h2>
+<p >The secure-storage example has two phases: manufacturing and field use. During manufacturing, sections are configured with different access policies. During field use, the example demonstrates how each policy affects flash access.</p>
+<p ><a href="secure_storage.html">🔗Secure-storage sample</a></p>
 <h1><a class="anchor" id="secure-log"></a>
 Secure Log</h1>
-<p >W77Q contributes to the device logging as a <b>fundamental</b> feature with its log support.</p>
-<p >Log can be protected with different access policies, it can be plain/read only/full access. This stack-like feature can be used to implement different log-related device features for instance: <br  />
-</p><ul>
+<p >W77Q provides a fundamental contribution to device logging through its secure-log feature.</p>
+<p >Logs can use different access policies, including plain, read-only, and full access. This stack-like feature can support logging use cases such as:</p><ul>
 <li>device event log</li>
-<li>additional rollback protection for securely storing information of previous update ( not necessarily fw ) event.</li>
+<li>additional rollback protection by securely storing information about previous update events, including updates unrelated to firmware.</li>
 </ul>
-<p >To use section as log you need to configure it with the log attribute. The idea of log is that log entries can be written (appended to the head of the log ) and read <b>but not erased</b> other then together with the whole section. The rules of log restriction work similar to secure storage ones and depend on the section policy of PA_R ( plain read ) and PA_W ( plain write ).</p>
+<p >To use a section as a log, configure it with the log attribute. Log entries can be appended to the log and read, but cannot be erased individually; erasure applies to the entire section. Access restrictions are similar to those for secure storage and depend on the section's PA_R (plain read) and PA_W (plain write) policy settings.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">#   </th><th class="markdownTableHeadNone">PA_R / PA_W section policy   </th><th class="markdownTableHeadCenter">has no keys   </th><th class="markdownTableHeadCenter">has restricted key   </th><th class="markdownTableHeadCenter">has full access key    </th></tr>
@@ -271,121 +269,111 @@ Secure Log</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">PA_R disabled, PA_W disabled   </td><td class="markdownTableBodyCenter"><strike>read</strike> <strike>append</strike> <strike>erase</strike>   </td><td class="markdownTableBodyCenter">read append <strike>erase</strike>   </td><td class="markdownTableBodyCenter">read append erase   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md92"></a>
-C code implementation</h2>
-<p >LOG implementation is split in two phases - manufacture and field. During manufacture we configure 3 secure log sections with different policies. During field we see how section policy affects log usage.</p>
-<p ><a href="qlib__sample__secure__log_8c_source.html">🔗Secure Log c reference code</a></p>
+<h2><a class="anchor" id="autotoc_md93"></a>
+Example implementation</h2>
+<p >The secure-log example has two phases: manufacturing and field use. During manufacturing, three secure-log sections are configured with different policies. During field use, the example demonstrates how each policy affects log operations.</p>
+<p ><a href="qlib_sample_secure_log_8c-example.html">🔗Secure-log sample</a></p>
 <h1><a class="anchor" id="firmware-updates"></a>
 Secure Firmware Updates using Symmetric / Asymmetric Cryptography</h1>
-<p >W77Q provides the <b>fundamental</b> contribution with its atomic fw update feature.</p>
-<p >The idea behind fw feature update is simple: it is done over <b>rollback</b> section which is split into two halves - active and inactive. New section content (new fw) is written to the inactive part of the section and when the writing is over, cryptographically protected swap command is issued and these halves swap in one atomic operation. Such way enables user to write/download new fw slowly in low power state, while actual update is completed immediately. This command can be cryptographically protected with both symmetric and asymmetric crypto.</p>
-<h2><a class="anchor" id="autotoc_md93"></a>
-Symmetric cryptography based</h2>
-<p >This is when <b>section configuration command</b> is issued during secure session with the device. So it is just a encrypted spi transaction sent from the local or remote host to the connected W77Q target.</p>
+<p >W77Q provides atomic firmware updates, a fundamental security feature.</p>
+<p >Firmware updates use a <b>rollback</b> section divided into active and inactive halves. The new firmware is written to the inactive half. Once writing is complete, a cryptographically protected swap command atomically exchanges the two halves. This allows the new firmware to be written gradually, including while the device is in a low-power state, while the final swap completes as a single operation. The swap command can use symmetric or asymmetric cryptographic protection.</p>
 <h2><a class="anchor" id="autotoc_md94"></a>
-Asymmetric cryptography based</h2>
-<p >This is a bit different - now no secure session to W77Q required. Host produces ( maybe offline! ) a <b>section configuration string</b> and signes it with the private part of LMS keypair. <b>Section configuration string</b> is then sent with its signature to the W77Q. W77Q uses public part of the LMS keypair to verify the <b>section configuration string</b> and if successful W77Q will execute this configuration command accordingly.</p>
+Symmetric cryptography based</h2>
+<p >With symmetric cryptography, the <b>section configuration command</b> is issued during a secure session with the device. It is sent from the local or remote host to the connected W77Q device as an encrypted SPI transaction.</p>
 <h2><a class="anchor" id="autotoc_md95"></a>
+Asymmetric cryptography based</h2>
+<p >With asymmetric cryptography, a secure session with W77Q is not required. The host creates a <b>section configuration string</b>, potentially offline, and signs it with the private key of an LMS key pair. The host sends the string and signature to W77Q. The device verifies the string using the corresponding LMS public key and, if verification succeeds, executes the configuration command.</p>
+<h2><a class="anchor" id="autotoc_md96"></a>
 Benefits/Drawbacks</h2>
-<p >Symmetric cypher needs secure session established to the device. This means that each update flow will be different from device to device. On the other hand, key generation for symmetric key is very simple (<a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red_w77_hkdf_c.html">hkdf function</a>).</p>
-<p >Asymmetric cypher does not need session to the device and actually enables you to send "broadcast 
-update", which is signed by private key <b>section configuration string</b>. On the other hand , key generation of asymmetric key-pair is more complex.</p>
-<h1><a class="anchor" id="autotoc_md96"></a>
-C code implementation</h1>
-<p >SUM implementation is split in two phases - manufacture and field for both symmetric and asymmetric methods. During manufacture flash is configured with required layout and policy - note that for symmetric method we configure shared keys whereas for asymmetric method only public lms key is configured. In this example we configure rollback section and see how fw can be updated via symmetric and asymmetric methods accordingly.</p>
-<h2><a class="anchor" id="autotoc_md97"></a>
-FW Update symmetric cypher (sha256)</h2>
-<p ><a class="el" href="md_sample_code_fw_update.html">🔗 FW update flow</a> <br  />
- <a href="fw_update.html">🔗 FW update c code</a></p>
+<p >Symmetric cryptography requires a secure session with the device, so each update flow is specific to that device. However, symmetric keys are straightforward to generate using the <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red_w77_hkdf_c.html">HKDF function</a>.</p>
+<p >Asymmetric cryptography does not require a secure session with the device. It supports a broadcast update by signing the <b>section configuration string</b> with a private key. However, generating an asymmetric key pair is more complex.</p>
+<h1><a class="anchor" id="autotoc_md97"></a>
+Example implementation</h1>
+<p >The firmware-update example has manufacturing and field-use phases for both symmetric and asymmetric methods. During manufacturing, flash is configured with the required layout and policy: shared keys are configured for the symmetric method, while only the public LMS key is configured for the asymmetric method. The example configures a rollback section and demonstrates both update methods.</p>
 <h2><a class="anchor" id="autotoc_md98"></a>
-FW Update asymmetric cypher (LMS)</h2>
+Symmetric firmware update (SHA-256)</h2>
+<p ><a class="el" href="md_sample_code_fw_update.html">🔗 FW update flow</a> <br  />
+ <a href="fw_update.html">🔗Firmware-update sample</a></p>
+<h2><a class="anchor" id="autotoc_md99"></a>
+Asymmetric firmware update (LMS)</h2>
 <p ><a class="el" href="md_sample_code_lms_fw_update.html">🔗 FW Update flow</a> <br  />
- <a href="qlib__sample__lms__fw__update_8c_source.html">🔗 FW Update c code</a></p>
-<h3><a class="anchor" id="autotoc_md99"></a>
+ <a href="qlib_sample_lms_fw_update_8c-example.html">🔗LMS firmware-update sample</a></p>
+<h3><a class="anchor" id="autotoc_md100"></a>
 LMS-key backup solution</h3>
 <p ><a class="el" href="md_sample_code_lms_key_backup.html">🔗 LMS key backup flow</a> <br  />
- <a href="qlib__sample__lms__key__backup_8c_source.html">🔗 LMS key backup c code</a></p>
+ <a href="qlib_sample_lms_key_backup_8c-example.html">🔗LMS key-backup sample</a></p>
 <h1><a class="anchor" id="platform-firmware-resiliency"></a>
 Platform Firmware Resiliency</h1>
-<p >W77Q provides the <b>fundamental</b> contribution to the device resilience.</p>
-<h2><a class="anchor" id="autotoc_md100"></a>
-Read-only boot memory ( cryptographically write protected boot section )</h2>
-<p >User can configure boot section to be writable only by authorized user. Other actors can only read from such section. See how to configure such section in <a href="secure_storage.html">secure storage example</a>.</p>
+<p >W77Q provides fundamental support for device resilience.</p>
 <h2><a class="anchor" id="autotoc_md101"></a>
-Integrity protected fallback ( remapping boot section upon attack )</h2>
-<p >If during boot data integrity of the boot section is found to be damaged W77Q will automatically boot section ( aka 0 ) to another one in the flash. So in case of attack on boot section device will boot from another one to the firmware which probably handles attack incident, thus staying <b>available</b>.</p>
+Read-only boot memory (cryptographically write-protected boot section)</h2>
+<p >The boot section can be configured so that only authorized users can write to it; other actors can read it only. See the <a href="secure_storage.html">secure-storage example</a> for configuration details.</p>
 <h2><a class="anchor" id="autotoc_md102"></a>
-C code implementation</h2>
-<p >RLM code is split in two phases - manufacture and field. During manufacture we make 3 sections and exercise fallback feature. To achieve this we will spoil boot section integrity and see how in this case read from boot section is mapped to fallback section.</p>
-<h3><a class="anchor" id="autotoc_md103"></a>
-section 0 - [ 0 -&gt; 1MB ]</h3>
-<p >Boot section to be integrity protected ( in picture). Plain read access is enabled, plain write is disabled. Note that we use checksum (crc32) integrity policy, digest (sha256) is also possible.</p>
+Integrity-protected fallback (remapping the boot section after an integrity failure)</h2>
+<p >If the boot section fails its integrity check, W77Q automatically redirects boot-section (section 0) access to the configured fallback section. The device can then boot from the fallback firmware, which may handle the incident and help maintain availability.</p>
+<h2><a class="anchor" id="autotoc_md103"></a>
+Example implementation</h2>
+<p >The resiliency example has manufacturing and field-use phases. During manufacturing, three sections are configured for the fallback demonstration. During field use, the boot-section integrity is deliberately invalidated to demonstrate redirection of reads to the fallback section.</p>
 <h3><a class="anchor" id="autotoc_md104"></a>
-section 1 - [ 0 -&gt; 2MB ]</h3>
-<p >This section will overlap section 0 and used as a "hacker window" to spoil integrity of section 0. Both plain read and write access are enabled.</p>
+Section 0 — [0–1 MB]</h3>
+<p >This is the boot section to protect with an integrity policy. Plain read access is enabled, and plain write access is disabled. This example uses CRC-32; digest-based integrity (SHA-256) is also supported.</p>
 <h3><a class="anchor" id="autotoc_md105"></a>
-section 7 - [ 2MB -&gt; 3MB ]</h3>
-<p >This section is to be fallback section to which section 0 access to be mapped if section 0 integrity is corrupt(in picture). This is where you might store your emergency firmware. Both plain read and write access are enabled.</p>
+Section 1 — [0–2 MB]</h3>
+<p >This section overlaps section 0 and is used to demonstrate how its integrity can be invalidated. Plain read and write access are enabled.</p>
+<h3><a class="anchor" id="autotoc_md106"></a>
+Section 7 — [2–3 MB]</h3>
+<p >This is the fallback section to which section 0 access is mapped if section 0 fails its integrity check. It can hold recovery firmware. Plain read and write access are enabled.</p>
 <p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__r_l_m_fallback_c.html">🔗 Resiliency mechanism via fallback reference code</a></p>
-<h2><a class="anchor" id="autotoc_md106"></a>
-Integrity monitoring ( periodic digest calculation on the section data )</h2>
-<p >Another way to keep device available is to monitor its integrity. At any moment W77Q can calculate digest (hash function) of flash section so data damage can be detected. Such request can be signed, giving host ( remote or local ) not only the digest value to compare to the expected one but also certainty that this data was provided by W77Q and not spoofed during "man in the middle" attack. In addition, successfully verified signed command can be a basis to the device attestation. <br  />
-</p>
+<h2><a class="anchor" id="autotoc_md107"></a>
+Integrity monitoring (periodic digest calculation for section data)</h2>
+<p >Another way to maintain device availability is to monitor integrity. W77Q can calculate a digest of a flash section to detect data corruption. The request can be signed, giving the local or remote host both the digest to compare with an expected value and assurance that the response came from W77Q rather than being spoofed in a man-in-the-middle attack. A successfully verified signed command can also support device attestation.</p>
 <p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__r_l_m_integrity_c.html">🔗 Resiliency via integrity reference code</a></p>
 <h1><a class="anchor" id="secure-erase"></a>
 Secure Erase</h1>
-<p >W77Q contributes is a <b>fundamental</b> feature with its unrecoverable erasure of NOR flash.</p>
-<p >Any asset stored in W77Q can be erased, if flash section is write protected by the key, secure erase command authenticated by the same key is used. Format action also deletes content of the chip, including keys configured previously. Format command also has its secure variant which is authenticated by the device master key.</p>
+<p >W77Q provides secure erase, which can make data in NOR flash unrecoverable.</p>
+<p >Data stored on W77Q can be erased. If a flash section is write-protected by a key, the secure erase command must be authenticated with that key. Formatting also deletes the device contents, including previously configured keys. A secure format command is authenticated with the device master key.</p>
 <p >The deletion rules are simple:</p><ul>
-<li>if section is write protected you will need the same full access key to erase inside this section.</li>
-<li>read access key is of course not sufficient for erasing the section</li>
-<li>if chip is configured plain format disabled, master key is needed to format it, otherwise plain command will work.</li>
+<li>If a section is write-protected, the corresponding full-access key is required to erase data within it.</li>
+<li>A read-access key does not authorize erasing the section.</li>
+<li>If plain format is disabled, the device master key is required to format the device; otherwise, a plain format command can be used.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md107"></a>
-C code implementation</h1>
-<p >Erase operation sample is split in two phases - manufacture and field. During manufacture flash sections are configured with different policies and during field phase we show which deletion tools are available and how can be used.</p>
-<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__d_l_m.html">🔗Secure Erase code</a></p>
+<h1><a class="anchor" id="autotoc_md108"></a>
+Example implementation</h1>
+<p >The erase example has manufacturing and field-use phases. During manufacturing, flash sections are configured with different policies. During field use, the example demonstrates which erase operations are available under each policy.</p>
+<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__d_l_m.html">🔗Secure-erase reference</a></p>
 <h1><a class="anchor" id="winbond-identifier"></a>
 Winbond Identifier, Secure Unique ID</h1>
-<p >Each w77q device has its unique identifiers burned during manufacture. All can be read without secure session. These identifiers are:</p>
+<p >Each W77Q device has unique identifiers programmed during manufacturing. These identifiers can be read without a secure session:</p>
 <ul>
-<li>UID - standard flash unique id. Set by Winbond during manufacture, read only, chip format resistant.</li>
-<li>WID - secure flash unique id. Set by Winbond during manufacture, read only, chip format resistant.</li>
-<li>SUID - secure user id. Set by user, read/write, chip format erases this field. <br  />
-</li>
+<li>UID — Standard flash unique ID. Programmed by Winbond during manufacturing; read-only and retained through device formatting.</li>
+<li>WID — Secure flash unique ID. Programmed by Winbond during manufacturing; read-only and retained through device formatting.</li>
+<li>SUID — Secure user ID. Set by the user; readable and writable, and erased when the device is formatted.</li>
 </ul>
-<p >For more details on each identifier see the following links:</p>
-<p ><a href="qlib__sample__get__ids_8c.html">🔗Winbond Identifier flow</a> <br  />
- <a href="qlib__sample__get__ids_8c_source.html">🔗Winbond Identifier c code</a></p>
+<p >For more information about each identifier, see the following links:</p>
+<p ><a href="qlib_sample_get_ids_8c-example.html">🔗Winbond Identifier sample</a></p>
 <h1><a class="anchor" id="remote-attestation"></a>
 Remote Attestation</h1>
-<h2><a class="anchor" id="autotoc_md108"></a>
-Direct Attestation</h2>
-<p >The W77Q/TxxN offers an advanced and direct approach to establish Root-Of-Trust which does not require the participation of the local MCU in the cryptographic operation. This approach is based on the ability of the W77Q/TxxN to “seal” and protect a Section, by verifying its digest and making it Cryptographically Write Protected, and to securely provide the Section status via a Secure Channel to a remote User.</p>
-<p >A remote authorized User first establishes a Secure Channel directly with the W77Q/TxxN. Once a Secure Channel is established, the remote User securely reads and authenticates the digest of the firmware that is stored in the Secure Flash Memory. The Secure Channel is based on one of the Master Keys which establishes the hardware identity of the device. The firmware digest establishes the software identity of the device. Together, this process authenticates both the hardware and software identities of the device which is the basis for establishing Root Of Trust.</p>
-<p ><a href="qlib__sample__direct__attestation_8c.html">🔗Direct attestation flow</a> <br  />
- <a href="qlib__sample__direct__attestation_8c_source_.html">🔗Direct attestation c code</a> <br  />
-</p>
 <h2><a class="anchor" id="autotoc_md109"></a>
-DICE-Like Device Attestation</h2>
-<p >The W77Q/TxxN offers hardware functions to support a DICE-like attestation scheme that are used to generate the Compound Device ID. The CDI is based on the Unique Device Secret which establishes the hardware identity of the device and the digest of the firmware which establishes the software identity of the device. These are used to generate the Compound Device ID that authenticates both the hardware and software identities of the device which is the basis for establishing Root Of Trust. This function measures (Hash) the boot-code stored in Section-0 and computes the Compound Device ID. The user can then establish a Session to access Section-0 and securely read the CDI. This operation is allowed only if Section-0 is the only section that was accessed since the last warm reset (including secure and plain access). This assures that the Host running boot code from Section-0 is only given a valid CDI if the boot code integrity is not compromised and no other code was fetched from the Flash.</p>
-<p ><a href="qlib__sample__cdi_8c.html">🔗DICE-Like attestation flow</a> <br  />
- <a href="qlib__sample__cdi_8c_source.html">🔗DICE-Like attestation c code</a> <br  />
-</p>
+Direct Attestation</h2>
+<p >The W77QxxN supports direct establishment of a root of trust without requiring the local MCU to participate in the cryptographic operation. The device can verify a section's digest, make the section cryptographically write-protected, and securely report its status to a remote user over a secure channel.</p>
+<p >A remote authorized user first establishes a secure channel directly with the W77QxxN. The user then reads and authenticates the digest of firmware stored in secure flash. The secure channel is based on a master key that establishes the device's hardware identity; the firmware digest establishes its software identity. Together, these checks authenticate both identities and provide the basis for a root of trust.</p>
+<p ><a href="qlib_sample_direct_attestation_8c-example.html">🔗Direct attestation sample</a></p>
 <h2><a class="anchor" id="autotoc_md110"></a>
+DICE-Like Device Attestation</h2>
+<p >The W77QxxN provides hardware functions that support DICE-like attestation and generation of the Compound Device ID (CDI). The CDI is derived from the Unique Device Secret, which identifies the hardware, and the firmware digest, which identifies the software. The device hashes the boot code in section 0 to compute the CDI. A user can then establish a session and securely read the CDI from section 0. This operation is allowed only if section 0 is the only section accessed since the last warm reset, through either secure or plain access. This ensures that boot code receives a valid CDI only when its integrity has not been compromised and no other code has been fetched from flash.</p>
+<p ><a href="qlib_sample_cdi_8c-example.html">🔗DICE-like attestation sample</a></p>
+<h2><a class="anchor" id="autotoc_md111"></a>
 LMS-OTS based Device Attestation</h2>
-<p >The W77Q/TxxN offers hardware functions to support an LMS-OTS based attestation scheme. The W77Q/TxxN contains factory provisioned LMS private key - so it is able to sign attestation challenges sent by (remote) host. The host can then verify the signature using the corresponding LMS public key. The LMS public key is provided to the verifying vendor by Winbond.</p>
-<p ><a href="qlib__sample__lms__attestation_8c.html">🔗Lms attestation flow</a> <br  />
- <a href="qlib__sample__lms__attestation_8c_source_.html">🔗Lms attestation c code</a> <br  />
-</p>
+<p >The W77QxxN provides hardware support for LMS-OTS attestation and contains a factory-provisioned LMS private key. It can use this key to sign attestation challenges from a local or remote host. The host verifies the signature with the corresponding LMS public key, which Winbond provides to the verifying vendor.</p>
+<p ><a href="qlib_sample_lms_attestation_8c-example.html">🔗LMS attestation sample</a></p>
 <h1><a class="anchor" id="rollback-protection"></a>
 Rollback Protection</h1>
-<p >Rollaback protection is a feature that is enforced during fw update, where additionally to swapping active and inactive section halves new version tag is configured. This tag is then used to prevent rollback to previous fw version during next update, so only updates to higher version are allowed. For more details and code see <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#firmware-updates">Updates using Symmetric/Asymmetric Cryptography</a> section.</p>
+<p >Rollback protection is enforced during firmware updates. In addition to swapping the active and inactive section halves, the update configures a new version tag. The tag prevents a later update from installing an older firmware version. For details and code, see <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#firmware-updates">Firmware Updates Using Symmetric / Asymmetric Cryptography</a>.</p>
 <h1><a class="anchor" id="secure-boot"></a>
 Secure Boot</h1>
-<p >Secure boot is a feature that ensures only authenticated code is executed during device boot. W77W achieves this with its resiliency features - integrity protected boot section and fallback mechanism. For more details and code see <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#platform-firmware-resiliency">Platform Firmware Resiliency</a> section.</p>
-<h1><a class="anchor" id="autotoc_md111"></a>
-Features Per W77Q Device</h1>
+<p >Secure boot ensures that only authenticated code runs during device startup. W77Q supports this through an integrity-protected boot section and a fallback mechanism. For details, see <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_a_iec_62443_start.html#platform-firmware-resiliency">Platform Firmware Resiliency</a>.</p>
+<h1><a class="anchor" id="autotoc_md112"></a>
+Features by W77Q Device Series</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">FEATURE   </th><th class="markdownTableHeadNone">W77Q NW-SERIES   </th><th class="markdownTableHeadNone">W77Q JV-SERIES   </th><th class="markdownTableHeadNone">W77Q JW-SERIES    </th></tr>

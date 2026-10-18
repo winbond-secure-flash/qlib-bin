@@ -16,6 +16,7 @@ CFLAGS = -O2 -Wall -Wextra \
   -DQLIB_MAX_DIES_SUPPORTED=4 \
   -Iinc \
   -Iinc/defs
+
 LDFLAGS = -lqlib
 
 # --- Flags needed only for building the sample application ---
@@ -43,6 +44,12 @@ OUTPUT = qlib_samples
 # The wildcard lets test scripts remove stubs and add specific platform .c files.
 PLATFORM_SRCS = $(wildcard platform/*.c)
 
+# NOTE: the KDF files are not currently used as in SRC as renesas do not have PLAT_HMAC support
+# (and W77Q_KDF_KD1 and QLIB_KDF_DEV_KEYS are not added to QLIB_SAMPLES_FLAGS):
+#   samples/qlib_sample_kd1_config.c
+#   samples/qlib_utils_cmkdf.c
+#   samples/qlib_utils_kd1.c
+#   samples/qlib_utils_cmkdf_gen_flash_key.c
 SRCS = \
   test.c \
   samples/qlib_sample_run.c \

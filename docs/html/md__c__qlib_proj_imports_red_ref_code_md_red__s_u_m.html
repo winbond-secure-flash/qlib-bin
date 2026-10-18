@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,23 +77,22 @@ $(function() {
   <div class="headertitle"><div class="title">[SUM] Secure update mechanism </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >W77Q provides the <b>fundamental</b> contribution to the device SUM with its atomic fw update feature.</p>
-<p >The idea behind fw feature update is simple: it is done over <b>rollback</b> section which is split into two halves - active and inactive. New section content (new fw) is written to the inactive part of the section and when the writing is over, cryptographically protected swap command is issued and these halves swap in one atomic operation. Such way enables user to write/download new fw slowly in low power state, while actual update is completed immediately. This command can be cryptographically protected with both symmetric and asymmetric crypto.</p>
-<div align="center"></div><div align="center"><img src="SUM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><h2><a class="anchor" id="autotoc_md208"></a>
-Symmetric cryptography based</h2>
-<p >This is when <b>section configuration command</b> is issued during secure session with the device. So it is just a encrypted spi transaction sent from the local or remote host to the connected W77Q target.</p>
-<h2><a class="anchor" id="autotoc_md209"></a>
-Asymmetric cryptography based</h2>
-<p >This is a bit different - now no secure session to W77Q required. Host produces ( maybe offline! ) a <b>section configuration string</b> and signes it with the private part of LMS keypair. <b>Section configuration string</b> is then sent with its signature to the W77Q. W77Q uses public part of the LMS keypair to verify the <b>section configuration string</b> and if successful W77Q will execute this configuration command accordingly.</p>
+<div class="textblock"><p >W77Q provides a fundamental contribution to the device's secure update mechanism (SUM) through its atomic firmware-update feature.</p>
+<p >Firmware updates use a <b>rollback</b> section divided into active and inactive halves. The new firmware is written to the inactive half. Once writing is complete, a cryptographically protected swap command atomically exchanges the two halves. This allows the new firmware to be written gradually, including while the device is in a low-power state, while the final swap completes in a single operation. The swap command can use symmetric or asymmetric cryptographic protection.</p>
+<div align="center"></div><div align="center"><img src="SUM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><h2><a class="anchor" id="autotoc_md209"></a>
+Symmetric Cryptography</h2>
+<p >With symmetric cryptography, the <b>section configuration command</b> is issued during a secure session with the device. It is sent from the local or remote host to the connected W77Q target as an encrypted SPI transaction.</p>
 <h2><a class="anchor" id="autotoc_md210"></a>
-Benefits/Drawbacks</h2>
-<p >Symmetric cypher needs secure session established to the device. This means that each update flow will be different from device to device. On the other hand, key generation for symmetric key is very simple (<a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red_w77_hkdf_c.html">hkdf function</a>).</p>
-<p >Asymmetric cypher does not need session to the device and actually enables you to send "broadcast 
-update", which is signed by private key <b>section configuration string</b>. On the other hand , key generation of asymmetric key-pair is more complex.</p>
-<h1><a class="anchor" id="autotoc_md211"></a>
+Asymmetric Cryptography</h2>
+<p >With asymmetric cryptography, a secure session with W77Q is not required. The host creates a <b>section configuration string</b>, potentially offline, and signs it with the private key of an LMS key pair. The host sends the string and its signature to W77Q. The device verifies the string using the LMS public key and, if verification succeeds, executes the configuration command.</p>
+<h2><a class="anchor" id="autotoc_md211"></a>
+Benefits and Drawbacks</h2>
+<p >Symmetric cryptography requires a secure session with the device, so each update flow is specific to that device. However, symmetric keys are straightforward to generate using the <a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red_w77_hkdf_c.html">HKDF function</a>.</p>
+<p >Asymmetric cryptography does not require a secure session with the device. It supports broadcast updates by signing the <b>section configuration string</b> with a private key. However, generating an asymmetric key pair is more complex.</p>
+<h1><a class="anchor" id="autotoc_md212"></a>
 C code implementation</h1>
-<p >SUM implementation is split in two phases - manufacture and field for both symmetric and asymmetric methods. During manufacture flash is configured with required layout and policy - note that for symmetric method we configure shared keys whereas for asymmetric method only public lms key is configured. In this example we configure rollback section and see how fw can be updated via symmetric and asymmetric methods accordingly.</p>
-<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__s_u_m_c.html">🔗 Secure update mechanism c reference code</a> </p>
+<p >The update sample has manufacturing and field-use phases for both symmetric and asymmetric methods. During manufacturing, flash is configured with the required layout and policy: shared keys are configured for the symmetric method, while only the public LMS key is configured for the asymmetric method. The sample configures a rollback section and demonstrates both update methods.</p>
+<p ><a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_red__s_u_m_c.html">🔗Secure update mechanism C reference code</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

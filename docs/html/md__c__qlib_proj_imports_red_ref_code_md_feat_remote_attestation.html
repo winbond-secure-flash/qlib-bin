@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB User-Guide: Remote Attestation feature</title>
+<title>QLIB User-Guide: Remote Attestation Feature</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -74,22 +74,22 @@ $(function() {
 
 </div><!-- top -->
 <div><div class="header">
-  <div class="headertitle"><div class="title">Remote Attestation feature </div></div>
+  <div class="headertitle"><div class="title">Remote Attestation Feature </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md132"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md133"></a>
 Direct Attestation</h1>
-<p >The W77Q/TxxN offers an advanced and direct approach to establish Root-Of-Trust which does not require the participation of the local MCU in the cryptographic operation. This approach is based on the ability of the W77Q/TxxN to “seal” and protect a Section, by verifying its digest and making it Cryptographically Write Protected, and to securely provide the Section status via a Secure Channel to a remote User.</p>
-<p >A remote authorized User first establishes a Secure Channel directly with the W77Q/TxxN. Once a Secure Channel is established, the remote User securely reads and authenticates the digest of the firmware that is stored in the Secure Flash Memory. The Secure Channel is based on one of the Master Keys which establishes the hardware identity of the device. The firmware digest establishes the software identity of the device. Together, this process authenticates both the hardware and software identities of the device which is the basis for establishing Root Of Trust.</p>
-<p ><a href="qlib__sample__direct__attestation_8c.html">🔗Direct attestation c code</a></p>
-<h1><a class="anchor" id="autotoc_md133"></a>
-DICE-Like Device Attestation</h1>
-<p >The W77Q/TxxN offers hardware functions to support a DICE-like attestation scheme that are used to generate the Compound Device ID. The CDI is based on the Unique Device Secret which establishes the hardware identity of the device and the digest of the firmware which establishes the software identity of the device. These are used to generate the Compound Device ID that authenticates both the hardware and software identities of the device which is the basis for establishing Root Of Trust. This function measures (Hash) the boot-code stored in Section-0 and computes the Compound Device ID. The user can then establish a Session to access Section-0 and securely read the CDI. This operation is allowed only if Section-0 is the only section that was accessed since the last warm reset (including secure and plain access). This assures that the Host running boot code from Section-0 is only given a valid CDI if the boot code integrity is not compromised and no other code was fetched from the Flash.</p>
-<p ><a href="qlib__sample__cdi_8c.html">🔗DICE-Like attestation c code</a></p>
+<p >The W77QxxN supports direct establishment of a root of trust without requiring the local MCU to participate in the cryptographic operation. The device can verify a section's digest, make the section cryptographically write-protected, and securely report its status to a remote user over a secure channel.</p>
+<p >An authorized remote user first establishes a secure channel directly with the W77QxxN. The user then reads and authenticates the digest of firmware stored in secure flash. The secure channel uses a master key to establish the device's hardware identity, while the firmware digest establishes its software identity. Together, these checks authenticate both identities and provide the basis for a root of trust.</p>
+<p ><a href="qlib_sample_direct_attestation_8c-example.html">🔗Direct attestation sample</a></p>
 <h1><a class="anchor" id="autotoc_md134"></a>
+DICE-Like Device Attestation</h1>
+<p >The W77QxxN provides hardware support for DICE-like attestation and generation of the Compound Device ID (CDI). The CDI is derived from the Unique Device Secret, which establishes the device's hardware identity, and the firmware digest, which establishes its software identity. The device hashes the boot code stored in section 0 to compute the CDI. A user can then establish a session and securely read the CDI from section 0. This operation is allowed only if section 0 is the only section accessed since the last warm reset, through either secure or plain access. This ensures that boot code receives a valid CDI only if its integrity has not been compromised and no other code has been fetched from flash.</p>
+<p ><a href="qlib_sample_cdi_8c-example.html">🔗DICE-like attestation sample</a></p>
+<h1><a class="anchor" id="autotoc_md135"></a>
 LMS-OTS based Device Attestation</h1>
-<p >The W77Q/TxxN offers hardware functions to support an LMS-OTS based attestation scheme. The W77Q/TxxN contains factory provisioned LMS private key - so it is able to sign attestation challenges sent by (remote) host. The host can then verify the signature using the corresponding LMS public key. The LMS public key is provided to the verifying vendor by Winbond.</p>
-<p ><a href="qlib__sample__lms__attestation_8c.html">🔗Lms attestation c code</a> </p>
+<p >The W77QxxN provides hardware support for LMS-OTS attestation and contains a factory-provisioned LMS private key. It can use this key to sign attestation challenges from a local or remote host. The host verifies the signature with the corresponding LMS public key, which Winbond provides to the verifying vendor.</p>
+<p ><a href="qlib_sample_lms_attestation_8c-example.html">🔗LMS attestation sample</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

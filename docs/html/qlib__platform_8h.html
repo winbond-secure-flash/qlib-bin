@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: qlib_platform.h File Reference</title>
+<title>QLIB Library User Guide: qlib_platform.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -195,7 +195,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This file includes platform specific definitions. </p>
-<h3><a class="anchor" id="autotoc_md62"></a>
+<h3><a class="anchor" id="autotoc_md66"></a>
 project qlib</h3>
 
 <p class="definition">Definition in file <a class="el" href="qlib__platform_8h_source.html">qlib_platform.h</a>.</p>
@@ -865,8 +865,8 @@ Typically implemented as a HW TRNG.</p>
 <p >This function should be linked to RAM memory.<br  />
 In order to verify that the function works properly, please use the following wave form examples:<br  />
 <br  />
-PLAT_SPI_WriteReadTransaction(format=1_1_1, flags_u32=0, dataOutStream_pu8=[0x90, 0x00, 0x00, 0x00], <br  />
-cmdSize_u32=1, addressSize_u32=3, dataOutSize_u32=0, dummy=0, dataIn_pu8=Ptr, dataInSize_u32=2)<br  />
+PLAT_SPI_WriteReadTransaction(format=1_1_1, flags_u32=0, dataOutStream_pu8=[0x9F], <br  />
+cmdSize_u32=1, addressSize_u32=0, dataOutSize_u32=0, dummy=0, dataIn_pu8=Ptr, dataInSize_u32=3)<br  />
 <img src="spi_wave_form_1.png" alt="wave form example 1" class="inline"/><br  />
 <br  />
 PLAT_SPI_WriteReadTransaction(format=1_1_1, flags_u32=0, dataOutStream_pu8=[0x0B, 0x00, 0x00, 0x00], <br  />

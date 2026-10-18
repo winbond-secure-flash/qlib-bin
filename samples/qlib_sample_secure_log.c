@@ -115,10 +115,10 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_manuf_flow(QLIB_CONTEXT_T* ctx)
     // modify configuration
     // set pre provision master key if needed
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(ctx, id.std.uniqueID, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
+        QLIB_SAMPLE_GetDeviceKey(ctx, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     // set new master key
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(ctx, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(ctx, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
     // set new keys ( we do only full access ) and layout
 #if QLIB_MAX_DIES_SUPPORTED > 1u
@@ -129,8 +129,6 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_manuf_flow(QLIB_CONTEXT_T* ctx)
     // setting layout and policy of the section 1
     // this section plain read enabled and plain write enabled
     sect_u32 = 1u;
-
-    sectCfg = cfgArr[die_u8].sectionConfigTable;
 
     sectCfg[sect_u32].baseAddr = QLIB_SAMPLE_RESERVED_BOOT_SECTION_SIZE;
     sectCfg[sect_u32].size     = SIZE_256KB_;
@@ -148,7 +146,7 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_manuf_flow(QLIB_CONTEXT_T* ctx)
     // Full access key configuration.This is the key to use later for the section configuration
     // changes or write access
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -173,14 +171,14 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_manuf_flow(QLIB_CONTEXT_T* ctx)
 
     // get full access key to configure into chip.
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
                                                           sectCfg[sect_u32].fullAccessKey));
 
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -206,14 +204,14 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_manuf_flow(QLIB_CONTEXT_T* ctx)
 
     // get full access key to configure into chip.
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
                                                           sectCfg[sect_u32].fullAccessKey));
 
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -238,7 +236,7 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_manuf_flow(QLIB_CONTEXT_T* ctx)
 
     // get full access key to configure into chip.
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -246,7 +244,7 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_manuf_flow(QLIB_CONTEXT_T* ctx)
 
     // get restricted access key to configure into chip.
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -492,13 +490,13 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_eraseLog_L(QLIB_CONTEXT_T* ctx,
                                                uint32_t        sect_u32,
                                                bool            secure_b)
 {
-    CONST_KEY_P_T key;
+    KEY_T         key;
     QLIB_STATUS_T status = QLIB_STATUS__OK;
 
     if (secure_b == (bool)true)
     {
         QLIB_STATUS_RET_CHECK(
-            QLIB_SAMPLE_GetSectionKeyPtr(ctx, id->std.uniqueID, QLIB_KID__FULL_ACCESS_SECTION, sect_u32, die_u32, &key));
+            QLIB_SAMPLE_GetSectionAccessKey(ctx, id->sec.wid, QLIB_KID__FULL_ACCESS_SECTION, sect_u32, die_u32, key));
         QLIB_STATUS_RET_CHECK(QLIB_LoadKey(ctx, sect_u32, key, (bool)true));
         QLIB_STATUS_RET_CHECK_GOTO(QLIB_OpenSession(ctx, sect_u32, QLIB_SESSION_ACCESS_FULL), status, remove_key);
     }
@@ -538,7 +536,7 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_checkLogByAccess(QLIB_CONTEXT_T* ctx,
     QLIB_STATUS_T         status;
     LOG_ENTRY_T           entry;
     LOG_ENTRY_T           entryExpected;
-    CONST_KEY_P_T         key;
+    KEY_T                 key;
     QLIB_SESSION_ACCESS_T session;
     QLIB_KID_TYPE_T       keyType;
     uint32_t              numOfEntries_u32 = 10u;
@@ -551,7 +549,7 @@ QLIB_STATUS_T QLIB_SAMPLE_SecureLog_checkLogByAccess(QLIB_CONTEXT_T* ctx,
     {
         session = (fullAccess_b == (bool)true) ? QLIB_SESSION_ACCESS_FULL : QLIB_SESSION_ACCESS_RESTRICTED;
         keyType = (fullAccess_b == (bool)true) ? QLIB_KID__FULL_ACCESS_SECTION : QLIB_KID__RESTRICTED_ACCESS_SECTION;
-        QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionKeyPtr(ctx, id->std.uniqueID, keyType, sect_u32, die_u32, &key));
+        QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx, id->sec.wid, keyType, sect_u32, die_u32, key));
         QLIB_STATUS_RET_CHECK(QLIB_LoadKey(ctx, sect_u32, key, fullAccess_b));
         QLIB_STATUS_RET_CHECK_GOTO(QLIB_OpenSession(ctx, sect_u32, session), status, remove_key);
     }

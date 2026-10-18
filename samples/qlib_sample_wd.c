@@ -220,14 +220,11 @@ QLIB_STATUS_T QLIB_SAMPLE_WatchDog_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     // modify configuration
 
     // set pre provision master key if needed
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext,
-                                                   id.std.uniqueID,
-                                                   QLIB_KID__DEVICE_KEY_PRE_PROVISIONING,
-                                                   dieCfg.preProvisionedMasterKey));
+    QLIB_STATUS_RET_CHECK(
+        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     // set new master key
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
     /*-------------------------------------------------------------------------------------------------------
      This is the default WD configuration stored in section configuration loaded on power up.
@@ -267,7 +264,7 @@ QLIB_STATUS_T QLIB_SAMPLE_WatchDog_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     // Full access key configuration.This is the key to use later for the section configuration
     // changes or write access
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -275,7 +272,7 @@ QLIB_STATUS_T QLIB_SAMPLE_WatchDog_manuf_flow(QLIB_CONTEXT_T* qlibContext)
 
     // get restricted access key to configure into chip.
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -301,7 +298,7 @@ QLIB_STATUS_T QLIB_SAMPLE_WatchDog_field_flow(QLIB_CONTEXT_T* qlibContext)
 {
     QLIB_STATUS_T status      = QLIB_STATUS__OK;
     uint32_t      section_u32 = 1u;
-    CONST_KEY_P_T key;
+    KEY_T         key;
     QLIB_ID_T     id;
     uint8_t       die_u8 = 0u;
     uint32_t      time_u32;
@@ -316,7 +313,7 @@ QLIB_STATUS_T QLIB_SAMPLE_WatchDog_field_flow(QLIB_CONTEXT_T* qlibContext)
     QLIB_STATUS_RET_CHECK(QLIB_GetActiveDie(qlibContext, &die_u8));
 #endif // QLIB_MAX_DIES_SUPPORTED > 1u
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetSectionKeyPtr(qlibContext, id.std.uniqueID, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, &key));
+        QLIB_SAMPLE_GetSectionAccessKey(qlibContext, id.sec.wid, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, key));
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(qlibContext, section_u32, key, (bool)true));
 
     /*-------------------------------------------------------------------------------------------------------

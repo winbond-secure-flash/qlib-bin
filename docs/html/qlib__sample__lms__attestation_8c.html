@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: qlib_sample_lms_attestation.c File Reference</title>
+<title>QLIB Library User Guide: qlib_sample_lms_attestation.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -106,6 +106,10 @@ Macros</h2></td></tr>
 <tr class="separator:a6a6534c4fd0c2edf47e07176cb4dfa27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac17e59abc5d813dff96b28b549ae18db"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample__lms__attestation_8c.html#ac17e59abc5d813dff96b28b549ae18db">LMS_ATTEST_CACHE</a></td></tr>
 <tr class="separator:ac17e59abc5d813dff96b28b549ae18db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4776ee7f791d191e6e5e40ceba390a43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample__lms__attestation_8c.html#a4776ee7f791d191e6e5e40ceba390a43">LMS_ATTEST_NUM_OF_LEAVES</a>&#160;&#160;&#160;((uint32_t)1u &lt;&lt; <a class="el" href="qlib__types_8h.html#aaed8c8e622629832aa63b1123474be51">QLIB_LMS_ATTEST_TREE_HEIGHT</a>)</td></tr>
+<tr class="separator:a4776ee7f791d191e6e5e40ceba390a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57713e9cda1ac5b7cad63ff0a117790c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample__lms__attestation_8c.html#a57713e9cda1ac5b7cad63ff0a117790c">LMS_ATTEST_PRINTF</a>(...)&#160;&#160;&#160;<a class="el" href="qlib__sample_8h.html#a21b84c2237158e406772e4e49c56d9fe">QLIB_SAMPLE_PRINTF</a>(__VA_ARGS__)</td></tr>
+<tr class="separator:a57713e9cda1ac5b7cad63ff0a117790c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -115,6 +119,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af7fe9e9354fb995c8ed0e6e1952b2a08"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample__lms__attestation_8c.html#af7fe9e9354fb995c8ed0e6e1952b2a08">QLIB_SAMPLE_LmsAttest_retrievePub_L</a> (<a class="el" href="qlib__types_8h.html#afd908f605de7d59a5f16e9799cf457c7">LMS_ATTEST_PUB_KEY_T</a> lmsPubKey, <a class="el" href="qlib__types_8h.html#afcc6b83f297c208071fddd17e1686a51">LMS_ATTEST_CHUNK_T</a> *pubCache)</td></tr>
 <tr class="memdesc:af7fe9e9354fb995c8ed0e6e1952b2a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">This routine retrieves the stored public key and cache which were generated during manufacture stage for verification in the field flow.  <a href="qlib__sample__lms__attestation_8c.html#af7fe9e9354fb995c8ed0e6e1952b2a08">More...</a><br /></td></tr>
 <tr class="separator:af7fe9e9354fb995c8ed0e6e1952b2a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a396f0b73cf9466ab87c893f8f74bfc94"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample__lms__attestation_8c.html#a396f0b73cf9466ab87c893f8f74bfc94">QLIB_SAMPLE_LmsAttest_printStatus_L</a> (<a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *qlibContext, const char *stage_pc, uint32_t *leaf_pu32)</td></tr>
+<tr class="memdesc:a396f0b73cf9466ab87c893f8f74bfc94"><td class="mdescLeft">&#160;</td><td class="mdescRight">This routine prints which die is being attested and how many of its one-time keys are left.  <a href="qlib__sample__lms__attestation_8c.html#a396f0b73cf9466ab87c893f8f74bfc94">More...</a><br /></td></tr>
+<tr class="separator:a396f0b73cf9466ab87c893f8f74bfc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31622280a2d4a4dd4f592e8518607d2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qlib__sample__lms__attestation_8c.html#a31622280a2d4a4dd4f592e8518607d2e">QLIB_SAMPLE_LmsAttest</a> (void *userData_pv)</td></tr>
 <tr class="memdesc:a31622280a2d4a4dd4f592e8518607d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This routine demonstrates LMS OTS sign &amp; verify functionality with initialization sequence.  <a href="qlib__sample__lms__attestation_8c.html#a31622280a2d4a4dd4f592e8518607d2e">More...</a><br /></td></tr>
 <tr class="separator:a31622280a2d4a4dd4f592e8518607d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,7 +158,7 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">    {                                                                                  \</div>
 <div class="line">        <span class="charliteral">&#39;H&#39;</span>, <span class="charliteral">&#39;e&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;o&#39;</span>, <span class="charliteral">&#39; &#39;</span>, <span class="charliteral">&#39;w&#39;</span>, <span class="charliteral">&#39;o&#39;</span>, <span class="charliteral">&#39;r&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;d&#39;</span>, <span class="charliteral">&#39;!&#39;</span>, <span class="charliteral">&#39;!&#39;</span>, <span class="charliteral">&#39;!&#39;</span>, <span class="charliteral">&#39;!&#39;</span>, <span class="charliteral">&#39;!&#39;</span> \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a27">qlib_sample_lms_attestation.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a28">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00037">37</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
@@ -173,7 +180,7 @@ Variables</h2></td></tr>
 <div class="line">        0x64, 0xC8, 0x93, 0x25, 0x4A, 0x94, 0x2B, 0x56, 0xAC, 0x5B, 0xB6, 0x6F, 0xDE, 0xBF, 0x7D, 0xFA, 0xF7, 0xED, 0xD9, 0xB1, \</div>
 <div class="line">            0x61, 0xC2, 0x87, 0x0D                                                                                              \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a29">qlib_sample_lms_attestation.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a30">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00042">42</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
@@ -212,10 +219,50 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">    {                    \</div>
 <div class="line">        0u               \</div>
 <div class="line">    }</div>
-</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a20">qlib_sample_lms_attestation.c</a>.</dd>
+</div><!-- fragment --><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a21">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00067">67</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+
+</div>
+</div>
+<a id="a4776ee7f791d191e6e5e40ceba390a43" name="a4776ee7f791d191e6e5e40ceba390a43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4776ee7f791d191e6e5e40ceba390a43">&#9670;&nbsp;</a></span>LMS_ATTEST_NUM_OF_LEAVES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LMS_ATTEST_NUM_OF_LEAVES&#160;&#160;&#160;((uint32_t)1u &lt;&lt; <a class="el" href="qlib__types_8h.html#aaed8c8e622629832aa63b1123474be51">QLIB_LMS_ATTEST_TREE_HEIGHT</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a33">qlib_sample_lms_attestation.c</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00075">75</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+
+</div>
+</div>
+<a id="a57713e9cda1ac5b7cad63ff0a117790c" name="a57713e9cda1ac5b7cad63ff0a117790c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57713e9cda1ac5b7cad63ff0a117790c">&#9670;&nbsp;</a></span>LMS_ATTEST_PRINTF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LMS_ATTEST_PRINTF</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="qlib__sample_8h.html#a21b84c2237158e406772e4e49c56d9fe">QLIB_SAMPLE_PRINTF</a>(__VA_ARGS__)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a24">qlib_sample_lms_attestation.c</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00082">82</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
 
 </div>
 </div>
@@ -265,7 +312,7 @@ Variables</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a5">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00267">267</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00305">305</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
 
 </div>
 </div>
@@ -314,7 +361,65 @@ Variables</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a6">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00280">280</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00318">318</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+
+</div>
+</div>
+<a id="a396f0b73cf9466ab87c893f8f74bfc94" name="a396f0b73cf9466ab87c893f8f74bfc94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a396f0b73cf9466ab87c893f8f74bfc94">&#9670;&nbsp;</a></span>QLIB_SAMPLE_LmsAttest_printStatus_L()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> QLIB_SAMPLE_LmsAttest_printStatus_L </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a> *&#160;</td>
+          <td class="paramname"><em>qlibContext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>stage_pc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>leaf_pu32</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This routine prints which die is being attested and how many of its one-time keys are left. </p>
+<p >Without it, an exhausted die fails with a bare QLIB_STATUS__SECURITY_ERR that looks indistinguishable from a real attestation failure.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">qlibContext</td><td>QLIB state object </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stage_pc</td><td>name of the flow that is about to run, used as a log prefix </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">leaf_pu32</td><td>next leaf the die will sign with. May be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QLIB_STATUS__OK on success, or the status of the failed API </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a7">qlib_sample_lms_attestation.c</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00335">335</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
 
 </div>
 </div>
@@ -342,10 +447,10 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>QLIB_STATUS__OK if no error occurred, QLIB_STATUS__(ERROR) otherwise </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a7">qlib_sample_lms_attestation.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a9">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00092">92</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00108">108</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
 
 </div>
 </div>
@@ -374,10 +479,10 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>QLIB_STATUS__OK if no error occurred, QLIB_STATUS__(ERROR) otherwise </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a17">qlib_sample_lms_attestation.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a18">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00140">140</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00156">156</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
 
 </div>
 </div>
@@ -405,10 +510,10 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>QLIB_STATUS__OK if no error occurred, QLIB_STATUS__(ERROR) otherwise </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a18">qlib_sample_lms_attestation.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a19">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00197">197</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00220">220</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
 
 </div>
 </div>
@@ -435,7 +540,7 @@ Variables</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a1">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00078">78</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00091">91</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
 
 </div>
 </div>
@@ -461,7 +566,7 @@ Variables</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="qlib_sample_lms_attestation_8c-example.html#a4">qlib_sample_lms_attestation.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00079">79</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="qlib__sample__lms__attestation_8c_source.html#l00092">92</a> of file <a class="el" href="qlib__sample__lms__attestation_8c_source.html">qlib_sample_lms_attestation.c</a>.</p>
 
 </div>
 </div>

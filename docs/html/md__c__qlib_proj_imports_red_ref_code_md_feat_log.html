@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,12 +77,11 @@ $(function() {
   <div class="headertitle"><div class="title">Secure log feature </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >Log can be protected with different access policies, it can be plain/read only/full access. This stack-like feature can be used to implement different log-related device features for instance: <br  />
-</p><ul>
-<li>device event log</li>
-<li>additional rollback protection for securely storing information of previous update ( not necessarily fw ) event.</li>
+<div class="textblock"><p >A log can use different access policies, including plain, read-only, and full access. This stack-like feature can support logging use cases such as:</p><ul>
+<li>device event logging</li>
+<li>additional rollback protection by securely storing information about previous update events, including events unrelated to firmware.</li>
 </ul>
-<div align="center"></div><div align="center"><img src="LGM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >To use section as log you need to configure it with the log attribute. The idea of log is that log entries can be written (appended to the head of the log ) and read <b>but not erased</b> other then together with the whole section. The rules of log restriction work similar to secure storage ones and depend on the section policy of PA_R ( plain read ) and PA_W ( plain write ).</p>
+<div align="center"></div><div align="center"><img src="LGM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >To use a section as a log, configure it with the log attribute. Log entries can be appended and read, but cannot be erased individually; erasure applies to the entire section. Access restrictions are similar to those for secure storage and depend on the section's PA_R (plain read) and PA_W (plain write) policy settings.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">#   </th><th class="markdownTableHeadNone">PA_R / PA_W section policy   </th><th class="markdownTableHeadCenter">has no keys   </th><th class="markdownTableHeadCenter">has restricted key   </th><th class="markdownTableHeadCenter">has full access key    </th></tr>
@@ -95,7 +94,7 @@ $(function() {
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">PA_R disabled, PA_W disabled   </td><td class="markdownTableBodyCenter"><strike>read</strike> <strike>append</strike> <strike>erase</strike>   </td><td class="markdownTableBodyCenter">read append <strike>erase</strike>   </td><td class="markdownTableBodyCenter">read append erase   </td></tr>
 </table>
-<p ><a href="qlib__sample__secure__log_8c_source.html">🔗Secure Log c reference code</a> </p>
+<p ><a href="qlib_sample_secure_log_8c-example.html">🔗Secure-log sample</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

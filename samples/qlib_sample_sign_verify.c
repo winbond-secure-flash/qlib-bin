@@ -63,14 +63,11 @@ QLIB_STATUS_T QLIB_SAMPLE_SignVerify_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     // modify configuration
 
     // set pre provision master key if needed
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext,
-                                                   id.std.uniqueID,
-                                                   QLIB_KID__DEVICE_KEY_PRE_PROVISIONING,
-                                                   dieCfg.preProvisionedMasterKey));
+    QLIB_STATUS_RET_CHECK(
+        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     // set new master key
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
     // configure section 1 as fully secure section
     sect_u32 = SIGN_SECTION;
@@ -93,14 +90,14 @@ QLIB_STATUS_T QLIB_SAMPLE_SignVerify_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     // Full access key configuration.This is the key to use later for the section configuration
     // changes or write access
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
                                                           sectCfg[sect_u32].fullAccessKey));
     // Restricted key is enough for the sign/verify operations
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -123,8 +120,8 @@ QLIB_STATUS_T QLIB_SAMPLE_SignVerify_field_flow(QLIB_CONTEXT_T* qlibContext)
     TYPE_256BIT   signature;
     bool          isFullAccess_b = (bool)true;
     uint32_t      section_u32    = SIGN_SECTION; // fully secure section
-    CONST_KEY_P_T fullAccessKey;
-    CONST_KEY_P_T restrictedAccessKey;
+    KEY_T         fullAccessKey;
+    KEY_T         restrictedAccessKey;
     uint8_t       data_u8[QLIB_FLASH_PAGE_SIZE];
     QLIB_ID_T     id;
     uint8_t       die_u8 = 0u;
@@ -137,12 +134,12 @@ QLIB_STATUS_T QLIB_SAMPLE_SignVerify_field_flow(QLIB_CONTEXT_T* qlibContext)
      Erase flash data, since the sign and verify operations expect an empty section
     -------------------------------------------------------------------------------------------------------*/
     QLIB_STATUS_RET_CHECK(QLIB_GetId(qlibContext, &id));
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionKeyPtr(qlibContext,
-                                                       id.std.uniqueID,
-                                                       QLIB_KID__FULL_ACCESS_SECTION,
-                                                       section_u32,
-                                                       die_u8,
-                                                       &fullAccessKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
+                                                          id.sec.wid,
+                                                          QLIB_KID__FULL_ACCESS_SECTION,
+                                                          section_u32,
+                                                          die_u8,
+                                                          fullAccessKey));
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(qlibContext, section_u32, fullAccessKey, (bool)true));
     QLIB_STATUS_RET_CHECK_GOTO(QLIB_OpenSession(qlibContext, section_u32, QLIB_SESSION_ACCESS_FULL), status, remove_key);
     QLIB_STATUS_RET_CHECK_GOTO(QLIB_Erase(qlibContext, section_u32, 0u, SIGN_SECTION_SIZE, (bool)true), status, close_session);
@@ -152,12 +149,12 @@ QLIB_STATUS_T QLIB_SAMPLE_SignVerify_field_flow(QLIB_CONTEXT_T* qlibContext)
     /*-------------------------------------------------------------------------------------------------------
      Load the restricted key for the sign/verify operations
     -------------------------------------------------------------------------------------------------------*/
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionKeyPtr(qlibContext,
-                                                       id.std.uniqueID,
-                                                       QLIB_KID__RESTRICTED_ACCESS_SECTION,
-                                                       section_u32,
-                                                       die_u8,
-                                                       &restrictedAccessKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
+                                                          id.sec.wid,
+                                                          QLIB_KID__RESTRICTED_ACCESS_SECTION,
+                                                          section_u32,
+                                                          die_u8,
+                                                          restrictedAccessKey));
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(qlibContext, section_u32, restrictedAccessKey, (bool)false));
     isFullAccess_b = (bool)false;
 

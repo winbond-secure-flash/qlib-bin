@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: QLIB running remotely</title>
+<title>QLIB Library User Guide: QLIB running remotely</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -80,17 +80,17 @@ $(function() {
 <div class="textblock"><blockquote class="doxtable">
 <p >&zwj;<b>Note:</b> Remote mode is not yet supported in this library release. </p>
 </blockquote>
-<p>In this mode, the microcontroller has only partial access to W77Q/T as it doesn't have the W77Q/T access keys. Without these keys, the microcontroller can only perform non-secure operations on W77Q/T, such as plain read and XIP. Remote servers that have access to those keys can perform full secure operations on W77Q/T.</p>
-<p >Note: The secure channel established between remote server and W77Q/T is cryptographically secure and therefore protected from any malicious actor.</p>
+<p>In this mode, the microcontroller has only partial access to W77Q/T because it does not have the W77Q/T access keys. Without these keys, it can perform only non-secure operations, such as plain reads and XIP. Remote servers with those keys can perform the full range of secure operations on W77Q/T.</p>
+<p ><b>Note:</b> The secure channel established between the remote server and W77Q/T is cryptographically secure and protected from malicious actors.</p>
 <div class="image">
 <img src="sw_stack_remote.png" alt=""/>
 <div class="caption">
 Remote execution stack</div></div>
-    <p >For example: In this scenario, the remote server is the only entity that modifies the microcontroller firmware. The microcontroller cannot update its code, and therefore the code is protected from permanent malware attacks (such as malware writing itself into the code section).</p>
-<p >The remote server can also perform additional W77Q/T security operations such as secure remote attestation, secure integrity check, secure watchdog control, etc.</p>
-<p >The QLIB is designed in a flexible way to support this mode. The <a class="el" href="md_sw_stack_top_layer.html">QLIB top</a> layer can be executed on the remote server, and its output can be forwarded to the microcontroller.</p>
-<p >The TM network adapter layer is responsible for sending and receiving TM operations and returning their results back to the QLIB top over a network interface (such as TCP/IP).</p>
-<p >This layer is network specific and therefore is implemented by the QLIB integrator <a class="el" href="md__r_e_a_d_m_e_lib.html">README</a>.The microcontroller receives the remote request and forwards it to the <a class="el" href="md_sw_stack_tm_layer.html">Transaction Manager (TM)</a> layer running locally on the microcontroller. This design allows easy execution of secure commands from a remote server with only minimal implementation effort. </p>
+    <p >For example, the remote server may be the only entity that can modify the microcontroller firmware. The microcontroller cannot update its code, which protects the code from persistent malware attacks, such as malware writing itself to the code section.</p>
+<p >The remote server can also perform W77Q/T security operations such as secure remote attestation, secure integrity checks, and secure watchdog control.</p>
+<p >QLIB is designed to support this mode flexibly. The <a class="el" href="md_sw_stack_top_layer.html">QLIB top</a> layer can run on the remote server, and its output can be forwarded to the microcontroller.</p>
+<p >The TM network adapter layer sends and receives TM operations over a network interface, such as TCP/IP, and returns their results to the QLIB top layer.</p>
+<p >This layer is network-specific and is implemented by the QLIB integrator; see the <a class="el" href="md__r_e_a_d_m_e_lib.html">README</a>. The microcontroller receives each remote request and forwards it to the locally running <a class="el" href="md_sw_stack_tm_layer.html">Transaction Manager (TM)</a> layer. This design allows secure commands to be executed from a remote server with minimal implementation effort. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

@@ -119,7 +119,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_manuf_flow(QLIB_CONTEXT_T* ctx)
     else
     {
         // secure format
-        QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(ctx, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+        QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(ctx, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
         QLIB_STATUS_RET_CHECK(QLIB_Format(ctx, dieCfg.deviceMasterKey, (bool)false, (bool)false));
     }
 
@@ -135,16 +135,16 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_manuf_flow(QLIB_CONTEXT_T* ctx)
 
     // set pre provision master key if needed
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(ctx, id.std.uniqueID, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
+        QLIB_SAMPLE_GetDeviceKey(ctx, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     // set master key
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(ctx, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(ctx, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
     //set secret key
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(ctx, id.std.uniqueID, QLIB_KID__DEVICE_SECRET, dieCfg.deviceSecretKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(ctx, id.sec.wid, QLIB_KID__DEVICE_SECRET, dieCfg.deviceSecretKey));
 
     // set SUID
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSecureUID(ctx, id.std.uniqueID, dieCfg.suid));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSecureUID(ctx, id.sec.wid, dieCfg.suid));
 
     // setting layout and policy of section 1
     // this section is plain read enabled and plain write enabled
@@ -168,7 +168,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_manuf_flow(QLIB_CONTEXT_T* ctx)
     // Full access key configuration.This is the key to use later for the section configuration
     // changes or write access
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -193,13 +193,13 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_manuf_flow(QLIB_CONTEXT_T* ctx)
 
     // get restricted and full access key to configure into chip.
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__RESTRICTED_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
                                                           sectCfg[sect_u32].restrictedKey));
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -224,7 +224,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_manuf_flow(QLIB_CONTEXT_T* ctx)
 
     // get full access key to configure into chip.
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(ctx,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -298,8 +298,8 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_field_flow_secureErase(QLIB_CONTEXT_T* ctx)
     QLIB_ID_T     id;
     uint8_t       die_u8 = 0u;
     uint32_t      section_u32;
-    CONST_KEY_P_T keyF;
-    CONST_KEY_P_T keyR;
+    KEY_T         keyF;
+    KEY_T         keyR;
     QLIB_STATUS_T status;
     uint32_t      openedSessionSection_u32;
     bool          fullAccess_b;
@@ -330,9 +330,9 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_field_flow_secureErase(QLIB_CONTEXT_T* ctx)
      obtain access keys and load the keys to library
     -------------------------------------------------------------------------------------------------------*/
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetSectionKeyPtr(ctx, id.std.uniqueID, QLIB_KID__RESTRICTED_ACCESS_SECTION, section_u32, die_u8, &keyR));
+        QLIB_SAMPLE_GetSectionAccessKey(ctx, id.sec.wid, QLIB_KID__RESTRICTED_ACCESS_SECTION, section_u32, die_u8, keyR));
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetSectionKeyPtr(ctx, id.std.uniqueID, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, &keyF));
+        QLIB_SAMPLE_GetSectionAccessKey(ctx, id.sec.wid, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, keyF));
 
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(ctx, section_u32, keyR, (bool)false));
     QLIB_STATUS_RET_CHECK_GOTO(QLIB_LoadKey(ctx, section_u32, keyF, (bool)true), status, remove_key);
@@ -396,7 +396,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_field_flow_authPlainErase(QLIB_CONTEXT_T* ctx)
     QLIB_ID_T     id;
     uint8_t       die_u8 = 0u;
     uint32_t      section_u32;
-    CONST_KEY_P_T keyF;
+    KEY_T         keyF;
     QLIB_STATUS_T status = QLIB_STATUS__OK;
     uint8_t       writeBuf_u8[QLIB_FLASH_PAGE_SIZE];
     uint8_t       readBuf_u8[QLIB_FLASH_PAGE_SIZE];
@@ -407,7 +407,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_field_flow_authPlainErase(QLIB_CONTEXT_T* ctx)
     (void)memset(eraseBuf_u8, 0xFF, sizeof(eraseBuf_u8));
 
     // See what chip is connected and its unique ids. We might need this info to obtain keys for this
-    // chips according to formula or via DB see QLIB_SAMPLE_GetSectionKeyPtr() function
+    // chips according to formula or via DB see QLIB_SAMPLE_GetSectionAccessKey() function
     QLIB_STATUS_RET_CHECK(QLIB_GetHWVersion(ctx, &hwVer));
     QLIB_STATUS_RET_CHECK(QLIB_GetId(ctx, &id));
 
@@ -424,7 +424,7 @@ QLIB_STATUS_T QLIB_SAMPLE_Erase_field_flow_authPlainErase(QLIB_CONTEXT_T* ctx)
      obtain full access key and load the key to library
     -------------------------------------------------------------------------------------------------------*/
     QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetSectionKeyPtr(ctx, id.std.uniqueID, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, &keyF));
+        QLIB_SAMPLE_GetSectionAccessKey(ctx, id.sec.wid, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, keyF));
 
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(ctx, section_u32, keyF, (bool)true));
 

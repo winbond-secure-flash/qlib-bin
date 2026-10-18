@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: Sample Code Secure Storage</title>
+<title>QLIB Library User Guide: Sample Code Secure Storage</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -86,12 +86,12 @@ $(function() {
  Basically, when opening a session with a restricted key, only a read operation is allowed. To use write or erase operations, a full access key must be used. <br  />
  The section configuration is defined in the <a class="el" href="struct_q_l_i_b___p_o_l_i_c_y___t.html" title="This type contains section policy configuration.">QLIB_POLICY_T</a> structure. <br  />
 </p>
-<h1><a class="anchor" id="autotoc_md46"></a>
+<h1><a class="anchor" id="autotoc_md50"></a>
 Plain Read Enabled Section</h1>
-<h2><a class="anchor" id="autotoc_md47"></a>
+<h2><a class="anchor" id="autotoc_md51"></a>
 Using Restricted Key</h2>
 <p >This is not shown in the sample code. The expected result is to be able to have read only access (both plain and secure) to the section. Write and Erase are not allowed.</p>
-<h2><a class="anchor" id="autotoc_md48"></a>
+<h2><a class="anchor" id="autotoc_md52"></a>
 Using FULL Key</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -99,9 +99,9 @@ Using FULL Key</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Allowed   </td><td class="markdownTableBodyNone">Not Allowed   </td><td class="markdownTableBodyNone">Not Allowed   </td><td class="markdownTableBodyNone">Allowed   </td><td class="markdownTableBodyNone">Allowed   </td><td class="markdownTableBodyNone">Allowed   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md49"></a>
+<h1><a class="anchor" id="autotoc_md53"></a>
 Fully Secured Section</h1>
-<h2><a class="anchor" id="autotoc_md50"></a>
+<h2><a class="anchor" id="autotoc_md54"></a>
 Using Restricted Key</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -109,7 +109,7 @@ Using Restricted Key</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Not Allowed   </td><td class="markdownTableBodyNone">Not Allowed   </td><td class="markdownTableBodyNone">Not Allowed   </td><td class="markdownTableBodyNone">Allowed   </td><td class="markdownTableBodyNone">Not Allowed   </td><td class="markdownTableBodyNone">Not Allowed   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md51"></a>
+<h2><a class="anchor" id="autotoc_md55"></a>
 Using Full Key</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">

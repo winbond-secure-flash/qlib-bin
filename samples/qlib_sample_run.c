@@ -17,6 +17,7 @@
                                                    INCLUDES
 -----------------------------------------------------------------------------------------------------------*/
 #include "qlib.h"
+#include "qlib_sample.h"
 #include "qlib_sample_run.h"
 
 #include "qlib_sample_fw_update.h"
@@ -32,6 +33,12 @@
 #include "qlib_sample_integrity.h"
 #include "qlib_sample_direct_attestation.h"
 #include "qlib_sample_cdi.h"
+#ifdef OEM_SECTION_PROVISIONING
+#include "qlib_sample_oem_section_provisioning.h"
+#endif // OEM_SECTION_PROVISIONING
+#ifdef W77Q_KDF_KD1
+#include "qlib_sample_kd1_config.h"
+#endif // W77Q_KDF_KD1
 #ifdef QLIB_LMS_SUPPORT
 #include "qlib_sample_lms_attestation.h"
 #include "qlib_sample_lms_fw_update.h"
@@ -114,11 +121,39 @@ QLIB_STATUS_T QLIB_SAMPLE_Run(char* sampleName, void* userData_pv)
     {
         return QLIB_SAMPLE_DirectAttestation(userData_pv);
     }
+#ifdef OEM_SECTION_PROVISIONING
+    else if (strcmp(sampleName, "section_keys") == 0u)
+    {
+        QLIB_STATUS_T ret;
+        ret = QLIB_SAMPLE_SoC_OEM_SectionProvision(userData_pv);
+        // This sample locks the configuration registers. unlock with recovery flow.
+        (void)QLIB_SAMPLE_Recovery(userData_pv);
+        return ret;
+    }
+#endif // OEM_SECTION_PROVISIONING
+#ifdef W77Q_KDF_KD1
+    else if (strcmp(sampleName, "kd1_config") == 0u)
+    {
+        return QLIB_SAMPLE_KD1Config(userData_pv);
+    }
+#endif // W77Q_KDF_KD1
     else
 #endif // !QLIB_ONLY_SECURE_STORAGE
-    {
-        // default
-        return QLIB_SAMPLE_SecureStorage(userData_pv);
-    }
+        if (strcmp(sampleName, "version") == 0u)
+        {
+            QLIB_SW_VERSION_T versionInfo;
+            QLIB_STATUS_RET_CHECK(QLIB_GetVersion(&versionInfo));
+            QLIB_SAMPLE_PRINTF("qlib version is %u.%u.%u.%u\r\n",
+                               (uint8_t)((versionInfo.qlibVersion >> 24) & 0xFFu),
+                               (uint8_t)((versionInfo.qlibVersion >> 16) & 0xFFu),
+                               (uint8_t)((versionInfo.qlibVersion >> 8) & 0xFFu),
+                               (uint8_t)(versionInfo.qlibVersion & 0xFFu));
+            return QLIB_STATUS__OK;
+        }
+        else
+        {
+            // default
+            return QLIB_SAMPLE_SecureStorage(userData_pv);
+        }
 }
 

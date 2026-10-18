@@ -69,6 +69,19 @@
         0u               \
     }
 
+// Number of one-time signatures the die can ever produce. Each signature spends one leaf,
+// and once the counter passes this the die can no longer sign - a part in that state is
+// exhausted, not broken.
+#define LMS_ATTEST_NUM_OF_LEAVES ((uint32_t)1u << QLIB_LMS_ATTEST_TREE_HEIGHT)
+
+// The deliverables are coan'd with -UDEBUG -U_DEBUG, which leaves QLIB_SAMPLE_PRINTF as (void)0 in
+// every CI build. PRINTF comes from the force-included platform config and survives coan untouched.
+#if defined(PRINTF)
+#define LMS_ATTEST_PRINTF(...) PRINTF(__VA_ARGS__)
+#else
+#define LMS_ATTEST_PRINTF(...) QLIB_SAMPLE_PRINTF(__VA_ARGS__)
+#endif // defined(PRINTF)
+
 /*-----------------------------------------------------------------------------------------------------------
                                                LOCAL VARIABLES
 -----------------------------------------------------------------------------------------------------------*/
@@ -85,6 +98,9 @@ static LMS_ATTEST_PUB_KEY_T lmsPubKey_L;
 // for future use when chip verification is needed in the field flow
 static void QLIB_SAMPLE_LmsAttest_storePub_L(LMS_ATTEST_PUB_KEY_T lmsPubKey, LMS_ATTEST_CHUNK_T* pubCache);
 static void QLIB_SAMPLE_LmsAttest_retrievePub_L(LMS_ATTEST_PUB_KEY_T lmsPubKey, LMS_ATTEST_CHUNK_T* pubCache);
+
+// Prints the die's attestation key ID and how many one-time keys it has left
+static QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_printStatus_L(QLIB_CONTEXT_T* qlibContext, const char* stage_pc, uint32_t* leaf_pu32);
 
 /*-----------------------------------------------------------------------------------------------------------
                                              INTERFACE FUNCTIONS
@@ -152,6 +168,8 @@ QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     QLIB_STATUS_RET_CHECK(QLIB_SetActiveDie(qlibContext, 0u));
 #endif // QLIB_MAX_DIES_SUPPORTED > 1u
 
+    (void)QLIB_SAMPLE_LmsAttest_printStatus_L(qlibContext, "manufacture", NULL);
+
     /*-------------------------------------------------------------------------------------------------------
      Generate LMS public key and public cache
     -------------------------------------------------------------------------------------------------------*/
@@ -160,7 +178,7 @@ QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     if (status == QLIB_STATUS__SYSTEM_IN_INCORRECT_STATE)
     {
 #ifndef QLIB_FPGA_TARGET
-        QLIB_SAMPLE_PRINTF("Error: The LMS private key must be set for this test");
+        LMS_ATTEST_PRINTF("Error: The LMS private key must be set for this test\r\n");
         /*---------------------------------------------------------------------------------------------------
          please note that setting the LMS private key can be done only once in flash life cycle
          consider carefully before setting it. In order to set the private key use the following command
@@ -181,6 +199,11 @@ QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     }
     else
     {
+        if (QLIB_STATUS__OK != status)
+        {
+            LMS_ATTEST_PRINTF("[LMS attest][manufacture] QLIB_LMS_Attest_GetPublicKey failed with status %u\r\n",
+                              (unsigned int)status);
+        }
         QLIB_STATUS_RET_CHECK(status);
     }
 
@@ -204,6 +227,7 @@ QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_field_flow(QLIB_CONTEXT_T* qlibContext)
     QLIB_LMS_KEY_ID_T    wKeyId;
     ALG_LMS_T            lmsAlg = {0u};
     LMS_ATTEST_PUB_KEY_T lmsPubKey;
+    uint32_t             leafNum_u32 = 0u;
 
     /*-------------------------------------------------------------------------------------------------------
      Run sample code
@@ -214,6 +238,8 @@ QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_field_flow(QLIB_CONTEXT_T* qlibContext)
     QLIB_STATUS_RET_CHECK(QLIB_SetActiveDie(qlibContext, 0u));
 #endif // QLIB_MAX_DIES_SUPPORTED > 1u
 
+    (void)QLIB_SAMPLE_LmsAttest_printStatus_L(qlibContext, "field", &leafNum_u32);
+
     /*-------------------------------------------------------------------------------------------------------
      Get the stored public key and public cache
     -------------------------------------------------------------------------------------------------------*/
@@ -222,8 +248,16 @@ QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_field_flow(QLIB_CONTEXT_T* qlibContext)
     /*-------------------------------------------------------------------------------------------------------
      Sign using flash internal private key
     -------------------------------------------------------------------------------------------------------*/
-    QLIB_STATUS_RET_CHECK(
-        QLIB_LMS_Attest_Sign(qlibContext, msg_u8, sizeof(msg_u8), nonce, pubCache, LMS_ATTEST_CACHE_SIZE, lmsSig, wKeyId));
+    status = QLIB_LMS_Attest_Sign(qlibContext, msg_u8, sizeof(msg_u8), nonce, pubCache, LMS_ATTEST_CACHE_SIZE, lmsSig, wKeyId);
+    if (QLIB_STATUS__OK != status)
+    {
+        LMS_ATTEST_PRINTF("[LMS attest][field] QLIB_LMS_Attest_Sign failed with status %u (leaf %lu of %lu)\r\n",
+                          (unsigned int)status,
+                          (unsigned long)leafNum_u32,
+                          (unsigned long)LMS_ATTEST_NUM_OF_LEAVES);
+        return status;
+    }
+    LMS_ATTEST_PRINTF("[LMS attest][field] Signature created with leaf %lu\r\n", (unsigned long)leafNum_u32);
 
     /*-------------------------------------------------------------------------------------------------------
      Verify the signature itself
@@ -236,12 +270,16 @@ QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_field_flow(QLIB_CONTEXT_T* qlibContext)
                                                   (uint32_t)sizeof(msg_u8),
                                                   lmsSig,
                                                   (uint32_t)sizeof(LMS_ATTEST_SIG_T)};
-        QLIB_ASSERT_WITH_ERROR_GOTO(ALG_SUCCESS == lmsVerifySignature(&lmsAlg, &verifyParams),
-                                    QLIB_STATUS__COMMAND_FAIL,
-                                    status,
-                                    lms_finit);
+        if (ALG_SUCCESS != lmsVerifySignature(&lmsAlg, &verifyParams))
+        {
+            LMS_ATTEST_PRINTF("[LMS attest][field] The signature does not verify against the stored public key\r\n");
+            status = QLIB_STATUS__COMMAND_FAIL;
+            goto lms_finit;
+        }
         (void)lmsFinit(&lmsAlg);
     }
+
+    LMS_ATTEST_PRINTF("[LMS attest][field] Signature verified\r\n");
 
     goto exit;
 
@@ -281,5 +319,75 @@ static void QLIB_SAMPLE_LmsAttest_retrievePub_L(LMS_ATTEST_PUB_KEY_T lmsPubKey, 
 {
     (void)memcpy(pubCache, pubCache_L, sizeof(pubCache_L));
     (void)memcpy(lmsPubKey, lmsPubKey_L, sizeof(LMS_ATTEST_PUB_KEY_T));
+}
+
+/************************************************************************************************************
+ * @brief       This routine prints which die is being attested and how many of its one-time keys are left.
+ *              Without it, an exhausted die fails with a bare QLIB_STATUS__SECURITY_ERR that looks
+ *              indistinguishable from a real attestation failure.
+ *
+ * @param[in]   qlibContext   QLIB state object
+ * @param[in]   stage_pc      name of the flow that is about to run, used as a log prefix
+ * @param[out]  leaf_pu32     next leaf the die will sign with. May be NULL.
+ *
+ * @return      QLIB_STATUS__OK on success, or the status of the failed API
+************************************************************************************************************/
+static QLIB_STATUS_T QLIB_SAMPLE_LmsAttest_printStatus_L(QLIB_CONTEXT_T* qlibContext, const char* stage_pc, uint32_t* leaf_pu32)
+{
+    QLIB_ID_T         id;
+    QLIB_LMS_KEY_ID_T keyId;
+    uint32_t          leafNum_u32 = 0u;
+    uint32_t          i_u32;
+    QLIB_STATUS_T     status;
+
+    (void)stage_pc; // only read by the prints, which compile out when LMS_ATTEST_PRINTF is a no-op
+    (void)memset(&id, 0, sizeof(id));
+    (void)memset(keyId, 0, sizeof(keyId));
+
+    if (QLIB_STATUS__OK == QLIB_GetId(qlibContext, &id))
+    {
+        LMS_ATTEST_PRINTF("[LMS attest][%s] Flash Unique ID = 0x%08lx%08lx%08lx%08lx\r\n",
+                          stage_pc,
+                          (unsigned long)id.std.uniqueID[3],
+                          (unsigned long)id.std.uniqueID[2],
+                          (unsigned long)id.std.uniqueID[1],
+                          (unsigned long)id.std.uniqueID[0]);
+    }
+
+    status = QLIB_LMS_Attest_GetKeyIdAndLeaf(qlibContext, &leafNum_u32, keyId);
+    if (QLIB_STATUS__OK != status)
+    {
+        LMS_ATTEST_PRINTF("[LMS attest][%s] QLIB_LMS_Attest_GetKeyIdAndLeaf failed with status %u\r\n",
+                          stage_pc,
+                          (unsigned int)status);
+        return status;
+    }
+
+    LMS_ATTEST_PRINTF("[LMS attest][%s] Die key ID = 0x", stage_pc);
+    for (i_u32 = 0u; i_u32 < (uint32_t)sizeof(QLIB_LMS_KEY_ID_T); i_u32++)
+    {
+        LMS_ATTEST_PRINTF("%02x", (unsigned int)((const uint8_t*)keyId)[i_u32]);
+    }
+    LMS_ATTEST_PRINTF("\r\n");
+
+    LMS_ATTEST_PRINTF("[LMS attest][%s] Next leaf = %lu of %lu\r\n",
+                      stage_pc,
+                      (unsigned long)leafNum_u32,
+                      (unsigned long)LMS_ATTEST_NUM_OF_LEAVES);
+
+    if (leafNum_u32 >= LMS_ATTEST_NUM_OF_LEAVES)
+    {
+        LMS_ATTEST_PRINTF("[LMS attest][%s] ERROR: this die has spent all %lu of its one-time keys and can no longer "
+                          "sign. Replace the part to run this test.\r\n",
+                          stage_pc,
+                          (unsigned long)LMS_ATTEST_NUM_OF_LEAVES);
+    }
+
+    if (NULL != leaf_pu32)
+    {
+        *leaf_pu32 = leafNum_u32;
+    }
+
+    return QLIB_STATUS__OK;
 }
 #endif //!defined(EXCLUDE_LMS_ATTESTATION)

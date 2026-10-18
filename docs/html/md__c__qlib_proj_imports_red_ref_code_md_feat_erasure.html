@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,16 +77,16 @@ $(function() {
   <div class="headertitle"><div class="title">Deletion/Erasure feature </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >Any asset stored in W77Q can be erased, if flash section is write protected by the key, secure erase command authenticated by the same key is used. Format action also deletes content of the chip, including keys configured previously. Format command also has its secure variant which is authenticated by the device master key.</p>
-<div align="center"></div><div align="center"><img src="SSM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >The deletion rules are simple:</p><ul>
-<li>if section is write protected you will need the same full access key to erase inside this section.</li>
-<li>read access key is of course not sufficient for erasing the section</li>
-<li>if chip is configured plain format disabled, master key is needed to format it, otherwise plain command will work.</li>
+<div class="textblock"><p >Data stored on W77Q can be erased. If a flash section is write-protected by a key, the secure erase command must be authenticated with that key. Formatting also deletes the device contents, including previously configured keys. A secure format command is authenticated by the device master key.</p>
+<div align="center"></div><div align="center"><img src="SSM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >The deletion rules are as follows:</p><ul>
+<li>If a section is write-protected, the corresponding full-access key is required to erase data within it.</li>
+<li>A read-access key does not authorize erasing the section.</li>
+<li>If plain format is disabled, the device master key is required to format the device; otherwise, a plain format command can be used.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md120"></a>
+<h1><a class="anchor" id="autotoc_md121"></a>
 C code implementation</h1>
-<p >Erase operation sample is split in two phases - manufacture and field. During manufacture flash sections are configured with different policies and during field phase we show which deletion tools are available and how can be used.</p>
-<p ><a href="qlib_sample_erase_8c-example.html">🔗Deletion/Erasure c reference code</a> </p>
+<p >The erase sample has two phases: manufacturing and field use. During manufacturing, flash sections are configured with different policies. During field use, the sample demonstrates which erase operations are available under each policy.</p>
+<p ><a href="qlib_sample_erase_8c-example.html">🔗Deletion/erasure sample</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

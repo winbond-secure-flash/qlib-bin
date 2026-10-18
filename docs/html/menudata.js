@@ -23,7 +23,14 @@
  @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"Main Page",url:"index.html"},
+{text:"Home",url:"index.html"},
+{text:"Getting Started",url:"md__r_e_a_d_m_e_lib.html"},
+{text:"Software stack",url:"md_sw_stack.html"},
+{text:"QLIB modes of operation",url:"md_mode_of_operation.html"},
+{text:"QLIB API",url:"qlib_8h.html"},
+{text:"QLIB usage",url:"md_qlib_usage.html"},
+{text:"Sample code",url:"md_sample_code.html"},
+{text:"Files",url:"files.html"},
 {text:"Data Structures",url:"annotated.html",children:[
 {text:"Data Structures",url:"annotated.html"},
 {text:"Data Structure Index",url:"classes.html"},
@@ -71,50 +78,4 @@ var menudata={children:[
 {text:"t",url:"functions_vars.html#index_t"},
 {text:"u",url:"functions_vars.html#index_u"},
 {text:"v",url:"functions_vars.html#index_v"},
-{text:"w",url:"functions_vars.html#index_w"}]}]}]},
-{text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"},
-{text:"Globals",url:"globals.html",children:[
-{text:"All",url:"globals.html",children:[
-{text:"a",url:"globals.html#index_a"},
-{text:"b",url:"globals_b.html#index_b"},
-{text:"c",url:"globals_c.html#index_c"},
-{text:"d",url:"globals_d.html#index_d"},
-{text:"f",url:"globals_f.html#index_f"},
-{text:"k",url:"globals_k.html#index_k"},
-{text:"l",url:"globals_l.html#index_l"},
-{text:"m",url:"globals_m.html#index_m"},
-{text:"p",url:"globals_p.html#index_p"},
-{text:"q",url:"globals_q.html#index_q"},
-{text:"r",url:"globals_r.html#index_r"},
-{text:"s",url:"globals_s.html#index_s"},
-{text:"t",url:"globals_t.html#index_t"},
-{text:"u",url:"globals_u.html#index_u"},
-{text:"w",url:"globals_w.html#index_w"}]},
-{text:"Functions",url:"globals_func.html",children:[
-{text:"c",url:"globals_func.html#index_c"},
-{text:"m",url:"globals_func_m.html#index_m"},
-{text:"p",url:"globals_func_p.html#index_p"},
-{text:"q",url:"globals_func_q.html#index_q"}]},
-{text:"Variables",url:"globals_vars.html"},
-{text:"Typedefs",url:"globals_type.html",children:[
-{text:"c",url:"globals_type.html#index_c"},
-{text:"k",url:"globals_type.html#index_k"},
-{text:"l",url:"globals_type.html#index_l"},
-{text:"q",url:"globals_type.html#index_q"},
-{text:"s",url:"globals_type.html#index_s"},
-{text:"u",url:"globals_type.html#index_u"}]},
-{text:"Enumerations",url:"globals_enum.html"},
-{text:"Enumerator",url:"globals_eval.html",children:[
-{text:"d",url:"globals_eval.html#index_d"},
-{text:"q",url:"globals_eval.html#index_q"},
-{text:"t",url:"globals_eval.html#index_t"}]},
-{text:"Macros",url:"globals_defs.html",children:[
-{text:"a",url:"globals_defs.html#index_a"},
-{text:"f",url:"globals_defs.html#index_f"},
-{text:"l",url:"globals_defs.html#index_l"},
-{text:"p",url:"globals_defs.html#index_p"},
-{text:"q",url:"globals_defs.html#index_q"},
-{text:"r",url:"globals_defs.html#index_r"},
-{text:"w",url:"globals_defs.html#index_w"}]}]}]},
-{text:"Sample Code",url:"examples.html"}]}
+{text:"w",url:"functions_vars.html#index_w"}]}]}]}]}

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QLIB Library User-Guide: qlib_sample_fw.c</title>
+<title>QLIB Library User Guide: qlib_sample_fw.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +30,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">QLIB Library User-Guide
+   <div id="projectname">QLIB Library User Guide
    </div>
   </td>
   <td id="projectlogo" style="padding-right: 0.5em;">
@@ -85,64 +85,97 @@ $(function() {
 <div class="line"><span class="comment">-----------------------------------------------------------------------------------------------------------*/</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="qlib__sample_8h.html">qlib_sample.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#if defined W77Q_KDF_KD1 || defined QLIB_KDF_DEV_KEYS</span></div>
+<div class="line"><span class="preprocessor">#include &quot;qlib_utils_cmkdf_gen_flash_key.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// defined W77Q_KDF_KD1 || defined QLIB_KDF_DEV_KEYS</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a id="a0" name="a0"></a><a class="code hl_typedef" href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a> <a id="a1" name="a1"></a><a class="code hl_variable" href="qlib__sample__fw_8c.html#adeeda75aff946faf7190f6639d0646f2">rKeys_L</a> = {<a id="a2" name="a2"></a><a class="code hl_define" href="qlib__sample_8h.html#abef9b454c8286ea8d7f6543952aed498">QLIB_SAMPLE_RESTRICTED_K_0</a>,</div>
-<div class="line">                                    <a id="a3" name="a3"></a><a class="code hl_define" href="qlib__sample_8h.html#a197289afc381b53f6438d8bf6b521279">QLIB_SAMPLE_RESTRICTED_K_1</a>,</div>
-<div class="line">                                    <a id="a4" name="a4"></a><a class="code hl_define" href="qlib__sample_8h.html#a276b5f4a3183f615a6bc38d6274df653">QLIB_SAMPLE_RESTRICTED_K_2</a>,</div>
-<div class="line">                                    <a id="a5" name="a5"></a><a class="code hl_define" href="qlib__sample_8h.html#a22b1f73e464719d07a7dac742688f82c">QLIB_SAMPLE_RESTRICTED_K_3</a>,</div>
-<div class="line">                                    <a id="a6" name="a6"></a><a class="code hl_define" href="qlib__sample_8h.html#a93e7b789474e4bf5c144464c1db03439">QLIB_SAMPLE_RESTRICTED_K_4</a>,</div>
-<div class="line">                                    <a id="a7" name="a7"></a><a class="code hl_define" href="qlib__sample_8h.html#ad7fac060966c25b581e267a2da9ca7ac">QLIB_SAMPLE_RESTRICTED_K_5</a>,</div>
-<div class="line">                                    <a id="a8" name="a8"></a><a class="code hl_define" href="qlib__sample_8h.html#a13ce15d6b2797f7cb22ff9f2166d0f58">QLIB_SAMPLE_RESTRICTED_K_6</a>,</div>
-<div class="line">                                    <a id="a9" name="a9"></a><a class="code hl_define" href="qlib__sample_8h.html#a2cc838514da84eec785754278a945cec">QLIB_SAMPLE_RESTRICTED_K_7</a>,</div>
-<div class="line">                                    <a id="a10" name="a10"></a><a class="code hl_define" href="qlib__sample_8h.html#adee62778f549e1f765c0374b64ea3845">QLIB_SAMPLE_VAULT_RESTRICTED</a>};</div>
-<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a> <a id="a11" name="a11"></a><a class="code hl_variable" href="qlib__sample__fw_8c.html#aebacff2b978fbb97aaa7bc7b11a536a1">fKeys_L</a> = {<a id="a12" name="a12"></a><a class="code hl_define" href="qlib__sample_8h.html#ad161d4903f79d5a151e5a141e18a0923">QLIB_SAMPLE_FULL_ACCESS_K_0</a>,</div>
-<div class="line">                                    <a id="a13" name="a13"></a><a class="code hl_define" href="qlib__sample_8h.html#a43ff3b919ec50c108cb3a01929222d73">QLIB_SAMPLE_FULL_ACCESS_K_1</a>,</div>
-<div class="line">                                    <a id="a14" name="a14"></a><a class="code hl_define" href="qlib__sample_8h.html#aa1d1b5cb765de2998a42a73d45d638e9">QLIB_SAMPLE_FULL_ACCESS_K_2</a>,</div>
-<div class="line">                                    <a id="a15" name="a15"></a><a class="code hl_define" href="qlib__sample_8h.html#a8fcadd04b5d98500d2a616d0e1ea74e0">QLIB_SAMPLE_FULL_ACCESS_K_3</a>,</div>
-<div class="line">                                    <a id="a16" name="a16"></a><a class="code hl_define" href="qlib__sample_8h.html#ad38e764f01beadee43dd66197e81db99">QLIB_SAMPLE_FULL_ACCESS_K_4</a>,</div>
-<div class="line">                                    <a id="a17" name="a17"></a><a class="code hl_define" href="qlib__sample_8h.html#aa4e05323f4ca71b294674135be982690">QLIB_SAMPLE_FULL_ACCESS_K_5</a>,</div>
-<div class="line">                                    <a id="a18" name="a18"></a><a class="code hl_define" href="qlib__sample_8h.html#ac196c4fc662a7cd6d635d1d645e71e92">QLIB_SAMPLE_FULL_ACCESS_K_6</a>,</div>
-<div class="line">                                    <a id="a19" name="a19"></a><a class="code hl_define" href="qlib__sample_8h.html#afc1516bedf0a2756917ed2820e83f5b2">QLIB_SAMPLE_FULL_ACCESS_K_7</a>,</div>
-<div class="line">                                    <a id="a20" name="a20"></a><a class="code hl_define" href="qlib__sample_8h.html#a44a2bed8fe8c09bdc952e8c5337bd497">QLIB_SAMPLE_VAULT_FULL_ACCESS</a>};</div>
+<div class="line"><span class="comment">/*-----------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><span class="comment">                                                   LOCAL VARIABLES</span></div>
+<div class="line"><span class="comment">-----------------------------------------------------------------------------------------------------------*/</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifdef W77Q_KDF_KD1</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> uint8_t cms_au8_L[] = <a id="a0" name="a0"></a><a class="code hl_define" href="qlib__sample_8h.html#ae430c1b84428a72e4efd64266c4ed0ec">QLIB_SAMPLE_CMS</a>;</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// W77Q_KDF_KD1</span></div>
+<div class="line"><span class="preprocessor">#ifdef QLIB_KDF_DEV_KEYS</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> uint8_t devSecret_au8_L[] = <a id="a1" name="a1"></a><a class="code hl_define" href="qlib__sample_8h.html#a7ead05c81c85326be42288ad22b46343">QLIB_SAMPLE_DEV_SECRET</a>;</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_KDF_DEV_KEYS</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*-----------------------------------------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">                                             INTERFACE FUNCTIONS</span></div>
 <div class="line"><span class="comment">-----------------------------------------------------------------------------------------------------------*/</span></div>
 <div class="line"> </div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a id="a21" name="a21"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#a302cb34c480ef329f0b4461941bd98ad">QLIB_SAMPLE_GetSectionAccessKey</a>(<a id="_a22" name="_a22"></a><a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
-<div class="line">                                              <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>     uid,</div>
+<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a id="a2" name="a2"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#a02fc67da9d04e6e586eb077e052e57da">QLIB_SAMPLE_GetSectionAccessKey</a>(<a id="_a3" name="_a3"></a><a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
+<div class="line">                                              <a class="code hl_typedef" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a>      wid,</div>
 <div class="line">                                              <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType,</div>
 <div class="line">                                              uint32_t        section_u32,</div>
 <div class="line">                                              uint32_t        die_u32,</div>
 <div class="line">                                              <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>           key)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code hl_typedef" href="qlib__types_8h.html#a6ded6bb9d1cb07a3929688e4630dc7a6">CONST_KEY_P_T</a> keyPtr;</div>
-<div class="line">    <a id="a23" name="a23"></a><a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(<a id="a24" name="a24"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#a2d57dfbc3668ee26b20ec3ecc4a1ab20">QLIB_SAMPLE_GetSectionKeyPtr</a>(ctx, uid, keyType, section_u32, die_u32, &amp;keyPtr));</div>
-<div class="line">    (void)memcpy(key, keyPtr, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line">    <a id="a4" name="a4"></a><a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>((keyType == <a id="a5" name="a5"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a>) || (keyType == <a id="a6" name="a6"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a8a689425d26f048d6f7501d5c662e5a0">QLIB_KID__RESTRICTED_ACCESS_SECTION</a>),</div>
+<div class="line">                    QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(section_u32 &lt; <a id="a7" name="a7"></a><a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(key != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(ctx != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(die_u32 &lt; <a id="a8" name="a8"></a><a class="code hl_function" href="qlib_8h.html#a9775e1bf9bc637cf69c38bf22e86cb56">QLIB_GET_NUM_OF_DIES</a>(ctx), QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(wid != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line"><span class="preprocessor">#ifdef QLIB_KDF_DEV_KEYS</span></div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(QLIB_UTILS_CMKDF_KeyDerive(devSecret_au8_L,</div>
+<div class="line">                                               (uint8_t*)wid,</div>
+<div class="line">                                               keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a> ? QLIB_UTILS_CMKDF_LABEL_FK</div>
+<div class="line">                                                                                        : QLIB_UTILS_CMKDF_LABEL_RK,</div>
+<div class="line">                                               (<a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a> * die_u32) + section_u32,</div>
+<div class="line">                                               <a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a> * <a class="code hl_function" href="qlib_8h.html#a9775e1bf9bc637cf69c38bf22e86cb56">QLIB_GET_NUM_OF_DIES</a>(ctx),</div>
+<div class="line">                                               (uint8_t*)key,</div>
+<div class="line">                                               <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>)) == 0,</div>
+<div class="line">                    QLIB_STATUS__COMMAND_FAIL);</div>
+<div class="line"><span class="preprocessor">#else</span></div>
+<div class="line">    {</div>
+<div class="line">        <span class="keyword">static</span> <span class="keyword">const</span> <a id="a9" name="a9"></a><a class="code hl_typedef" href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a> rKeys = {<a id="a10" name="a10"></a><a class="code hl_define" href="qlib__sample_8h.html#abef9b454c8286ea8d7f6543952aed498">QLIB_SAMPLE_RESTRICTED_K_0</a>,</div>
+<div class="line">                                          <a id="a11" name="a11"></a><a class="code hl_define" href="qlib__sample_8h.html#a197289afc381b53f6438d8bf6b521279">QLIB_SAMPLE_RESTRICTED_K_1</a>,</div>
+<div class="line">                                          <a id="a12" name="a12"></a><a class="code hl_define" href="qlib__sample_8h.html#a276b5f4a3183f615a6bc38d6274df653">QLIB_SAMPLE_RESTRICTED_K_2</a>,</div>
+<div class="line">                                          <a id="a13" name="a13"></a><a class="code hl_define" href="qlib__sample_8h.html#a22b1f73e464719d07a7dac742688f82c">QLIB_SAMPLE_RESTRICTED_K_3</a>,</div>
+<div class="line">                                          <a id="a14" name="a14"></a><a class="code hl_define" href="qlib__sample_8h.html#a93e7b789474e4bf5c144464c1db03439">QLIB_SAMPLE_RESTRICTED_K_4</a>,</div>
+<div class="line">                                          <a id="a15" name="a15"></a><a class="code hl_define" href="qlib__sample_8h.html#ad7fac060966c25b581e267a2da9ca7ac">QLIB_SAMPLE_RESTRICTED_K_5</a>,</div>
+<div class="line">                                          <a id="a16" name="a16"></a><a class="code hl_define" href="qlib__sample_8h.html#a13ce15d6b2797f7cb22ff9f2166d0f58">QLIB_SAMPLE_RESTRICTED_K_6</a>,</div>
+<div class="line">                                          <a id="a17" name="a17"></a><a class="code hl_define" href="qlib__sample_8h.html#a2cc838514da84eec785754278a945cec">QLIB_SAMPLE_RESTRICTED_K_7</a>,</div>
+<div class="line">                                          <a id="a18" name="a18"></a><a class="code hl_define" href="qlib__sample_8h.html#adee62778f549e1f765c0374b64ea3845">QLIB_SAMPLE_VAULT_RESTRICTED</a>};</div>
+<div class="line">        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a> fKeys = {<a id="a19" name="a19"></a><a class="code hl_define" href="qlib__sample_8h.html#ad161d4903f79d5a151e5a141e18a0923">QLIB_SAMPLE_FULL_ACCESS_K_0</a>,</div>
+<div class="line">                                          <a id="a20" name="a20"></a><a class="code hl_define" href="qlib__sample_8h.html#a43ff3b919ec50c108cb3a01929222d73">QLIB_SAMPLE_FULL_ACCESS_K_1</a>,</div>
+<div class="line">                                          <a id="a21" name="a21"></a><a class="code hl_define" href="qlib__sample_8h.html#aa1d1b5cb765de2998a42a73d45d638e9">QLIB_SAMPLE_FULL_ACCESS_K_2</a>,</div>
+<div class="line">                                          <a id="a22" name="a22"></a><a class="code hl_define" href="qlib__sample_8h.html#a8fcadd04b5d98500d2a616d0e1ea74e0">QLIB_SAMPLE_FULL_ACCESS_K_3</a>,</div>
+<div class="line">                                          <a id="a23" name="a23"></a><a class="code hl_define" href="qlib__sample_8h.html#ad38e764f01beadee43dd66197e81db99">QLIB_SAMPLE_FULL_ACCESS_K_4</a>,</div>
+<div class="line">                                          <a id="a24" name="a24"></a><a class="code hl_define" href="qlib__sample_8h.html#aa4e05323f4ca71b294674135be982690">QLIB_SAMPLE_FULL_ACCESS_K_5</a>,</div>
+<div class="line">                                          <a id="a25" name="a25"></a><a class="code hl_define" href="qlib__sample_8h.html#ac196c4fc662a7cd6d635d1d645e71e92">QLIB_SAMPLE_FULL_ACCESS_K_6</a>,</div>
+<div class="line">                                          <a id="a26" name="a26"></a><a class="code hl_define" href="qlib__sample_8h.html#afc1516bedf0a2756917ed2820e83f5b2">QLIB_SAMPLE_FULL_ACCESS_K_7</a>,</div>
+<div class="line">                                          <a id="a27" name="a27"></a><a class="code hl_define" href="qlib__sample_8h.html#a44a2bed8fe8c09bdc952e8c5337bd497">QLIB_SAMPLE_VAULT_FULL_ACCESS</a>};</div>
+<div class="line"> </div>
+<div class="line">        (void)memcpy(key, keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a> ? fKeys[section_u32] : rKeys[section_u32], <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line">    }</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_KDF_DEV_KEYS</span></div>
 <div class="line">    <span class="keywordflow">return</span> QLIB_STATUS__OK;</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#ifndef QLIB_ONLY_SECURE_STORAGE</span></div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a id="a25" name="a25"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#ac533a44f34038f2a94e67915563ed6b6">QLIB_SAMPLE_GetSectionLmsKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
-<div class="line">                                           <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>     uid,</div>
+<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a id="a28" name="a28"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#adc278b8ecd6f7cd1fa5f494cb370a585">QLIB_SAMPLE_GetSectionLmsKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
+<div class="line">                                           <a class="code hl_typedef" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a>      wid,</div>
 <div class="line">                                           uint32_t        section_u32,</div>
 <div class="line">                                           uint32_t        die_u32,</div>
-<div class="line">                                           <a id="a26" name="a26"></a><a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a>   key)</div>
+<div class="line">                                           <a id="a29" name="a29"></a><a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a>   key)</div>
 <div class="line">{</div>
 <div class="line">    (void)ctx;</div>
-<div class="line">    (void)uid;</div>
+<div class="line">    (void)wid;</div>
 <div class="line">    (void)die_u32;</div>
-<div class="line">    <a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a> keys[<a id="a27" name="a27"></a><a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>] = {<a id="a28" name="a28"></a><a class="code hl_define" href="qlib__sample_8h.html#ae3b500e4f0f85a1cfc99965982b4f8d4">QLIB_SAMPLE_LMS_K_0</a>,</div>
-<div class="line">                                                <a id="a29" name="a29"></a><a class="code hl_define" href="qlib__sample_8h.html#a6670ea052e6c4a3d7bcb5a57d6501e26">QLIB_SAMPLE_LMS_K_1</a>,</div>
-<div class="line">                                                <a id="a30" name="a30"></a><a class="code hl_define" href="qlib__sample_8h.html#a5e1beef16f1f9e9308f8f7fd46d697e5">QLIB_SAMPLE_LMS_K_2</a>,</div>
-<div class="line">                                                <a id="a31" name="a31"></a><a class="code hl_define" href="qlib__sample_8h.html#a4e5d100c9b712e409db019405daf4fad">QLIB_SAMPLE_LMS_K_3</a>,</div>
-<div class="line">                                                <a id="a32" name="a32"></a><a class="code hl_define" href="qlib__sample_8h.html#a9d22a40422a0a747e7f139fb47e31c4d">QLIB_SAMPLE_LMS_K_4</a>,</div>
-<div class="line">                                                <a id="a33" name="a33"></a><a class="code hl_define" href="qlib__sample_8h.html#a09d6bd4d3c51dfd0f87e4fa2d26112a9">QLIB_SAMPLE_LMS_K_5</a>,</div>
-<div class="line">                                                <a id="a34" name="a34"></a><a class="code hl_define" href="qlib__sample_8h.html#a51821a28c045dc304659f917d806de4f">QLIB_SAMPLE_LMS_K_6</a>,</div>
-<div class="line">                                                <a id="a35" name="a35"></a><a class="code hl_define" href="qlib__sample_8h.html#a9876b064036c6c3571394f33964ca1dc">QLIB_SAMPLE_LMS_K_7</a>,</div>
-<div class="line">                                                <a id="a36" name="a36"></a><a class="code hl_define" href="qlib__sample_8h.html#a05b9fd49e8dea6ecb9bd8761485c433d">QLIB_SAMPLE_LMS_K_8</a>};</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a> keys[<a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>] = {<a id="a30" name="a30"></a><a class="code hl_define" href="qlib__sample_8h.html#ae3b500e4f0f85a1cfc99965982b4f8d4">QLIB_SAMPLE_LMS_K_0</a>,</div>
+<div class="line">                                                             <a id="a31" name="a31"></a><a class="code hl_define" href="qlib__sample_8h.html#a6670ea052e6c4a3d7bcb5a57d6501e26">QLIB_SAMPLE_LMS_K_1</a>,</div>
+<div class="line">                                                             <a id="a32" name="a32"></a><a class="code hl_define" href="qlib__sample_8h.html#a5e1beef16f1f9e9308f8f7fd46d697e5">QLIB_SAMPLE_LMS_K_2</a>,</div>
+<div class="line">                                                             <a id="a33" name="a33"></a><a class="code hl_define" href="qlib__sample_8h.html#a4e5d100c9b712e409db019405daf4fad">QLIB_SAMPLE_LMS_K_3</a>,</div>
+<div class="line">                                                             <a id="a34" name="a34"></a><a class="code hl_define" href="qlib__sample_8h.html#a9d22a40422a0a747e7f139fb47e31c4d">QLIB_SAMPLE_LMS_K_4</a>,</div>
+<div class="line">                                                             <a id="a35" name="a35"></a><a class="code hl_define" href="qlib__sample_8h.html#a09d6bd4d3c51dfd0f87e4fa2d26112a9">QLIB_SAMPLE_LMS_K_5</a>,</div>
+<div class="line">                                                             <a id="a36" name="a36"></a><a class="code hl_define" href="qlib__sample_8h.html#a51821a28c045dc304659f917d806de4f">QLIB_SAMPLE_LMS_K_6</a>,</div>
+<div class="line">                                                             <a id="a37" name="a37"></a><a class="code hl_define" href="qlib__sample_8h.html#a9876b064036c6c3571394f33964ca1dc">QLIB_SAMPLE_LMS_K_7</a>,</div>
+<div class="line">                                                             <a id="a38" name="a38"></a><a class="code hl_define" href="qlib__sample_8h.html#a05b9fd49e8dea6ecb9bd8761485c433d">QLIB_SAMPLE_LMS_K_8</a>};</div>
 <div class="line"> </div>
-<div class="line">    <a id="a37" name="a37"></a><a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(section_u32 &lt; <a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(section_u32 &lt; <a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>, QLIB_STATUS__INVALID_PARAMETER);</div>
 <div class="line"> </div>
 <div class="line">    (void)memcpy(key, keys[section_u32], <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a>));</div>
 <div class="line"> </div>
@@ -150,59 +183,67 @@ $(function() {
 <div class="line">}</div>
 <div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_ONLY_SECURE_STORAGE</span></div>
 <div class="line"> </div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#a2d57dfbc3668ee26b20ec3ecc4a1ab20">QLIB_SAMPLE_GetSectionKeyPtr</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
-<div class="line">                                           <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>     uid,</div>
-<div class="line">                                           <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType,</div>
-<div class="line">                                           uint32_t        section_u32,</div>
-<div class="line">                                           uint32_t        die_u32,</div>
-<div class="line">                                           <a class="code hl_typedef" href="qlib__types_8h.html#a6ded6bb9d1cb07a3929688e4630dc7a6">CONST_KEY_P_T</a>*  key)</div>
-<div class="line">{</div>
-<div class="line">    (void)ctx;</div>
-<div class="line">    (void)uid;</div>
-<div class="line">    (void)die_u32;</div>
-<div class="line"> </div>
-<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>((keyType == <a id="a38" name="a38"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a>) || (keyType == <a id="a39" name="a39"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a8a689425d26f048d6f7501d5c662e5a0">QLIB_KID__RESTRICTED_ACCESS_SECTION</a>),</div>
-<div class="line">                    QLIB_STATUS__INVALID_PARAMETER);</div>
-<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(section_u32 &lt; <a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>, QLIB_STATUS__INVALID_PARAMETER);</div>
-<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(key != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a>)</div>
-<div class="line">    {</div>
-<div class="line">        *key = <a class="code hl_variable" href="qlib__sample__fw_8c.html#aebacff2b978fbb97aaa7bc7b11a536a1">fKeys_L</a>[section_u32];</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span></div>
-<div class="line">    {</div>
-<div class="line">        *key = <a class="code hl_variable" href="qlib__sample__fw_8c.html#adeeda75aff946faf7190f6639d0646f2">rKeys_L</a>[section_u32];</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> QLIB_STATUS__OK;</div>
-<div class="line">}</div>
-<div class="line"> </div>
 <div class="line"><span class="preprocessor">#ifndef QLIB_ONLY_SECURE_STORAGE</span></div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a id="a40" name="a40"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#a78742d40a8443c10bcbf8131c2b87529">QLIB_SAMPLE_GetDeviceKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx, <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> deviceKey)</div>
+<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a id="a39" name="a39"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#a485311221bd7777de85bca180f8056cc">QLIB_SAMPLE_GetDeviceKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx, <a class="code hl_typedef" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a> wid, <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> deviceKey)</div>
 <div class="line">{</div>
-<div class="line">    (void)uid;</div>
-<div class="line">    <span class="keywordflow">if</span> (keyType == <a id="a41" name="a41"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3adf3e73eb7232c1b766376c7809598fc5">QLIB_KID__DEVICE_KEY_PRE_PROVISIONING</a>)</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(ctx != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(wid != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(deviceKey != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> (keyType == <a id="a40" name="a40"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3adf3e73eb7232c1b766376c7809598fc5">QLIB_KID__DEVICE_KEY_PRE_PROVISIONING</a>)</div>
 <div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> (<a id="a42" name="a42"></a><a class="code hl_function" href="qlib_8h.html#ade9cabd98ae02258bb24fba7909e33e6">QLIB_FeatureSupported</a>(ctx, <a id="a43" name="a43"></a><a class="code hl_define" href="qlib__types_8h.html#ac2de987c1fd70859880b4ac2b28505ba">W77Q_FEATURE_PRE_PROV_MASTER_KEY</a>) != (bool)<span class="keyword">false</span>)</div>
+<div class="line">        <span class="keywordflow">if</span> (<a id="a41" name="a41"></a><a class="code hl_function" href="qlib_8h.html#ade9cabd98ae02258bb24fba7909e33e6">QLIB_FeatureSupported</a>(ctx, <a id="a42" name="a42"></a><a class="code hl_define" href="qlib__types_8h.html#ac2de987c1fd70859880b4ac2b28505ba">W77Q_FEATURE_PRE_PROV_MASTER_KEY</a>) != (<span class="keywordtype">bool</span>)<span class="keyword">false</span>)</div>
 <div class="line">        {</div>
-<div class="line">            <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a id="a44" name="a44"></a><a class="code hl_define" href="qlib__sample_8h.html#ad1714aba578d24fce8669a86b146dd80">QLIB_SAMPLE_KD1</a>;</div>
+<div class="line"><span class="preprocessor">#ifdef W77Q_KDF_KD1</span></div>
+<div class="line">            <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(QLIB_UTILS_CMKDF_KeyDerive(cms_au8_L,</div>
+<div class="line">                                                       (uint8_t*)wid,</div>
+<div class="line">                                                       QLIB_UTILS_CMKDF_LABEL_KD1,</div>
+<div class="line">                                                       0u,</div>
+<div class="line">                                                       1u,</div>
+<div class="line">                                                       (uint8_t*)deviceKey,</div>
+<div class="line">                                                       <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>)) == 0,</div>
+<div class="line">                            QLIB_STATUS__COMMAND_FAIL);</div>
+<div class="line"><span class="preprocessor">#else</span></div>
+<div class="line">            <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a id="a43" name="a43"></a><a class="code hl_define" href="qlib__sample_8h.html#ad1714aba578d24fce8669a86b146dd80">QLIB_SAMPLE_KD1</a>;</div>
 <div class="line">            (void)memcpy(deviceKey, key, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// W77Q_KDF_KD1</span></div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">else</span></div>
 <div class="line">        {</div>
 <div class="line">            (void)memset(deviceKey, 0u, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (keyType == <a id="a45" name="a45"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3acbd596339e8c4509781495e53101b060">QLIB_KID__DEVICE_MASTER</a>)</div>
+<div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (keyType == <a id="a44" name="a44"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3acbd596339e8c4509781495e53101b060">QLIB_KID__DEVICE_MASTER</a>)</div>
 <div class="line">    {</div>
-<div class="line">        <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a id="a46" name="a46"></a><a class="code hl_define" href="qlib__sample_8h.html#aeecc9803b0db817147f0c2db3b579af0">QLIB_SAMPLE_KD</a>;</div>
+<div class="line"><span class="preprocessor">#ifdef QLIB_KDF_DEV_KEYS</span></div>
+<div class="line">        <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(QLIB_UTILS_CMKDF_KeyDerive(devSecret_au8_L,</div>
+<div class="line">                                                   (uint8_t*)wid,</div>
+<div class="line">                                                   QLIB_UTILS_CMKDF_LABEL_KD,</div>
+<div class="line">                                                   0u,</div>
+<div class="line">                                                   1u,</div>
+<div class="line">                                                   (uint8_t*)deviceKey,</div>
+<div class="line">                                                   <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>)) == 0,</div>
+<div class="line">                        QLIB_STATUS__COMMAND_FAIL);</div>
+<div class="line"><span class="preprocessor">#else</span></div>
+<div class="line">        <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a id="a45" name="a45"></a><a class="code hl_define" href="qlib__sample_8h.html#aeecc9803b0db817147f0c2db3b579af0">QLIB_SAMPLE_KD</a>;</div>
 <div class="line">        (void)memcpy(deviceKey, key, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_KDF_DEV_KEYS</span></div>
 <div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (keyType == <a id="a47" name="a47"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a2a92f4c52bbe94c1858198e34c4486fd">QLIB_KID__DEVICE_SECRET</a>)</div>
+<div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (keyType == <a id="a46" name="a46"></a><a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a2a92f4c52bbe94c1858198e34c4486fd">QLIB_KID__DEVICE_SECRET</a>)</div>
 <div class="line">    {</div>
-<div class="line">        <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a id="a48" name="a48"></a><a class="code hl_define" href="qlib__sample_8h.html#ab8933dd8c9aff042e39d3e9e52a966db">QLIB_SAMPLE_KDS</a>;</div>
+<div class="line"><span class="preprocessor">#ifdef QLIB_KDF_DEV_KEYS</span></div>
+<div class="line">        <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(QLIB_UTILS_CMKDF_KeyDerive(devSecret_au8_L,</div>
+<div class="line">                                                   (uint8_t*)wid,</div>
+<div class="line">                                                   QLIB_UTILS_CMKDF_LABEL_KS,</div>
+<div class="line">                                                   0u,</div>
+<div class="line">                                                   1u,</div>
+<div class="line">                                                   (uint8_t*)deviceKey,</div>
+<div class="line">                                                   <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>)) == 0,</div>
+<div class="line">                        QLIB_STATUS__COMMAND_FAIL);</div>
+<div class="line"><span class="preprocessor">#else</span></div>
+<div class="line">        <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a id="a47" name="a47"></a><a class="code hl_define" href="qlib__sample_8h.html#ab8933dd8c9aff042e39d3e9e52a966db">QLIB_SAMPLE_KDS</a>;</div>
 <div class="line">        (void)memcpy(deviceKey, key, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_KDF_DEV_KEYS</span></div>
 <div class="line">    }</div>
 <div class="line">    <span class="keywordflow">else</span></div>
 <div class="line">    {</div>
@@ -211,23 +252,23 @@ $(function() {
 <div class="line">    <span class="keywordflow">return</span> QLIB_STATUS__OK;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a id="a49" name="a49"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#afc63b2b27f2adf9387e7823edc372bc9">QLIB_SAMPLE_GetSecureUID</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx, <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, TYPE_128BIT suid)</div>
+<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a id="a48" name="a48"></a><a class="code hl_function" href="qlib__sample__fw_8c.html#acbfbc01c621fedc8f3fb79197edcc53f">QLIB_SAMPLE_GetSecureUID</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx, <a class="code hl_typedef" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a> wid, TYPE_128BIT suid)</div>
 <div class="line">{</div>
 <div class="line">    (void)ctx;</div>
-<div class="line">    (void)uid;</div>
-<div class="line">    TYPE_128BIT sampleSuid = <a id="a50" name="a50"></a><a class="code hl_define" href="qlib__sample_8h.html#ad25f7b911b4b696c85225b5e77a90a98">QLIB_SAMPLE_SUID</a>;</div>
+<div class="line">    (void)wid;</div>
+<div class="line">    TYPE_128BIT sampleSuid = <a id="a49" name="a49"></a><a class="code hl_define" href="qlib__sample_8h.html#ad25f7b911b4b696c85225b5e77a90a98">QLIB_SAMPLE_SUID</a>;</div>
 <div class="line"> </div>
 <div class="line">    (void)memcpy(suid, sampleSuid, <span class="keyword">sizeof</span>(TYPE_128BIT));</div>
 <div class="line">    <span class="keywordflow">return</span> QLIB_STATUS__OK;</div>
 <div class="line">}</div>
 <div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_ONLY_SECURE_STORAGE</span></div>
+<div class="ttc" id="aqlib_8h_html_a9775e1bf9bc637cf69c38bf22e86cb56"><div class="ttname"><a href="qlib_8h.html#a9775e1bf9bc637cf69c38bf22e86cb56">QLIB_GET_NUM_OF_DIES</a></div><div class="ttdeci">QLIB_API uint8_t QLIB_GET_NUM_OF_DIES(QLIB_CONTEXT_T *qlibContext)</div><div class="ttdoc">This function returns the number of dies QLIB detected.</div></div>
 <div class="ttc" id="aqlib_8h_html_ade9cabd98ae02258bb24fba7909e33e6"><div class="ttname"><a href="qlib_8h.html#ade9cabd98ae02258bb24fba7909e33e6">QLIB_FeatureSupported</a></div><div class="ttdeci">QLIB_API bool QLIB_FeatureSupported(QLIB_CONTEXT_T *qlibContext, uint8_t feature_u8)</div><div class="ttdoc">This function checks whether the feature is supported by flash.</div></div>
 <div class="ttc" id="aqlib__errors_8h_html_a0d911faeb1829a5cca3fee886e0de222"><div class="ttname"><a href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a></div><div class="ttdeci">#define QLIB_ASSERT_RET(cond, err)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__errors_8h_source.html#l00100">qlib_errors.h:100</a></div></div>
 <div class="ttc" id="aqlib__errors_8h_html_a1ea3e84a713396a86969e1c9988145ba"><div class="ttname"><a href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a></div><div class="ttdeci">QLIB_STATUS_T</div><div class="ttdef"><b>Definition:</b> <a href="qlib__errors_8h_source.html#l00068">qlib_errors.h:69</a></div></div>
-<div class="ttc" id="aqlib__errors_8h_html_a71d6b9d11c1380f771954756bc12312b"><div class="ttname"><a href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a></div><div class="ttdeci">#define QLIB_STATUS_RET_CHECK(func)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__errors_8h_source.html#l00079">qlib_errors.h:79</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html"><div class="ttname"><a href="qlib__sample_8h.html">qlib_sample.h</a></div><div class="ttdoc">This file contains sample types definitions and checks.</div></div>
-<div class="ttc" id="aqlib__sample_8h_html_a05b9fd49e8dea6ecb9bd8761485c433d"><div class="ttname"><a href="qlib__sample_8h.html#a05b9fd49e8dea6ecb9bd8761485c433d">QLIB_SAMPLE_LMS_K_8</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_8</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00222">qlib_sample.h:222</a></div></div>
-<div class="ttc" id="aqlib__sample_8h_html_a09d6bd4d3c51dfd0f87e4fa2d26112a9"><div class="ttname"><a href="qlib__sample_8h.html#a09d6bd4d3c51dfd0f87e4fa2d26112a9">QLIB_SAMPLE_LMS_K_5</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_5</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00210">qlib_sample.h:210</a></div></div>
+<div class="ttc" id="aqlib__sample_8h_html_a05b9fd49e8dea6ecb9bd8761485c433d"><div class="ttname"><a href="qlib__sample_8h.html#a05b9fd49e8dea6ecb9bd8761485c433d">QLIB_SAMPLE_LMS_K_8</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_8</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00224">qlib_sample.h:224</a></div></div>
+<div class="ttc" id="aqlib__sample_8h_html_a09d6bd4d3c51dfd0f87e4fa2d26112a9"><div class="ttname"><a href="qlib__sample_8h.html#a09d6bd4d3c51dfd0f87e4fa2d26112a9">QLIB_SAMPLE_LMS_K_5</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_5</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00212">qlib_sample.h:212</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a13ce15d6b2797f7cb22ff9f2166d0f58"><div class="ttname"><a href="qlib__sample_8h.html#a13ce15d6b2797f7cb22ff9f2166d0f58">QLIB_SAMPLE_RESTRICTED_K_6</a></div><div class="ttdeci">#define QLIB_SAMPLE_RESTRICTED_K_6</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00164">qlib_sample.h:164</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a197289afc381b53f6438d8bf6b521279"><div class="ttname"><a href="qlib__sample_8h.html#a197289afc381b53f6438d8bf6b521279">QLIB_SAMPLE_RESTRICTED_K_1</a></div><div class="ttdeci">#define QLIB_SAMPLE_RESTRICTED_K_1</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00134">qlib_sample.h:134</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a22b1f73e464719d07a7dac742688f82c"><div class="ttname"><a href="qlib__sample_8h.html#a22b1f73e464719d07a7dac742688f82c">QLIB_SAMPLE_RESTRICTED_K_3</a></div><div class="ttdeci">#define QLIB_SAMPLE_RESTRICTED_K_3</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00146">qlib_sample.h:146</a></div></div>
@@ -235,14 +276,15 @@ $(function() {
 <div class="ttc" id="aqlib__sample_8h_html_a2cc838514da84eec785754278a945cec"><div class="ttname"><a href="qlib__sample_8h.html#a2cc838514da84eec785754278a945cec">QLIB_SAMPLE_RESTRICTED_K_7</a></div><div class="ttdeci">#define QLIB_SAMPLE_RESTRICTED_K_7</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00170">qlib_sample.h:170</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a43ff3b919ec50c108cb3a01929222d73"><div class="ttname"><a href="qlib__sample_8h.html#a43ff3b919ec50c108cb3a01929222d73">QLIB_SAMPLE_FULL_ACCESS_K_1</a></div><div class="ttdeci">#define QLIB_SAMPLE_FULL_ACCESS_K_1</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00086">qlib_sample.h:86</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a44a2bed8fe8c09bdc952e8c5337bd497"><div class="ttname"><a href="qlib__sample_8h.html#a44a2bed8fe8c09bdc952e8c5337bd497">QLIB_SAMPLE_VAULT_FULL_ACCESS</a></div><div class="ttdeci">#define QLIB_SAMPLE_VAULT_FULL_ACCESS</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00176">qlib_sample.h:176</a></div></div>
-<div class="ttc" id="aqlib__sample_8h_html_a4e5d100c9b712e409db019405daf4fad"><div class="ttname"><a href="qlib__sample_8h.html#a4e5d100c9b712e409db019405daf4fad">QLIB_SAMPLE_LMS_K_3</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_3</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00202">qlib_sample.h:202</a></div></div>
-<div class="ttc" id="aqlib__sample_8h_html_a51821a28c045dc304659f917d806de4f"><div class="ttname"><a href="qlib__sample_8h.html#a51821a28c045dc304659f917d806de4f">QLIB_SAMPLE_LMS_K_6</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_6</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00214">qlib_sample.h:214</a></div></div>
+<div class="ttc" id="aqlib__sample_8h_html_a4e5d100c9b712e409db019405daf4fad"><div class="ttname"><a href="qlib__sample_8h.html#a4e5d100c9b712e409db019405daf4fad">QLIB_SAMPLE_LMS_K_3</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_3</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00204">qlib_sample.h:204</a></div></div>
+<div class="ttc" id="aqlib__sample_8h_html_a51821a28c045dc304659f917d806de4f"><div class="ttname"><a href="qlib__sample_8h.html#a51821a28c045dc304659f917d806de4f">QLIB_SAMPLE_LMS_K_6</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_6</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00216">qlib_sample.h:216</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a5e1beef16f1f9e9308f8f7fd46d697e5"><div class="ttname"><a href="qlib__sample_8h.html#a5e1beef16f1f9e9308f8f7fd46d697e5">QLIB_SAMPLE_LMS_K_2</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_2</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00198">qlib_sample.h:198</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a6670ea052e6c4a3d7bcb5a57d6501e26"><div class="ttname"><a href="qlib__sample_8h.html#a6670ea052e6c4a3d7bcb5a57d6501e26">QLIB_SAMPLE_LMS_K_1</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_1</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00194">qlib_sample.h:194</a></div></div>
+<div class="ttc" id="aqlib__sample_8h_html_a7ead05c81c85326be42288ad22b46343"><div class="ttname"><a href="qlib__sample_8h.html#a7ead05c81c85326be42288ad22b46343">QLIB_SAMPLE_DEV_SECRET</a></div><div class="ttdeci">#define QLIB_SAMPLE_DEV_SECRET</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00239">qlib_sample.h:239</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a8fcadd04b5d98500d2a616d0e1ea74e0"><div class="ttname"><a href="qlib__sample_8h.html#a8fcadd04b5d98500d2a616d0e1ea74e0">QLIB_SAMPLE_FULL_ACCESS_K_3</a></div><div class="ttdeci">#define QLIB_SAMPLE_FULL_ACCESS_K_3</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00098">qlib_sample.h:98</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_a93e7b789474e4bf5c144464c1db03439"><div class="ttname"><a href="qlib__sample_8h.html#a93e7b789474e4bf5c144464c1db03439">QLIB_SAMPLE_RESTRICTED_K_4</a></div><div class="ttdeci">#define QLIB_SAMPLE_RESTRICTED_K_4</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00152">qlib_sample.h:152</a></div></div>
-<div class="ttc" id="aqlib__sample_8h_html_a9876b064036c6c3571394f33964ca1dc"><div class="ttname"><a href="qlib__sample_8h.html#a9876b064036c6c3571394f33964ca1dc">QLIB_SAMPLE_LMS_K_7</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_7</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00218">qlib_sample.h:218</a></div></div>
-<div class="ttc" id="aqlib__sample_8h_html_a9d22a40422a0a747e7f139fb47e31c4d"><div class="ttname"><a href="qlib__sample_8h.html#a9d22a40422a0a747e7f139fb47e31c4d">QLIB_SAMPLE_LMS_K_4</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_4</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00206">qlib_sample.h:206</a></div></div>
+<div class="ttc" id="aqlib__sample_8h_html_a9876b064036c6c3571394f33964ca1dc"><div class="ttname"><a href="qlib__sample_8h.html#a9876b064036c6c3571394f33964ca1dc">QLIB_SAMPLE_LMS_K_7</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_7</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00220">qlib_sample.h:220</a></div></div>
+<div class="ttc" id="aqlib__sample_8h_html_a9d22a40422a0a747e7f139fb47e31c4d"><div class="ttname"><a href="qlib__sample_8h.html#a9d22a40422a0a747e7f139fb47e31c4d">QLIB_SAMPLE_LMS_K_4</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_4</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00208">qlib_sample.h:208</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_aa1d1b5cb765de2998a42a73d45d638e9"><div class="ttname"><a href="qlib__sample_8h.html#aa1d1b5cb765de2998a42a73d45d638e9">QLIB_SAMPLE_FULL_ACCESS_K_2</a></div><div class="ttdeci">#define QLIB_SAMPLE_FULL_ACCESS_K_2</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00092">qlib_sample.h:92</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_aa4e05323f4ca71b294674135be982690"><div class="ttname"><a href="qlib__sample_8h.html#aa4e05323f4ca71b294674135be982690">QLIB_SAMPLE_FULL_ACCESS_K_5</a></div><div class="ttdeci">#define QLIB_SAMPLE_FULL_ACCESS_K_5</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00110">qlib_sample.h:110</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_ab8933dd8c9aff042e39d3e9e52a966db"><div class="ttname"><a href="qlib__sample_8h.html#ab8933dd8c9aff042e39d3e9e52a966db">QLIB_SAMPLE_KDS</a></div><div class="ttdeci">#define QLIB_SAMPLE_KDS</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00054">qlib_sample.h:54</a></div></div>
@@ -255,27 +297,24 @@ $(function() {
 <div class="ttc" id="aqlib__sample_8h_html_ad7fac060966c25b581e267a2da9ca7ac"><div class="ttname"><a href="qlib__sample_8h.html#ad7fac060966c25b581e267a2da9ca7ac">QLIB_SAMPLE_RESTRICTED_K_5</a></div><div class="ttdeci">#define QLIB_SAMPLE_RESTRICTED_K_5</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00158">qlib_sample.h:158</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_adee62778f549e1f765c0374b64ea3845"><div class="ttname"><a href="qlib__sample_8h.html#adee62778f549e1f765c0374b64ea3845">QLIB_SAMPLE_VAULT_RESTRICTED</a></div><div class="ttdeci">#define QLIB_SAMPLE_VAULT_RESTRICTED</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00182">qlib_sample.h:182</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_ae3b500e4f0f85a1cfc99965982b4f8d4"><div class="ttname"><a href="qlib__sample_8h.html#ae3b500e4f0f85a1cfc99965982b4f8d4">QLIB_SAMPLE_LMS_K_0</a></div><div class="ttdeci">#define QLIB_SAMPLE_LMS_K_0</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00188">qlib_sample.h:188</a></div></div>
-<div class="ttc" id="aqlib__sample_8h_html_ae3babd55bfdd299e6291ae8f0cd0e60d"><div class="ttname"><a href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a></div><div class="ttdeci">TYPE_128BIT UNIQUE_ID_T</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00227">qlib_sample.h:227</a></div></div>
+<div class="ttc" id="aqlib__sample_8h_html_ae430c1b84428a72e4efd64266c4ed0ec"><div class="ttname"><a href="qlib__sample_8h.html#ae430c1b84428a72e4efd64266c4ed0ec">QLIB_SAMPLE_CMS</a></div><div class="ttdeci">#define QLIB_SAMPLE_CMS</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00231">qlib_sample.h:231</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_aeecc9803b0db817147f0c2db3b579af0"><div class="ttname"><a href="qlib__sample_8h.html#aeecc9803b0db817147f0c2db3b579af0">QLIB_SAMPLE_KD</a></div><div class="ttdeci">#define QLIB_SAMPLE_KD</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00048">qlib_sample.h:48</a></div></div>
 <div class="ttc" id="aqlib__sample_8h_html_afc1516bedf0a2756917ed2820e83f5b2"><div class="ttname"><a href="qlib__sample_8h.html#afc1516bedf0a2756917ed2820e83f5b2">QLIB_SAMPLE_FULL_ACCESS_K_7</a></div><div class="ttdeci">#define QLIB_SAMPLE_FULL_ACCESS_K_7</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample_8h_source.html#l00122">qlib_sample.h:122</a></div></div>
-<div class="ttc" id="aqlib__sample__fw_8c_html_a2d57dfbc3668ee26b20ec3ecc4a1ab20"><div class="ttname"><a href="qlib__sample__fw_8c.html#a2d57dfbc3668ee26b20ec3ecc4a1ab20">QLIB_SAMPLE_GetSectionKeyPtr</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetSectionKeyPtr(QLIB_CONTEXT_T *ctx, UNIQUE_ID_T uid, QLIB_KID_TYPE_T keyType, uint32_t section_u32, uint32_t die_u32, CONST_KEY_P_T *key)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00088">qlib_sample_fw.c:88</a></div></div>
-<div class="ttc" id="aqlib__sample__fw_8c_html_a302cb34c480ef329f0b4461941bd98ad"><div class="ttname"><a href="qlib__sample__fw_8c.html#a302cb34c480ef329f0b4461941bd98ad">QLIB_SAMPLE_GetSectionAccessKey</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetSectionAccessKey(QLIB_CONTEXT_T *ctx, UNIQUE_ID_T uid, QLIB_KID_TYPE_T keyType, uint32_t section_u32, uint32_t die_u32, KEY_T key)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00047">qlib_sample_fw.c:47</a></div></div>
-<div class="ttc" id="aqlib__sample__fw_8c_html_a78742d40a8443c10bcbf8131c2b87529"><div class="ttname"><a href="qlib__sample__fw_8c.html#a78742d40a8443c10bcbf8131c2b87529">QLIB_SAMPLE_GetDeviceKey</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetDeviceKey(QLIB_CONTEXT_T *ctx, UNIQUE_ID_T uid, QLIB_KID_TYPE_T keyType, KEY_T deviceKey)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00117">qlib_sample_fw.c:117</a></div></div>
-<div class="ttc" id="aqlib__sample__fw_8c_html_ac533a44f34038f2a94e67915563ed6b6"><div class="ttname"><a href="qlib__sample__fw_8c.html#ac533a44f34038f2a94e67915563ed6b6">QLIB_SAMPLE_GetSectionLmsKey</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetSectionLmsKey(QLIB_CONTEXT_T *ctx, UNIQUE_ID_T uid, uint32_t section_u32, uint32_t die_u32, LMS_PUB_KEY_T key)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00061">qlib_sample_fw.c:61</a></div></div>
-<div class="ttc" id="aqlib__sample__fw_8c_html_adeeda75aff946faf7190f6639d0646f2"><div class="ttname"><a href="qlib__sample__fw_8c.html#adeeda75aff946faf7190f6639d0646f2">rKeys_L</a></div><div class="ttdeci">static const KEY_ARRAY_T rKeys_L</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00024">qlib_sample_fw.c:24</a></div></div>
-<div class="ttc" id="aqlib__sample__fw_8c_html_aebacff2b978fbb97aaa7bc7b11a536a1"><div class="ttname"><a href="qlib__sample__fw_8c.html#aebacff2b978fbb97aaa7bc7b11a536a1">fKeys_L</a></div><div class="ttdeci">static const KEY_ARRAY_T fKeys_L</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00033">qlib_sample_fw.c:33</a></div></div>
-<div class="ttc" id="aqlib__sample__fw_8c_html_afc63b2b27f2adf9387e7823edc372bc9"><div class="ttname"><a href="qlib__sample__fw_8c.html#afc63b2b27f2adf9387e7823edc372bc9">QLIB_SAMPLE_GetSecureUID</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetSecureUID(QLIB_CONTEXT_T *ctx, UNIQUE_ID_T uid, TYPE_128BIT suid)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00149">qlib_sample_fw.c:149</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a></div><div class="ttdeci">QLIB_KID_TYPE_T</div><div class="ttdoc">Key type.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00810">qlib_types.h:811</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3a2a92f4c52bbe94c1858198e34c4486fd"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a2a92f4c52bbe94c1858198e34c4486fd">QLIB_KID__DEVICE_SECRET</a></div><div class="ttdeci">@ QLIB_KID__DEVICE_SECRET</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00816">qlib_types.h:816</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a></div><div class="ttdeci">@ QLIB_KID__FULL_ACCESS_SECTION</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00813">qlib_types.h:813</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3a8a689425d26f048d6f7501d5c662e5a0"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a8a689425d26f048d6f7501d5c662e5a0">QLIB_KID__RESTRICTED_ACCESS_SECTION</a></div><div class="ttdeci">@ QLIB_KID__RESTRICTED_ACCESS_SECTION</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00812">qlib_types.h:812</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3acbd596339e8c4509781495e53101b060"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3acbd596339e8c4509781495e53101b060">QLIB_KID__DEVICE_MASTER</a></div><div class="ttdeci">@ QLIB_KID__DEVICE_MASTER</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00817">qlib_types.h:817</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3adf3e73eb7232c1b766376c7809598fc5"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3adf3e73eb7232c1b766376c7809598fc5">QLIB_KID__DEVICE_KEY_PRE_PROVISIONING</a></div><div class="ttdeci">@ QLIB_KID__DEVICE_KEY_PRE_PROVISIONING</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00818">qlib_types.h:818</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a46beae988c91335edf7097e5feedba95"><div class="ttname"><a href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a></div><div class="ttdeci">KEY_T KEY_ARRAY_T[QLIB_NUM_OF_SECTIONS]</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00924">qlib_types.h:924</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a6ded6bb9d1cb07a3929688e4630dc7a6"><div class="ttname"><a href="qlib__types_8h.html#a6ded6bb9d1cb07a3929688e4630dc7a6">CONST_KEY_P_T</a></div><div class="ttdeci">const uint32_t * CONST_KEY_P_T</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00925">qlib_types.h:925</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_a950b633a3c041949839f4e2736ab2a07"><div class="ttname"><a href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a></div><div class="ttdeci">TYPE_128BIT KEY_T</div><div class="ttdoc">Keys.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00296">qlib_types.h:296</a></div></div>
+<div class="ttc" id="aqlib__sample__fw_8c_html_a02fc67da9d04e6e586eb077e052e57da"><div class="ttname"><a href="qlib__sample__fw_8c.html#a02fc67da9d04e6e586eb077e052e57da">QLIB_SAMPLE_GetSectionAccessKey</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetSectionAccessKey(QLIB_CONTEXT_T *ctx, QLIB_WID_T wid, QLIB_KID_TYPE_T keyType, uint32_t section_u32, uint32_t die_u32, KEY_T key)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00042">qlib_sample_fw.c:42</a></div></div>
+<div class="ttc" id="aqlib__sample__fw_8c_html_a485311221bd7777de85bca180f8056cc"><div class="ttname"><a href="qlib__sample__fw_8c.html#a485311221bd7777de85bca180f8056cc">QLIB_SAMPLE_GetDeviceKey</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetDeviceKey(QLIB_CONTEXT_T *ctx, QLIB_WID_T wid, QLIB_KID_TYPE_T keyType, KEY_T deviceKey)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00122">qlib_sample_fw.c:122</a></div></div>
+<div class="ttc" id="aqlib__sample__fw_8c_html_acbfbc01c621fedc8f3fb79197edcc53f"><div class="ttname"><a href="qlib__sample__fw_8c.html#acbfbc01c621fedc8f3fb79197edcc53f">QLIB_SAMPLE_GetSecureUID</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetSecureUID(QLIB_CONTEXT_T *ctx, QLIB_WID_T wid, TYPE_128BIT suid)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00190">qlib_sample_fw.c:190</a></div></div>
+<div class="ttc" id="aqlib__sample__fw_8c_html_adc278b8ecd6f7cd1fa5f494cb370a585"><div class="ttname"><a href="qlib__sample__fw_8c.html#adc278b8ecd6f7cd1fa5f494cb370a585">QLIB_SAMPLE_GetSectionLmsKey</a></div><div class="ttdeci">QLIB_STATUS_T QLIB_SAMPLE_GetSectionLmsKey(QLIB_CONTEXT_T *ctx, QLIB_WID_T wid, uint32_t section_u32, uint32_t die_u32, LMS_PUB_KEY_T key)</div><div class="ttdef"><b>Definition:</b> <a href="qlib__sample__fw_8c_source.html#l00094">qlib_sample_fw.c:94</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a></div><div class="ttdeci">QLIB_KID_TYPE_T</div><div class="ttdoc">Key type.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00812">qlib_types.h:813</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3a2a92f4c52bbe94c1858198e34c4486fd"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a2a92f4c52bbe94c1858198e34c4486fd">QLIB_KID__DEVICE_SECRET</a></div><div class="ttdeci">@ QLIB_KID__DEVICE_SECRET</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00818">qlib_types.h:818</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a></div><div class="ttdeci">@ QLIB_KID__FULL_ACCESS_SECTION</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00815">qlib_types.h:815</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3a8a689425d26f048d6f7501d5c662e5a0"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a8a689425d26f048d6f7501d5c662e5a0">QLIB_KID__RESTRICTED_ACCESS_SECTION</a></div><div class="ttdeci">@ QLIB_KID__RESTRICTED_ACCESS_SECTION</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00814">qlib_types.h:814</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3acbd596339e8c4509781495e53101b060"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3acbd596339e8c4509781495e53101b060">QLIB_KID__DEVICE_MASTER</a></div><div class="ttdeci">@ QLIB_KID__DEVICE_MASTER</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00819">qlib_types.h:819</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a0c6cb6d05119d27f1b23f8d2cb3691b3adf3e73eb7232c1b766376c7809598fc5"><div class="ttname"><a href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3adf3e73eb7232c1b766376c7809598fc5">QLIB_KID__DEVICE_KEY_PRE_PROVISIONING</a></div><div class="ttdeci">@ QLIB_KID__DEVICE_KEY_PRE_PROVISIONING</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00820">qlib_types.h:820</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a46beae988c91335edf7097e5feedba95"><div class="ttname"><a href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a></div><div class="ttdeci">KEY_T KEY_ARRAY_T[QLIB_NUM_OF_SECTIONS]</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00926">qlib_types.h:926</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a6d6ecee392baa8275034d0f885616127"><div class="ttname"><a href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a></div><div class="ttdeci">TYPE_64BIT QLIB_WID_T</div><div class="ttdoc">This type contains the value of W77Q/T WID.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00668">qlib_types.h:668</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_a950b633a3c041949839f4e2736ab2a07"><div class="ttname"><a href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a></div><div class="ttdeci">TYPE_128BIT KEY_T</div><div class="ttdoc">Keys.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00298">qlib_types.h:298</a></div></div>
 <div class="ttc" id="aqlib__types_8h_html_a9945a2084b7f584e5e4957a32fff0684"><div class="ttname"><a href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a></div><div class="ttdeci">#define QLIB_NUM_OF_SECTIONS</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00032">qlib_types.h:32</a></div></div>
-<div class="ttc" id="aqlib__types_8h_html_aab4f0c47059326b642167faf4f7d1333"><div class="ttname"><a href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a></div><div class="ttdeci">uint8_t LMS_PUB_KEY_T[QLIB_LMS_PUBLIC_KEY_SIZE(QLIB_LMS_PARAM_M)]</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00543">qlib_types.h:543</a></div></div>
+<div class="ttc" id="aqlib__types_8h_html_aab4f0c47059326b642167faf4f7d1333"><div class="ttname"><a href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a></div><div class="ttdeci">uint8_t LMS_PUB_KEY_T[QLIB_LMS_PUBLIC_KEY_SIZE(QLIB_LMS_PARAM_M)]</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00545">qlib_types.h:545</a></div></div>
 <div class="ttc" id="aqlib__types_8h_html_ac2de987c1fd70859880b4ac2b28505ba"><div class="ttname"><a href="qlib__types_8h.html#ac2de987c1fd70859880b4ac2b28505ba">W77Q_FEATURE_PRE_PROV_MASTER_KEY</a></div><div class="ttdeci">#define W77Q_FEATURE_PRE_PROV_MASTER_KEY</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00186">qlib_types.h:186</a></div></div>
 <div class="ttc" id="aunion_q_l_i_b___c_o_n_t_e_x_t___t_html"><div class="ttname"><a href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a></div><div class="ttdoc">Opaque QLIB context.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__types_8h_source.html#l00072">qlib_types.h:73</a></div></div>
 </div><!-- fragment --><div class="fragment"><div class="line"> </div>
@@ -284,62 +323,95 @@ $(function() {
 <div class="line"><span class="comment">-----------------------------------------------------------------------------------------------------------*/</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="qlib__sample_8h.html">qlib_sample.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#if defined W77Q_KDF_KD1 || defined QLIB_KDF_DEV_KEYS</span></div>
+<div class="line"><span class="preprocessor">#include &quot;qlib_utils_cmkdf_gen_flash_key.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// defined W77Q_KDF_KD1 || defined QLIB_KDF_DEV_KEYS</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a> <a class="code hl_variable" href="qlib__sample__fw_8c.html#adeeda75aff946faf7190f6639d0646f2">rKeys_L</a> = {<a class="code hl_define" href="qlib__sample_8h.html#abef9b454c8286ea8d7f6543952aed498">QLIB_SAMPLE_RESTRICTED_K_0</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a197289afc381b53f6438d8bf6b521279">QLIB_SAMPLE_RESTRICTED_K_1</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a276b5f4a3183f615a6bc38d6274df653">QLIB_SAMPLE_RESTRICTED_K_2</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a22b1f73e464719d07a7dac742688f82c">QLIB_SAMPLE_RESTRICTED_K_3</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a93e7b789474e4bf5c144464c1db03439">QLIB_SAMPLE_RESTRICTED_K_4</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#ad7fac060966c25b581e267a2da9ca7ac">QLIB_SAMPLE_RESTRICTED_K_5</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a13ce15d6b2797f7cb22ff9f2166d0f58">QLIB_SAMPLE_RESTRICTED_K_6</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a2cc838514da84eec785754278a945cec">QLIB_SAMPLE_RESTRICTED_K_7</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#adee62778f549e1f765c0374b64ea3845">QLIB_SAMPLE_VAULT_RESTRICTED</a>};</div>
-<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a> <a class="code hl_variable" href="qlib__sample__fw_8c.html#aebacff2b978fbb97aaa7bc7b11a536a1">fKeys_L</a> = {<a class="code hl_define" href="qlib__sample_8h.html#ad161d4903f79d5a151e5a141e18a0923">QLIB_SAMPLE_FULL_ACCESS_K_0</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a43ff3b919ec50c108cb3a01929222d73">QLIB_SAMPLE_FULL_ACCESS_K_1</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#aa1d1b5cb765de2998a42a73d45d638e9">QLIB_SAMPLE_FULL_ACCESS_K_2</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a8fcadd04b5d98500d2a616d0e1ea74e0">QLIB_SAMPLE_FULL_ACCESS_K_3</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#ad38e764f01beadee43dd66197e81db99">QLIB_SAMPLE_FULL_ACCESS_K_4</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#aa4e05323f4ca71b294674135be982690">QLIB_SAMPLE_FULL_ACCESS_K_5</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#ac196c4fc662a7cd6d635d1d645e71e92">QLIB_SAMPLE_FULL_ACCESS_K_6</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#afc1516bedf0a2756917ed2820e83f5b2">QLIB_SAMPLE_FULL_ACCESS_K_7</a>,</div>
-<div class="line">                                    <a class="code hl_define" href="qlib__sample_8h.html#a44a2bed8fe8c09bdc952e8c5337bd497">QLIB_SAMPLE_VAULT_FULL_ACCESS</a>};</div>
+<div class="line"><span class="comment">/*-----------------------------------------------------------------------------------------------------------</span></div>
+<div class="line"><span class="comment">                                                   LOCAL VARIABLES</span></div>
+<div class="line"><span class="comment">-----------------------------------------------------------------------------------------------------------*/</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifdef W77Q_KDF_KD1</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> uint8_t cms_au8_L[] = <a class="code hl_define" href="qlib__sample_8h.html#ae430c1b84428a72e4efd64266c4ed0ec">QLIB_SAMPLE_CMS</a>;</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// W77Q_KDF_KD1</span></div>
+<div class="line"><span class="preprocessor">#ifdef QLIB_KDF_DEV_KEYS</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> uint8_t devSecret_au8_L[] = <a class="code hl_define" href="qlib__sample_8h.html#a7ead05c81c85326be42288ad22b46343">QLIB_SAMPLE_DEV_SECRET</a>;</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_KDF_DEV_KEYS</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*-----------------------------------------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">                                             INTERFACE FUNCTIONS</span></div>
 <div class="line"><span class="comment">-----------------------------------------------------------------------------------------------------------*/</span></div>
 <div class="line"> </div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#a302cb34c480ef329f0b4461941bd98ad">QLIB_SAMPLE_GetSectionAccessKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
-<div class="line">                                              <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>     uid,</div>
+<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#a02fc67da9d04e6e586eb077e052e57da">QLIB_SAMPLE_GetSectionAccessKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
+<div class="line">                                              <a class="code hl_typedef" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a>      wid,</div>
 <div class="line">                                              <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType,</div>
 <div class="line">                                              uint32_t        section_u32,</div>
 <div class="line">                                              uint32_t        die_u32,</div>
 <div class="line">                                              <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>           key)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code hl_typedef" href="qlib__types_8h.html#a6ded6bb9d1cb07a3929688e4630dc7a6">CONST_KEY_P_T</a> keyPtr;</div>
-<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a71d6b9d11c1380f771954756bc12312b">QLIB_STATUS_RET_CHECK</a>(<a class="code hl_function" href="qlib__sample__fw_8c.html#a2d57dfbc3668ee26b20ec3ecc4a1ab20">QLIB_SAMPLE_GetSectionKeyPtr</a>(ctx, uid, keyType, section_u32, die_u32, &amp;keyPtr));</div>
-<div class="line">    (void)memcpy(key, keyPtr, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>((keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a>) || (keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a8a689425d26f048d6f7501d5c662e5a0">QLIB_KID__RESTRICTED_ACCESS_SECTION</a>),</div>
+<div class="line">                    QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(section_u32 &lt; <a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(key != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(ctx != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(die_u32 &lt; <a class="code hl_function" href="qlib_8h.html#a9775e1bf9bc637cf69c38bf22e86cb56">QLIB_GET_NUM_OF_DIES</a>(ctx), QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(wid != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line"><span class="preprocessor">#ifdef QLIB_KDF_DEV_KEYS</span></div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(QLIB_UTILS_CMKDF_KeyDerive(devSecret_au8_L,</div>
+<div class="line">                                               (uint8_t*)wid,</div>
+<div class="line">                                               keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a> ? QLIB_UTILS_CMKDF_LABEL_FK</div>
+<div class="line">                                                                                        : QLIB_UTILS_CMKDF_LABEL_RK,</div>
+<div class="line">                                               (<a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a> * die_u32) + section_u32,</div>
+<div class="line">                                               <a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a> * <a class="code hl_function" href="qlib_8h.html#a9775e1bf9bc637cf69c38bf22e86cb56">QLIB_GET_NUM_OF_DIES</a>(ctx),</div>
+<div class="line">                                               (uint8_t*)key,</div>
+<div class="line">                                               <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>)) == 0,</div>
+<div class="line">                    QLIB_STATUS__COMMAND_FAIL);</div>
+<div class="line"><span class="preprocessor">#else</span></div>
+<div class="line">    {</div>
+<div class="line">        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a> rKeys = {<a class="code hl_define" href="qlib__sample_8h.html#abef9b454c8286ea8d7f6543952aed498">QLIB_SAMPLE_RESTRICTED_K_0</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a197289afc381b53f6438d8bf6b521279">QLIB_SAMPLE_RESTRICTED_K_1</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a276b5f4a3183f615a6bc38d6274df653">QLIB_SAMPLE_RESTRICTED_K_2</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a22b1f73e464719d07a7dac742688f82c">QLIB_SAMPLE_RESTRICTED_K_3</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a93e7b789474e4bf5c144464c1db03439">QLIB_SAMPLE_RESTRICTED_K_4</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#ad7fac060966c25b581e267a2da9ca7ac">QLIB_SAMPLE_RESTRICTED_K_5</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a13ce15d6b2797f7cb22ff9f2166d0f58">QLIB_SAMPLE_RESTRICTED_K_6</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a2cc838514da84eec785754278a945cec">QLIB_SAMPLE_RESTRICTED_K_7</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#adee62778f549e1f765c0374b64ea3845">QLIB_SAMPLE_VAULT_RESTRICTED</a>};</div>
+<div class="line">        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="qlib__types_8h.html#a46beae988c91335edf7097e5feedba95">KEY_ARRAY_T</a> fKeys = {<a class="code hl_define" href="qlib__sample_8h.html#ad161d4903f79d5a151e5a141e18a0923">QLIB_SAMPLE_FULL_ACCESS_K_0</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a43ff3b919ec50c108cb3a01929222d73">QLIB_SAMPLE_FULL_ACCESS_K_1</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#aa1d1b5cb765de2998a42a73d45d638e9">QLIB_SAMPLE_FULL_ACCESS_K_2</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a8fcadd04b5d98500d2a616d0e1ea74e0">QLIB_SAMPLE_FULL_ACCESS_K_3</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#ad38e764f01beadee43dd66197e81db99">QLIB_SAMPLE_FULL_ACCESS_K_4</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#aa4e05323f4ca71b294674135be982690">QLIB_SAMPLE_FULL_ACCESS_K_5</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#ac196c4fc662a7cd6d635d1d645e71e92">QLIB_SAMPLE_FULL_ACCESS_K_6</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#afc1516bedf0a2756917ed2820e83f5b2">QLIB_SAMPLE_FULL_ACCESS_K_7</a>,</div>
+<div class="line">                                          <a class="code hl_define" href="qlib__sample_8h.html#a44a2bed8fe8c09bdc952e8c5337bd497">QLIB_SAMPLE_VAULT_FULL_ACCESS</a>};</div>
+<div class="line"> </div>
+<div class="line">        (void)memcpy(key, keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a> ? fKeys[section_u32] : rKeys[section_u32], <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line">    }</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_KDF_DEV_KEYS</span></div>
 <div class="line">    <span class="keywordflow">return</span> QLIB_STATUS__OK;</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#ifndef QLIB_ONLY_SECURE_STORAGE</span></div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#ac533a44f34038f2a94e67915563ed6b6">QLIB_SAMPLE_GetSectionLmsKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
-<div class="line">                                           <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>     uid,</div>
+<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#adc278b8ecd6f7cd1fa5f494cb370a585">QLIB_SAMPLE_GetSectionLmsKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
+<div class="line">                                           <a class="code hl_typedef" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a>      wid,</div>
 <div class="line">                                           uint32_t        section_u32,</div>
 <div class="line">                                           uint32_t        die_u32,</div>
 <div class="line">                                           <a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a>   key)</div>
 <div class="line">{</div>
 <div class="line">    (void)ctx;</div>
-<div class="line">    (void)uid;</div>
+<div class="line">    (void)wid;</div>
 <div class="line">    (void)die_u32;</div>
-<div class="line">    <a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a> keys[<a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>] = {<a class="code hl_define" href="qlib__sample_8h.html#ae3b500e4f0f85a1cfc99965982b4f8d4">QLIB_SAMPLE_LMS_K_0</a>,</div>
-<div class="line">                                                <a class="code hl_define" href="qlib__sample_8h.html#a6670ea052e6c4a3d7bcb5a57d6501e26">QLIB_SAMPLE_LMS_K_1</a>,</div>
-<div class="line">                                                <a class="code hl_define" href="qlib__sample_8h.html#a5e1beef16f1f9e9308f8f7fd46d697e5">QLIB_SAMPLE_LMS_K_2</a>,</div>
-<div class="line">                                                <a class="code hl_define" href="qlib__sample_8h.html#a4e5d100c9b712e409db019405daf4fad">QLIB_SAMPLE_LMS_K_3</a>,</div>
-<div class="line">                                                <a class="code hl_define" href="qlib__sample_8h.html#a9d22a40422a0a747e7f139fb47e31c4d">QLIB_SAMPLE_LMS_K_4</a>,</div>
-<div class="line">                                                <a class="code hl_define" href="qlib__sample_8h.html#a09d6bd4d3c51dfd0f87e4fa2d26112a9">QLIB_SAMPLE_LMS_K_5</a>,</div>
-<div class="line">                                                <a class="code hl_define" href="qlib__sample_8h.html#a51821a28c045dc304659f917d806de4f">QLIB_SAMPLE_LMS_K_6</a>,</div>
-<div class="line">                                                <a class="code hl_define" href="qlib__sample_8h.html#a9876b064036c6c3571394f33964ca1dc">QLIB_SAMPLE_LMS_K_7</a>,</div>
-<div class="line">                                                <a class="code hl_define" href="qlib__sample_8h.html#a05b9fd49e8dea6ecb9bd8761485c433d">QLIB_SAMPLE_LMS_K_8</a>};</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="qlib__types_8h.html#aab4f0c47059326b642167faf4f7d1333">LMS_PUB_KEY_T</a> keys[<a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>] = {<a class="code hl_define" href="qlib__sample_8h.html#ae3b500e4f0f85a1cfc99965982b4f8d4">QLIB_SAMPLE_LMS_K_0</a>,</div>
+<div class="line">                                                             <a class="code hl_define" href="qlib__sample_8h.html#a6670ea052e6c4a3d7bcb5a57d6501e26">QLIB_SAMPLE_LMS_K_1</a>,</div>
+<div class="line">                                                             <a class="code hl_define" href="qlib__sample_8h.html#a5e1beef16f1f9e9308f8f7fd46d697e5">QLIB_SAMPLE_LMS_K_2</a>,</div>
+<div class="line">                                                             <a class="code hl_define" href="qlib__sample_8h.html#a4e5d100c9b712e409db019405daf4fad">QLIB_SAMPLE_LMS_K_3</a>,</div>
+<div class="line">                                                             <a class="code hl_define" href="qlib__sample_8h.html#a9d22a40422a0a747e7f139fb47e31c4d">QLIB_SAMPLE_LMS_K_4</a>,</div>
+<div class="line">                                                             <a class="code hl_define" href="qlib__sample_8h.html#a09d6bd4d3c51dfd0f87e4fa2d26112a9">QLIB_SAMPLE_LMS_K_5</a>,</div>
+<div class="line">                                                             <a class="code hl_define" href="qlib__sample_8h.html#a51821a28c045dc304659f917d806de4f">QLIB_SAMPLE_LMS_K_6</a>,</div>
+<div class="line">                                                             <a class="code hl_define" href="qlib__sample_8h.html#a9876b064036c6c3571394f33964ca1dc">QLIB_SAMPLE_LMS_K_7</a>,</div>
+<div class="line">                                                             <a class="code hl_define" href="qlib__sample_8h.html#a05b9fd49e8dea6ecb9bd8761485c433d">QLIB_SAMPLE_LMS_K_8</a>};</div>
 <div class="line"> </div>
 <div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(section_u32 &lt; <a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>, QLIB_STATUS__INVALID_PARAMETER);</div>
 <div class="line"> </div>
@@ -349,44 +421,30 @@ $(function() {
 <div class="line">}</div>
 <div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_ONLY_SECURE_STORAGE</span></div>
 <div class="line"> </div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#a2d57dfbc3668ee26b20ec3ecc4a1ab20">QLIB_SAMPLE_GetSectionKeyPtr</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx,</div>
-<div class="line">                                           <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a>     uid,</div>
-<div class="line">                                           <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType,</div>
-<div class="line">                                           uint32_t        section_u32,</div>
-<div class="line">                                           uint32_t        die_u32,</div>
-<div class="line">                                           <a class="code hl_typedef" href="qlib__types_8h.html#a6ded6bb9d1cb07a3929688e4630dc7a6">CONST_KEY_P_T</a>*  key)</div>
-<div class="line">{</div>
-<div class="line">    (void)ctx;</div>
-<div class="line">    (void)uid;</div>
-<div class="line">    (void)die_u32;</div>
-<div class="line"> </div>
-<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>((keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a>) || (keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a8a689425d26f048d6f7501d5c662e5a0">QLIB_KID__RESTRICTED_ACCESS_SECTION</a>),</div>
-<div class="line">                    QLIB_STATUS__INVALID_PARAMETER);</div>
-<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(section_u32 &lt; <a class="code hl_define" href="qlib__types_8h.html#a9945a2084b7f584e5e4957a32fff0684">QLIB_NUM_OF_SECTIONS</a>, QLIB_STATUS__INVALID_PARAMETER);</div>
-<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(key != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a5eba7cf4913145ca5dfc7296f4cafb77">QLIB_KID__FULL_ACCESS_SECTION</a>)</div>
-<div class="line">    {</div>
-<div class="line">        *key = <a class="code hl_variable" href="qlib__sample__fw_8c.html#aebacff2b978fbb97aaa7bc7b11a536a1">fKeys_L</a>[section_u32];</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span></div>
-<div class="line">    {</div>
-<div class="line">        *key = <a class="code hl_variable" href="qlib__sample__fw_8c.html#adeeda75aff946faf7190f6639d0646f2">rKeys_L</a>[section_u32];</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> QLIB_STATUS__OK;</div>
-<div class="line">}</div>
-<div class="line"> </div>
 <div class="line"><span class="preprocessor">#ifndef QLIB_ONLY_SECURE_STORAGE</span></div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#a78742d40a8443c10bcbf8131c2b87529">QLIB_SAMPLE_GetDeviceKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx, <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> deviceKey)</div>
+<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#a485311221bd7777de85bca180f8056cc">QLIB_SAMPLE_GetDeviceKey</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx, <a class="code hl_typedef" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a> wid, <a class="code hl_enumeration" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3">QLIB_KID_TYPE_T</a> keyType, <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> deviceKey)</div>
 <div class="line">{</div>
-<div class="line">    (void)uid;</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(ctx != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(wid != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line">    <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(deviceKey != NULL, QLIB_STATUS__INVALID_PARAMETER);</div>
+<div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3adf3e73eb7232c1b766376c7809598fc5">QLIB_KID__DEVICE_KEY_PRE_PROVISIONING</a>)</div>
 <div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_function" href="qlib_8h.html#ade9cabd98ae02258bb24fba7909e33e6">QLIB_FeatureSupported</a>(ctx, <a class="code hl_define" href="qlib__types_8h.html#ac2de987c1fd70859880b4ac2b28505ba">W77Q_FEATURE_PRE_PROV_MASTER_KEY</a>) != (bool)<span class="keyword">false</span>)</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_function" href="qlib_8h.html#ade9cabd98ae02258bb24fba7909e33e6">QLIB_FeatureSupported</a>(ctx, <a class="code hl_define" href="qlib__types_8h.html#ac2de987c1fd70859880b4ac2b28505ba">W77Q_FEATURE_PRE_PROV_MASTER_KEY</a>) != (<span class="keywordtype">bool</span>)<span class="keyword">false</span>)</div>
 <div class="line">        {</div>
+<div class="line"><span class="preprocessor">#ifdef W77Q_KDF_KD1</span></div>
+<div class="line">            <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(QLIB_UTILS_CMKDF_KeyDerive(cms_au8_L,</div>
+<div class="line">                                                       (uint8_t*)wid,</div>
+<div class="line">                                                       QLIB_UTILS_CMKDF_LABEL_KD1,</div>
+<div class="line">                                                       0u,</div>
+<div class="line">                                                       1u,</div>
+<div class="line">                                                       (uint8_t*)deviceKey,</div>
+<div class="line">                                                       <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>)) == 0,</div>
+<div class="line">                            QLIB_STATUS__COMMAND_FAIL);</div>
+<div class="line"><span class="preprocessor">#else</span></div>
 <div class="line">            <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a class="code hl_define" href="qlib__sample_8h.html#ad1714aba578d24fce8669a86b146dd80">QLIB_SAMPLE_KD1</a>;</div>
 <div class="line">            (void)memcpy(deviceKey, key, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// W77Q_KDF_KD1</span></div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">else</span></div>
 <div class="line">        {</div>
@@ -395,13 +453,35 @@ $(function() {
 <div class="line">    }</div>
 <div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3acbd596339e8c4509781495e53101b060">QLIB_KID__DEVICE_MASTER</a>)</div>
 <div class="line">    {</div>
+<div class="line"><span class="preprocessor">#ifdef QLIB_KDF_DEV_KEYS</span></div>
+<div class="line">        <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(QLIB_UTILS_CMKDF_KeyDerive(devSecret_au8_L,</div>
+<div class="line">                                                   (uint8_t*)wid,</div>
+<div class="line">                                                   QLIB_UTILS_CMKDF_LABEL_KD,</div>
+<div class="line">                                                   0u,</div>
+<div class="line">                                                   1u,</div>
+<div class="line">                                                   (uint8_t*)deviceKey,</div>
+<div class="line">                                                   <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>)) == 0,</div>
+<div class="line">                        QLIB_STATUS__COMMAND_FAIL);</div>
+<div class="line"><span class="preprocessor">#else</span></div>
 <div class="line">        <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a class="code hl_define" href="qlib__sample_8h.html#aeecc9803b0db817147f0c2db3b579af0">QLIB_SAMPLE_KD</a>;</div>
 <div class="line">        (void)memcpy(deviceKey, key, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_KDF_DEV_KEYS</span></div>
 <div class="line">    }</div>
 <div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (keyType == <a class="code hl_enumvalue" href="qlib__types_8h.html#a0c6cb6d05119d27f1b23f8d2cb3691b3a2a92f4c52bbe94c1858198e34c4486fd">QLIB_KID__DEVICE_SECRET</a>)</div>
 <div class="line">    {</div>
+<div class="line"><span class="preprocessor">#ifdef QLIB_KDF_DEV_KEYS</span></div>
+<div class="line">        <a class="code hl_define" href="qlib__errors_8h.html#a0d911faeb1829a5cca3fee886e0de222">QLIB_ASSERT_RET</a>(QLIB_UTILS_CMKDF_KeyDerive(devSecret_au8_L,</div>
+<div class="line">                                                   (uint8_t*)wid,</div>
+<div class="line">                                                   QLIB_UTILS_CMKDF_LABEL_KS,</div>
+<div class="line">                                                   0u,</div>
+<div class="line">                                                   1u,</div>
+<div class="line">                                                   (uint8_t*)deviceKey,</div>
+<div class="line">                                                   <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>)) == 0,</div>
+<div class="line">                        QLIB_STATUS__COMMAND_FAIL);</div>
+<div class="line"><span class="preprocessor">#else</span></div>
 <div class="line">        <a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a> key = <a class="code hl_define" href="qlib__sample_8h.html#ab8933dd8c9aff042e39d3e9e52a966db">QLIB_SAMPLE_KDS</a>;</div>
 <div class="line">        (void)memcpy(deviceKey, key, <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="qlib__types_8h.html#a950b633a3c041949839f4e2736ab2a07">KEY_T</a>));</div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// QLIB_KDF_DEV_KEYS</span></div>
 <div class="line">    }</div>
 <div class="line">    <span class="keywordflow">else</span></div>
 <div class="line">    {</div>
@@ -410,10 +490,10 @@ $(function() {
 <div class="line">    <span class="keywordflow">return</span> QLIB_STATUS__OK;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#afc63b2b27f2adf9387e7823edc372bc9">QLIB_SAMPLE_GetSecureUID</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx, <a class="code hl_typedef" href="qlib__sample_8h.html#ae3babd55bfdd299e6291ae8f0cd0e60d">UNIQUE_ID_T</a> uid, TYPE_128BIT suid)</div>
+<div class="line"><a class="code hl_enumeration" href="qlib__errors_8h.html#a1ea3e84a713396a86969e1c9988145ba">QLIB_STATUS_T</a> <a class="code hl_function" href="qlib__sample__fw_8c.html#acbfbc01c621fedc8f3fb79197edcc53f">QLIB_SAMPLE_GetSecureUID</a>(<a class="code hl_union" href="union_q_l_i_b___c_o_n_t_e_x_t___t.html">QLIB_CONTEXT_T</a>* ctx, <a class="code hl_typedef" href="qlib__types_8h.html#a6d6ecee392baa8275034d0f885616127">QLIB_WID_T</a> wid, TYPE_128BIT suid)</div>
 <div class="line">{</div>
 <div class="line">    (void)ctx;</div>
-<div class="line">    (void)uid;</div>
+<div class="line">    (void)wid;</div>
 <div class="line">    TYPE_128BIT sampleSuid = <a class="code hl_define" href="qlib__sample_8h.html#ad25f7b911b4b696c85225b5e77a90a98">QLIB_SAMPLE_SUID</a>;</div>
 <div class="line"> </div>
 <div class="line">    (void)memcpy(suid, sampleSuid, <span class="keyword">sizeof</span>(TYPE_128BIT));</div>

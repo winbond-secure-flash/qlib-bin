@@ -121,14 +121,11 @@ QLIB_STATUS_T QLIB_SAMPLE_FirmwareUpdate_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     // modify configuration
 
     // set pre provision master key if needed
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext,
-                                                   id.std.uniqueID,
-                                                   QLIB_KID__DEVICE_KEY_PRE_PROVISIONING,
-                                                   dieCfg.preProvisionedMasterKey));
+    QLIB_STATUS_RET_CHECK(
+        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_KEY_PRE_PROVISIONING, dieCfg.preProvisionedMasterKey));
 
     // set new master key
-    QLIB_STATUS_RET_CHECK(
-        QLIB_SAMPLE_GetDeviceKey(qlibContext, id.std.uniqueID, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
+    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetDeviceKey(qlibContext, id.sec.wid, QLIB_KID__DEVICE_MASTER, dieCfg.deviceMasterKey));
 
 #if QLIB_MAX_DIES_SUPPORTED > 1u
     QLIB_STATUS_RET_CHECK(QLIB_GetActiveDie(qlibContext, &die_u8));
@@ -153,7 +150,7 @@ QLIB_STATUS_T QLIB_SAMPLE_FirmwareUpdate_manuf_flow(QLIB_CONTEXT_T* qlibContext)
     // Full access key configuration.This is the key to use later for the section configuration
     // changes or write access
     QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionAccessKey(qlibContext,
-                                                          id.std.uniqueID,
+                                                          id.sec.wid,
                                                           QLIB_KID__FULL_ACCESS_SECTION,
                                                           sect_u32,
                                                           die_u8,
@@ -173,7 +170,7 @@ QLIB_STATUS_T QLIB_SAMPLE_FirmwareUpdate_field_flow(QLIB_CONTEXT_T* qlibContext)
 {
     QLIB_ID_T           id;
     const char          fw_pu8[] = {'i', ' ', 'a', 'm', ' ', 'a', ' ', 'n', 'e', 'w', ' ', 'f', 'w'};
-    CONST_KEY_P_T       sectionKey;
+    KEY_T               sectionKey;
     uint8_t             die_u8      = 0u;
     uint32_t            section_u32 = 1u;
     uint32_t            fw32_u32[1u + (sizeof(fw_pu8) / 4u)];
@@ -208,12 +205,8 @@ QLIB_STATUS_T QLIB_SAMPLE_FirmwareUpdate_field_flow(QLIB_CONTEXT_T* qlibContext)
 #if QLIB_MAX_DIES_SUPPORTED > 1u
     QLIB_STATUS_RET_CHECK(QLIB_GetActiveDie(qlibContext, &die_u8));
 #endif // QLIB_MAX_DIES_SUPPORTED > 1u
-    QLIB_STATUS_RET_CHECK(QLIB_SAMPLE_GetSectionKeyPtr(qlibContext,
-                                                       id.std.uniqueID,
-                                                       QLIB_KID__FULL_ACCESS_SECTION,
-                                                       section_u32,
-                                                       die_u8,
-                                                       &sectionKey));
+    QLIB_STATUS_RET_CHECK(
+        QLIB_SAMPLE_GetSectionAccessKey(qlibContext, id.sec.wid, QLIB_KID__FULL_ACCESS_SECTION, section_u32, die_u8, sectionKey));
     QLIB_STATUS_RET_CHECK(QLIB_LoadKey(qlibContext, section_u32, sectionKey, (bool)true));
 
     QLIB_STATUS_RET_CHECK_GOTO(QLIB_SAMPLE_FirmwareUpdate_L(qlibContext,
@@ -535,7 +528,7 @@ static QLIB_STATUS_T QLIB_SAMPLE_SecCompare_L(QLIB_CONTEXT_T* qlibContext,
 {
     QLIB_STATUS_T ret          = QLIB_STATUS__OK;
     uint32_t      compared_u32 = 0u;
-    uint32_t      takeSize_u32 = 0u;
+    uint32_t      takeSize_u32;
     uint32_t      take_u32[4];
 
     QLIB_STATUS_RET_CHECK(QLIB_OpenSession(qlibContext, section_u32, QLIB_SESSION_ACCESS_FULL));

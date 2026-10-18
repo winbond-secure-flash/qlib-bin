@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,19 +77,19 @@ $(function() {
   <div class="headertitle"><div class="title">Linux (User Space) </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h3><a class="anchor" id="autotoc_md145"></a>
+<div class="textblock"><h3><a class="anchor" id="autotoc_md146"></a>
 Hardware Abstraction:</h3>
 <p >Interacts with the kernel's SPI subsystem, typically via the spidev driver. This exposes SPI devices as character device files in /dev/ (e.g., /dev/spidevB.C). Interaction is done using file operations: open, close, ioctl, read, write. </p>
-<h3><a class="anchor" id="autotoc_md146"></a>
+<h3><a class="anchor" id="autotoc_md147"></a>
 Implementation:</h3>
 <ul>
 <li>Mutual Exclusion: Primarily handled by the kernel. While multiple processes can open the device, the kernel typically serializes ioctl transfer requests for that specific chip select. Application-level locking might be needed if multiple threads within the same process access the same file descriptor concurrently, though often a single thread manages the SPI device.</li>
-<li>Transaction: The key is the ioctl(fd, SPI_IOC_MESSAGE(N), struct spi_ioc_transfer *xfers) system call. This allows sending an array of N transfer structures (spi_ioc_transfer) in a single atomic operation (kernel keeps CS asserted for the duration of the array processing unless cs_change is specified).<ul>
+<li>Transaction: The key is the ioctl(fd, SPI_IOC_MESSAGE(N), struct spi_ioc_transfer *xfers) system call. This allows sending an array of N transfer structures (spi_ioc_transfer) in a single atomic operation (kernel keeps CS# asserted for the duration of the array processing unless cs_change is specified).<ul>
 <li>Single transaction approach: <br  />
 <ul>
 <li>tx_buf: Point to dataOutStream (which must contain cmd+addr+data contiguously).</li>
 <li>rx_buf: Point to dataIn.</li>
-<li>len: Set to the total length needed for the transaction. This is tricky. Often, it's cmdSize + addressSize + dataOutSize + dummyCycles + dataInSize. The rx_buf will receive valid data only during the final dataInSize bytes of the transfer. The initial bytes received during the TX phases are usually discarded by the application. Set speed_hz, bits_per_word, delay_usecs (can sometimes be used for short delays instead of dummy bytes, but clocking dummies via TX is more common), cs_change = 1 (to deassert CS after this transfer).</li>
+<li>len: Set to the total length needed for the transaction. This is tricky. Often, it's cmdSize + addressSize + dataOutSize + dummyCycles + dataInSize. The rx_buf will receive valid data only during the final dataInSize bytes of the transfer. The initial bytes received during the TX phases are usually discarded by the application. Set speed_hz, bits_per_word, delay_usecs (can sometimes be used for short delays instead of dummy bytes, but clocking dummies via TX is more common), cs_change = 1 (to deassert CS# after this transfer).</li>
 </ul>
 </li>
 <li>Several transactions approach (maybe cleaner):<ul>
@@ -102,16 +102,16 @@ Implementation:</h3>
 </li>
 <li>The userData would most likely contain the file descriptor (int fd) returned by open("/dev/spidevB.C", O_RDWR). </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md147"></a>
+<h3><a class="anchor" id="autotoc_md148"></a>
 Concurrency:</h3>
 <p >Handled by the kernel's scheduling and locking for spidev. </p>
-<h3><a class="anchor" id="autotoc_md148"></a>
+<h3><a class="anchor" id="autotoc_md149"></a>
 Blocking:</h3>
 <p >The ioctl(SPI_IOC_MESSAGE(...)) call is blocking. The user-space process sleeps until the kernel driver completes the entire sequence (potentially using DMA/interrupts internally). </p>
-<h3><a class="anchor" id="autotoc_md149"></a>
-Atomicity:</h3>
-<p >Ensured by the SPI_IOC_MESSAGE ioctl processing multiple transfers before deasserting CS (unless cs_change directs otherwise). </p>
 <h3><a class="anchor" id="autotoc_md150"></a>
+Atomicity:</h3>
+<p >Ensured by the SPI_IOC_MESSAGE ioctl processing multiple transfers before deasserting CS# (unless cs_change directs otherwise). </p>
+<h3><a class="anchor" id="autotoc_md151"></a>
 Error Handling:</h3>
 <p >open, ioctl, read, write return -1 on error and set the errno variable. Check errno and translate Linux error codes (e.g., EINVAL, EIO, ETIMEDOUT) to your library's error codes.</p>
 <p >🔗<a class="el" href="md__c__qlib_proj_imports_red_ref_code_md_porting_linux_c.html">Example linux source code</a> <br  />

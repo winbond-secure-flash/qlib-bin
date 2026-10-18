@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -159,7 +159,7 @@ $(function() {
 <div class="line">        xfers[xfer_count].tx_buf = (<span class="keywordtype">unsigned</span> long)dataOutStream;</div>
 <div class="line">        xfers[xfer_count].rx_buf = 0; <span class="comment">// No receive buffer for write phase</span></div>
 <div class="line">        xfers[xfer_count].len = totalWriteSize;</div>
-<div class="line">        xfers[xfer_count].cs_change = 0; <span class="comment">// Keep CS asserted after this transfer</span></div>
+<div class="line">        xfers[xfer_count].cs_change = 0; <span class="comment">// Keep CS# asserted after this transfer</span></div>
 <div class="line">        <span class="comment">// Set speed_hz, bits_per_word etc. here if overriding defaults</span></div>
 <div class="line">        xfer_count++;</div>
 <div class="line">    }</div>
@@ -178,7 +178,7 @@ $(function() {
 <div class="line">        xfers[xfer_count].tx_buf = (<span class="keywordtype">unsigned</span> long)dummy_buf;</div>
 <div class="line">        xfers[xfer_count].rx_buf = 0; <span class="comment">// No receive buffer</span></div>
 <div class="line">        xfers[xfer_count].len = num_dummy_bytes;</div>
-<div class="line">        xfers[xfer_count].cs_change = 0; <span class="comment">// Keep CS asserted</span></div>
+<div class="line">        xfers[xfer_count].cs_change = 0; <span class="comment">// Keep CS# asserted</span></div>
 <div class="line">        xfer_count++;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
@@ -189,11 +189,11 @@ $(function() {
 <div class="line">        xfers[xfer_count].tx_buf = 0; <span class="comment">// Kernel will send 0s or configured dummy pattern</span></div>
 <div class="line">        xfers[xfer_count].rx_buf = (<span class="keywordtype">unsigned</span> long)dataIn;</div>
 <div class="line">        xfers[xfer_count].len = dataInSize;</div>
-<div class="line">        <span class="comment">// Deassert CS after this final transfer? Check flags.</span></div>
+<div class="line">        <span class="comment">// Deassert CS# after this final transfer? Check flags.</span></div>
 <div class="line">        xfers[xfer_count].cs_change = (flags &amp; PLAT_SPI_FLAG_KEEP_CS_ASSERTED) ? 0 : 1;</div>
 <div class="line">        xfer_count++;</div>
 <div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (xfer_count &gt; 0) {</div>
-<div class="line">         <span class="comment">// If there&#39;s no read phase, the last write/dummy phase should deassert CS</span></div>
+<div class="line">         <span class="comment">// If there&#39;s no read phase, the last write/dummy phase should deassert CS#</span></div>
 <div class="line">         <span class="keywordflow">if</span> (!(flags &amp; PLAT_SPI_FLAG_KEEP_CS_ASSERTED)) {</div>
 <div class="line">             xfers[xfer_count - 1].cs_change = 1;</div>
 <div class="line">         }</div>
@@ -220,8 +220,8 @@ $(function() {
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> ret;</div>
 <div class="line">}</div>
-<div class="ttc" id="aqlib__platform_8h_html_a939d501154b6b663bbb1af4f78f7f659"><div class="ttname"><a href="qlib__platform_8h.html#a939d501154b6b663bbb1af4f78f7f659">PLAT_SPI_WriteReadTransaction</a></div><div class="ttdeci">PLAT_API int PLAT_SPI_WriteReadTransaction(const void *userData_pv, QLIB_BUS_MODE_T format, uint32_t flags_u32, const uint8_t *dataOutStream_pu8, uint32_t cmdSize_u32, uint32_t addressSize_u32, uint32_t dataOutSize_u32, uint32_t dummyCycles_u32, uint8_t *dataIn_pu8, uint32_t dataInSize_u32)</div><div class="ttdoc">This routine performs SPI write-read transaction.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__platform__stubs_8c_source.html#l00042">qlib_platform_stubs.c:42</a></div></div>
-<div class="ttc" id="aqlib__platform_8h_html_a96afa0e841ac339dff2a72096eb2f5ab"><div class="ttname"><a href="qlib__platform_8h.html#a96afa0e841ac339dff2a72096eb2f5ab">QLIB_BUS_MODE_T</a></div><div class="ttdeci">QLIB_BUS_MODE_T</div><div class="ttdoc">define QLIB_MAX_SPI_INPUT_SIZE to SPI input buffer limitation.</div><div class="ttdef"><b>Definition:</b> <a href="qlib__platform_8h_source.html#l00086">qlib_platform.h:87</a></div></div>
+<div class="ttc" id="aqlib__platform_8h_html_a939d501154b6b663bbb1af4f78f7f659"><div class="ttname"><a href="qlib__platform_8h.html#a939d501154b6b663bbb1af4f78f7f659">PLAT_SPI_WriteReadTransaction</a></div><div class="ttdeci">PLAT_API int PLAT_SPI_WriteReadTransaction(const void *userData_pv, QLIB_BUS_MODE_T format, uint32_t flags_u32, const uint8_t *dataOutStream_pu8, uint32_t cmdSize_u32, uint32_t addressSize_u32, uint32_t dataOutSize_u32, uint32_t dummyCycles_u32, uint8_t *dataIn_pu8, uint32_t dataInSize_u32)</div><div class="ttdoc">This routine performs SPI write-read transaction.</div></div>
+<div class="ttc" id="aqlib__platform_8h_html_a96afa0e841ac339dff2a72096eb2f5ab"><div class="ttname"><a href="qlib__platform_8h.html#a96afa0e841ac339dff2a72096eb2f5ab">QLIB_BUS_MODE_T</a></div><div class="ttdeci">QLIB_BUS_MODE_T</div><div class="ttdoc">define QLIB_MAX_SPI_INPUT_SIZE to SPI input buffer limitation.</div><div class="ttdef"><b>Definition:</b> qlib_platform.h:87</div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

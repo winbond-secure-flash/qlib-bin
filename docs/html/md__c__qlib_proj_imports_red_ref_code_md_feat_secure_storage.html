@@ -21,7 +21,7 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+<link href="customdoxygen_lib.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -77,8 +77,9 @@ $(function() {
   <div class="headertitle"><div class="title">Secure storage feature </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >Secure storage is provided via imposing cryptographically protected policies to the flash sections. After policies and keys are configured, flash access obeys to very certain security rules. Section policy has multiple attributes, each can be used to implement your security architecture. Next example shows simple 3 sections layout with different plain read/write policy attributes.</p>
-<div align="center"></div><div align="center"><img src="SSM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >Following table reflects SSM for the user with/without keys as a result of section policy configured.</p>
+<div class="textblock"><p >Secure storage uses cryptographically protected policies applied to flash sections. After the policies and keys are configured, flash access follows the specified security rules. Section policies provide multiple attributes that can be used to implement a security architecture.</p>
+<p >The following example shows a simple three-section layout with different plain read/write policy settings.</p>
+<div align="center"></div><div align="center"><img src="SSM.png" alt="" class="inline" title="W77Q Secure Flash "/>    </div><div align="center"></div><p >The following table shows the access available under SSM to users with and without keys, based on the configured section policy.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">#   </th><th class="markdownTableHeadNone">plain read/write policy attribute   </th><th class="markdownTableHeadCenter">has no keys   </th><th class="markdownTableHeadCenter">has restricted key   </th><th class="markdownTableHeadCenter">has full access key    </th></tr>
@@ -89,11 +90,10 @@ $(function() {
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">plain read disabled, plain write disabled   </td><td class="markdownTableBodyCenter"><strike>read</strike> <strike>write</strike>   </td><td class="markdownTableBodyCenter">read <strike>write</strike>   </td><td class="markdownTableBodyCenter">read write   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md136"></a>
+<h2><a class="anchor" id="autotoc_md137"></a>
 C code implementation</h2>
-<p >Secure storage example is split in two phases - manufacture and field. During manufacture phase we create sections - each one with different access policy. During field phase we show how this policy affects flash access. <br  />
-</p>
-<p ><a href="secure_storage.html">🔗Secure storage c code</a> </p>
+<p >The secure-storage example has two phases: manufacturing and field use. During manufacturing, sections are configured with different access policies. During field use, the example demonstrates how each policy affects flash access.</p>
+<p ><a href="secure_storage.html">🔗Secure-storage sample</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

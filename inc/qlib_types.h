@@ -186,6 +186,7 @@ typedef enum
 #define W77Q_FEATURE_PRE_PROV_MASTER_KEY    12u // Flash supports pre-provision device master key
 #define W77Q_FEATURE_FAST_READ_DUMMY_CONFIG 13u // Flash supports configuration of dummy cycles for Fast-Read instructions
 #define W77Q_FEATURE_RST_PA                 15u // Flash can grant plain access on reset to configured sections
+#define W77Q_FEATURE_DEVCFG_LOCK            14u // Flash supports locking of configuration registers
 #define W77Q_FEATURE_VAULT                  16u // Flash supports Vault memory
 #define W77Q_FEATURE_FORMAT_MODE            17u // Flash supports mode bits (RESET/DEFAUL) in Format command
 #define W77Q_FEATURE_PA_GRANT_REVOKE        18u // Flash supports PA_GRANT, PA_GRANT_PLAIN and PA_REVOKE commands
@@ -228,6 +229,7 @@ typedef enum
     : ((feature) == W77Q_FEATURE_PRE_PROV_MASTER_KEY     ? ((((target) & all_q3_targets) != 0u) ? 1u : 0u)                                          \
     : ((feature) == W77Q_FEATURE_FAST_READ_DUMMY_CONFIG  ? ((((target) & all_q3_targets) != 0u) ? 1u : 0u)                                          \
     : ((feature) == W77Q_FEATURE_RST_PA                  ? ((((target) & all_q3_targets) != 0u) ? 1u : 0u)                                          \
+    : ((feature) == W77Q_FEATURE_DEVCFG_LOCK             ? ((((target) & all_q3_targets) != 0u) ? 1u : 0u)                                          \
     : ((feature) == W77Q_FEATURE_VAULT                   ? ((((target) & all_q3_targets) != 0u) ? 1u : 0u)                                          \
     : ((feature) == W77Q_FEATURE_FORMAT_MODE             ? ((((target) & all_q3_targets) != 0u) ? 1u : 0u)                                          \
     : ((feature) == W77Q_FEATURE_PA_GRANT_REVOKE         ? ((((target) & all_q3_targets) != 0u) ? 1u : 0u)                                          \
@@ -248,7 +250,7 @@ typedef enum
                                                             (((target) & all_q3_2_targets) != 0u) ? 1u : 0u)                                        \
     : ((feature) == W77Q_FEATURE_VAULT_128KB             ? ((((target) & all_q3_0_targets) != 0u) ||                                                \
                                                             (((target) & all_q3_1_targets) != 0u) ? 1u : 0u)                                        \
-    : 0u)))))))))))))))))))))))))))))
+    : 0u))))))))))))))))))))))))))))))
 // clang-format on
 
 #define QLIB_LMS_PUBLIC_KEY_SIZE(m)                        \
